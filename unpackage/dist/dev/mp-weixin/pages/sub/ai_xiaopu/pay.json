@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-line": "/uview-ui/components/u-line/u-line",
+    "u-input": "/uview-ui/components/u-input/u-input",
+    "u-popup": "/uview-ui/components/u-popup/u-popup",
+    "u-subsection": "/uview-ui/components/u-subsection/u-subsection",
+    "u-toast": "/uview-ui/components/u-toast/u-toast",
+    "coupon": "/components/coolc-coupon/coolc-coupon"
+  }
+}

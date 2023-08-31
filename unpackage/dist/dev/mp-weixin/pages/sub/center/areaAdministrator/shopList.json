@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "店铺管理",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-subsection": "/uview-ui/components/u-subsection/u-subsection",
+    "u-loadmore": "/uview-ui/components/u-loadmore/u-loadmore",
+    "u-empty": "/uview-ui/components/u-empty/u-empty",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-popup": "/uview-ui/components/u-popup/u-popup",
+    "u-grid": "/uview-ui/components/u-grid/u-grid",
+    "u-grid-item": "/uview-ui/components/u-grid-item/u-grid-item",
+    "kevy-loading": "/components/kevy-loading/kevy-loading",
+    "shop-box": "/pages/sub/center/components/areaAd_shop_box"
+  }
+}

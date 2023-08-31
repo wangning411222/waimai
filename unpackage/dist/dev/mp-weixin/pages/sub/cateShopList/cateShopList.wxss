@@ -1,0 +1,197 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+image {
+  width: 100%;
+  height: 100%;
+}
+.d-flex {
+  display: flex;
+}
+.flex {
+  flex: 1;
+}
+/* 文字尺寸 */
+/*文字颜色*/
+/* 背景颜色 */
+.shop-box {
+  min-height: 100vh;
+  background: whitesmoke;
+  padding-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+}
+.shop-box .shop-tabs {
+  padding: 20rpx 20rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+}
+.shop-box .shop-tabs .shop-tabs-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 0 0 25%;
+  margin-bottom: 20rpx;
+}
+.shop-box .shop-tabs .shop-tabs-item u-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.shop-box .shop-tabs .shop-tabs-item text {
+  margin-top: 10rpx;
+  color: #ccc;
+}
+.shop-box .shop-content {
+  margin-top: 20rpx;
+  background: whitesmoke;
+  padding: 20rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.shop-box .shop-content .shop-content-title {
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+}
+.shop-box .shop-content .emptys {
+  margin-top: 200rpx;
+}
+.shop-box .shop-content .select-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.shop-box .shop-content .select-box u-button {
+  flex: 0 0 20%;
+  margin-right: 20rpx;
+}
+.shop-box .shop-content .shop-list {
+  background: whitesmoke;
+  border-radius: 4px;
+  margin-top: 30rpx;
+}
+.shop-box .shop-content .shop-list .shop-item {
+  background: #fff;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-left {
+  width: 200rpx;
+  height: 150rpx;
+  border: 1px solud #ccc;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-left .business {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #2f2d2d90;
+  color: #fff;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  left: 0;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-left image {
+  width: 100%;
+  height: 100%;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right {
+  margin-left: 20rpx;
+  flex: 1;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .item-top-right-name {
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .item-top-right-rate {
+  margin: 5rpx 0;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .item-top-right-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .gray-font-20 {
+  color: gray;
+  font-size: 24rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .yello-font-20 {
+  color: #f7ba2a;
+  font-size: 24rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .item-top .item-top-right .margin-left-10 {
+  margin-left: 10rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .item-tag {
+  margin-left: 220rpx;
+  display: flex;
+  flex-direction: row;
+}
+.shop-box .shop-content .shop-list .shop-item .item-tag u-tag {
+  margin-right: 10rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list {
+  margin-top: 10rpx;
+  height: 240rpx;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-direction: row;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item {
+  float: left;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  max-width: 150rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item .goods_item-imgbox {
+  position: relative;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item .goods_item-imgbox .goods_img {
+  width: 150rpx;
+  height: 150rpx;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item .goods_item-imgbox view {
+  position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+  width: 60rpx;
+  height: 30rpx;
+  color: #fff;
+  background: #f7ba2a;
+  border-radius: 3px;
+  font-size: 18rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item .goods_item-name {
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shop-box .shop-content .shop-list .shop-item .goods_list .goods_item .yello-font-20 {
+  color: #f7ba2a;
+  font-size: 24rpx;
+}
+

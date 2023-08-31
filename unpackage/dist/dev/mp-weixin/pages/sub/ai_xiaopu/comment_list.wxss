@@ -1,0 +1,119 @@
+
+.lrpad{
+	padding-left: 20rpx;
+	padding-right: 20rpx;
+}
+.tpad{
+	padding-top: 20rpx;
+}
+.scroll-view_H {
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+}
+.scroll-view-item {
+	text-align: center;
+	font-size: 36rpx;
+}
+.scroll-view-item_H {
+	display: inline-block;
+	text-align: center;
+	font-size: 36rpx;
+}
+.empty_box {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 35%;
+}
+
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+image.data-v-e5ba734c {
+  width: 100%;
+  height: 100%;
+}
+.d-flex.data-v-e5ba734c {
+  display: flex;
+}
+.flex.data-v-e5ba734c {
+  flex: 1;
+}
+/* 文字尺寸 */
+/*文字颜色*/
+/* 背景颜色 */
+.comment-box.data-v-e5ba734c {
+  padding-bottom: 20rpx;
+}
+.comment-box .tag.data-v-e5ba734c {
+  padding: 3px 6px;
+  margin-right: 20rpx;
+  display: inline-block;
+  border-radius: 50rpx;
+  border: 1rpx solid #EEEEEE;
+  background: #EEEEEE;
+  color: #333333;
+}
+.comment-box .tag.active.data-v-e5ba734c {
+  border: 1rpx solid #fc3707;
+  background: rgba(252, 55, 7, 0.1);
+  color: #fc3707;
+}
+.comment-box .contain.data-v-e5ba734c {
+  padding-top: 20rpx;
+}
+.comment-box .contain .single-box .top.data-v-e5ba734c {
+  display: flex;
+}
+.comment-box .contain .single-box .top .head-img.data-v-e5ba734c {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin-right: 10rpx;
+}
+.comment-box .contain .single-box .top .head-img image.data-v-e5ba734c {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+}
+.comment-box .contain .single-box .top .nickname.data-v-e5ba734c {
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-right: 10rpx;
+}
+.comment-box .contain .single-box .top .time.data-v-e5ba734c {
+  font-size: 25rpx;
+  font-weight: 500;
+  color: #ABABAB;
+  margin-left: 20rpx;
+}
+.comment-box .contain .single-box .rate-star.data-v-e5ba734c {
+  padding-top: 20rpx;
+}
+.comment-box .contain .single-box .text-content.data-v-e5ba734c {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.comment-box .contain .single-box .img-box image.data-v-e5ba734c {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+  box-shadow: 0 0 2px #F0F0F0;
+}
+.comment-box .contain .single-box .setting-box.data-v-e5ba734c {
+  font-size: 28rpx;
+  font-weight: 520;
+  color: #ABABAB;
+}
+.comment-box .contain .single-box .line-box.data-v-e5ba734c {
+  margin-top: 20rpx;
+  border-top: 1px solid #F0F0F0;
+}
+

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "添加店铺",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "u-search": "/uview-ui/components/u-search/u-search",
+    "u-loadmore": "/uview-ui/components/u-loadmore/u-loadmore",
+    "u-toast": "/uview-ui/components/u-toast/u-toast"
+  }
+}

@@ -1,0 +1,15 @@
+
+page{
+	background-color: #f7f7f7;
+}
+.empty_box {
+	width: 100%;
+	padding-top: 20vh;
+}
+.padding-20{
+		padding: 20rpx;
+}
+.text-center {
+		text-align: center;
+}
+

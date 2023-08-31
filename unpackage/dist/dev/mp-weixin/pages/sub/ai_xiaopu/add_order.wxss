@@ -1,0 +1,444 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* page不能写带scope的style标签中，否则无效 */
+page {
+	background-color: rgb(240, 240, 240);
+}
+
+
+.city-sigle{
+	width: 20px;
+	height: 2px;
+	margin-right: 10px;
+	-webkit-transform: skew(-45deg);
+	        transform: skew(-45deg);
+}
+.city-sigle-red{
+	background-color: #D06583;
+}
+.city-sigle-blue{
+	background-color: #007AFF;
+}
+
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+image.data-v-0c75e304 {
+  width: 100%;
+  height: 100%;
+}
+.d-flex.data-v-0c75e304 {
+  display: flex;
+}
+.flex.data-v-0c75e304 {
+  flex: 1;
+}
+/* 文字尺寸 */
+/*文字颜色*/
+/* 背景颜色 */
+.main-content.data-v-0c75e304 {
+  padding: 20rpx;
+  padding-bottom: 200rpx;
+}
+.address-box.data-v-0c75e304 {
+  background: #FFFFFF;
+  padding: 40rpx 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.address-box .left-box.data-v-0c75e304 {
+  margin-right: 10rpx;
+  padding-top: 6rpx;
+}
+.address-box .center-box .top.data-v-0c75e304 {
+  display: flex;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.address-box .center-box .top .phone.data-v-0c75e304 {
+  margin-left: 60rpx;
+}
+.address-box .center-box .top .tag.data-v-0c75e304 {
+  display: flex;
+  font-weight: normal;
+  align-items: center;
+}
+.address-box .center-box .top .tag text.data-v-0c75e304 {
+  display: block;
+  width: 60rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  color: #ffffff;
+  font-size: 20rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  margin-left: 30rpx;
+  background-color: #3191fd;
+}
+.address-box .center-box .top .tag .red.data-v-0c75e304 {
+  background-color: red;
+}
+.address-box .center-box .bottom.data-v-0c75e304 {
+  display: flex;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  justify-content: space-between;
+  color: #999999;
+}
+.address-box .bottom-box.data-v-0c75e304 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+.goods-list-box.data-v-0c75e304 {
+  background: #FFFFFF;
+}
+.calculation.data-v-0c75e304 {
+  background: #FFFFFF;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+.calculation .goods-box.data-v-0c75e304 {
+  display: flex;
+  padding: 25rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+.calculation .goods-box .goods-img.data-v-0c75e304 {
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
+  border-radius: 5rpx;
+  box-shadow: 0 0 2px #f0f0f0;
+}
+.calculation .goods-box .goods-img image.data-v-0c75e304 {
+  width: 100%;
+  height: 100%;
+}
+.calculation .goods-box .content.data-v-0c75e304 {
+  flex: 1;
+  margin-left: 18rpx;
+}
+.calculation .goods-box .content .title.data-v-0c75e304 {
+  width: 400rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+.calculation .goods-box .content .title .text-box.data-v-0c75e304 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.calculation .goods-box .content .info.data-v-0c75e304 {
+  color: #DCDFE6;
+  font-size: 23rpx;
+  margin-bottom: 18rpx;
+}
+.calculation .goods-box .content .count .big-text.data-v-0c75e304 {
+  font-weight: 800;
+  font-size: 35rpx;
+}
+.total-box.data-v-0c75e304 {
+  background: #FFFFFF;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+.total-box .single-box.data-v-0c75e304 {
+  display: flex;
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+}
+.total-box .single-box .left.data-v-0c75e304 {
+  font-weight: 600;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.total-box .single-box .right.data-v-0c75e304 {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.total-box .total-price.data-v-0c75e304 {
+  border-top: 1px solid #F0F0F0;
+  margin-bottom: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.total-box .single-box .tag.data-v-0c75e304 {
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #6ee4c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rpx;
+  color: #FFFFFF;
+}
+.total-box .full-reduction .tag.data-v-0c75e304 {
+  background-color: #F69B16;
+}
+.remark.data-v-0c75e304 {
+  background: #FFFFFF;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+.remark .label.data-v-0c75e304 {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.bottom-tabbar.data-v-0c75e304 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2px #F1F1F1;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 20rpx;
+}
+.bottom-tabbar .left.data-v-0c75e304 {
+  flex: 1;
+}
+.bottom-tabbar .left .label.data-v-0c75e304 {
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.bottom-tabbar .left .price.data-v-0c75e304 {
+  font-size: 35rpx;
+  font-weight: 600;
+  color: #FA3534;
+}
+

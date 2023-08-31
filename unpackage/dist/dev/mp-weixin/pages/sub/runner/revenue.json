@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "收益明细",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-empty": "/uview-ui/components/u-empty/u-empty",
+    "u-toast": "/uview-ui/components/u-toast/u-toast",
+    "u-popup": "/uview-ui/components/u-popup/u-popup",
+    "u-calendar": "/uview-ui/components/u-calendar/u-calendar"
+  }
+}

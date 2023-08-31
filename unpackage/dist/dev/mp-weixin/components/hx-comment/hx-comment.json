@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "u-tag": "/uview-ui/components/u-tag/u-tag",
+    "u-input": "/uview-ui/components/u-input/u-input",
+    "u-empty": "/uview-ui/components/u-empty/u-empty"
+  },
+  "component": true
+}

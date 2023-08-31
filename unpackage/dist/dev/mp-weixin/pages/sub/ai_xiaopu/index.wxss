@@ -1,0 +1,165 @@
+
+.empty_box {
+		width: 100%;
+}
+page {
+	background-color: #efefef;
+}
+#tabInList {
+	background-color: #FFFFFF;
+	padding: 20rpx 0 0;
+}
+.u-mode-center-box {
+	border-radius: 20rpx !important;
+}
+.product {
+	/* width: 100%; */
+	margin-bottom: 20rpx;
+}
+.product.shopproduct {
+	width: 100%;
+}
+
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+image.data-v-30e67ab4 {
+  width: 100%;
+  height: 100%;
+}
+.d-flex.data-v-30e67ab4 {
+  display: flex;
+}
+.flex.data-v-30e67ab4 {
+  flex: 1;
+}
+/* 文字尺寸 */
+/*文字颜色*/
+/* 背景颜色 */
+.indexContent.data-v-30e67ab4 {
+  position: relative;
+}
+.u-subsection .u-item-bg.data-v-30e67ab4 {
+  background-color: #FFFFFF;
+  color: #6ee4c1;
+}
+.authorBtn.data-v-30e67ab4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+/*吸顶悬浮，上拉加载，下拉刷新组件*/
+.demo-tip.data-v-30e67ab4 {
+  padding: 18rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+/*吸顶悬浮，上拉加载，下拉刷新组件end*/
+.box-group.data-v-30e67ab4 {
+  background: #ededed;
+  margin: 20rpx 20rpx;
+  display: flex;
+  border-radius: 20rpx;
+}
+.box-group .single-box.data-v-30e67ab4 {
+  flex: 1;
+  padding: 20rpx;
+  text-align: center;
+}
+.box-group .single-box .b-image.data-v-30e67ab4 {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #dddddd;
+}
+.box-group .single-box .title.data-v-30e67ab4 {
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  font-weight: 500;
+}
+.product-list.data-v-30e67ab4 {
+  padding: 24rpx 24rpx 3vw 24rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.product-list .goodsproduct.data-v-30e67ab4 {
+  width: calc(50% - 12rpx) !important;
+  border-radius: 15rpx;
+  background-color: #fff;
+  margin: 0 0 25rpx 0;
+  box-shadow: 0rpx 5rpx 25rpx rgba(0, 0, 0, 0.1);
+}
+.product-list .goodsproduct image.data-v-30e67ab4 {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 15rpx 15rpx 0 0;
+}
+.product-list .goodsproduct .name.data-v-30e67ab4 {
+  width: 100%;
+  padding: 0 4%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-align: justify;
+  overflow: hidden;
+  font-size: 30rpx;
+}
+.product-list .goodsproduct .info.data-v-30e67ab4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 10rpx 4% 10rpx 4%;
+}
+.product-list .goodsproduct .info .price.data-v-30e67ab4 {
+  color: red;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.product-list .goodsproduct .slogan.data-v-30e67ab4 {
+  padding: 0 4% 10rpx;
+  color: #807c87;
+  font-size: 24rpx;
+}
+.popup-content.data-v-30e67ab4 {
+  border-radius: 20rpx;
+  padding: 40rpx 20rpx;
+  font-family: 'Microsoft YaHei UI';
+}
+.popup-content .loginTip.data-v-30e67ab4 {
+  font-size: 40rpx;
+  text-align: center;
+}
+.popup-content .loginBtn.data-v-30e67ab4 {
+  position: relative;
+  display: flex;
+  width: 90%;
+  height: 100rpx;
+  margin: 60rpx auto;
+  border-radius: 20rpx;
+  background-color: #c69c6c;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  color: #ffffff;
+}
+.popup-content .loginBtn .item.data-v-30e67ab4 {
+  flex: auto;
+}
+.popup-content .loginBtn .item.data-v-30e67ab4:nth-child(2) {
+  padding-right: 10rpx;
+}
+

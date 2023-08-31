@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "接单",
+  "usingComponents": {
+    "u-toast": "/uview-ui/components/u-toast/u-toast",
+    "u-popup": "/uview-ui/components/u-popup/u-popup"
+  }
+}

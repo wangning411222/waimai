@@ -1,0 +1,154 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+image.data-v-7ee70ebd {
+  width: 100%;
+  height: 100%;
+}
+.d-flex.data-v-7ee70ebd {
+  display: flex;
+}
+.flex.data-v-7ee70ebd {
+  flex: 1;
+}
+/* 文字尺寸 */
+/*文字颜色*/
+/* 背景颜色 */
+.cate_list.data-v-7ee70ebd {
+  padding: 30rpx 20rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.u-border-bottom.data-v-7ee70ebd:after {
+  border-bottom-width: 1px;
+}
+.u-cell.data-v-7ee70ebd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 26rpx 32rpx;
+  font-size: 28rpx;
+  line-height: 54rpx;
+  color: #606266;
+  background-color: #fff;
+  text-align: left;
+}
+.u-cell .u-cell_title.data-v-7ee70ebd {
+  font-size: 28rpx;
+}
+.u-cell .u-cell__value.data-v-7ee70ebd {
+  overflow: hidden;
+  text-align: right;
+  vertical-align: middle;
+  color: #909399;
+  font-size: 26rpx;
+  flex: 1;
+}
+.u-cell .u-icon-wrap.data-v-7ee70ebd {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.u-cell .u-cell__right-icon-wrap.data-v-7ee70ebd {
+  margin-left: 10rpx;
+  color: #969799;
+  font-size: 28rpx;
+  height: 48rpx;
+}
+image.data-v-7ee70ebd {
+  width: 120rpx;
+  flex: 0 0 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  border-radius: 12rpx;
+}
+.title.data-v-7ee70ebd {
+  text-align: left;
+  font-size: 28rpx;
+  color: #606266;
+  margin-top: 20rpx;
+}
+.row.data-v-7ee70ebd {
+  width: 100%;
+  display: flex;
+}
+.row .text.data-v-7ee70ebd {
+  align-self: center;
+  flex: 1;
+}
+.navigation.data-v-7ee70ebd {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  border: solid 2rpx #efefef;
+  background-color: #efefef;
+}
+.navigation .tell.data-v-7ee70ebd {
+  padding: 28rpx 0;
+  color: #333333;
+  font-size: 28rpx;
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid #bbbbbb;
+}
+.navigation .goodsClass.data-v-7ee70ebd {
+  padding: 28rpx 0;
+  color: #333333;
+  font-size: 28rpx;
+  flex: 1;
+  text-align: center;
+}
+.bottom_btn.data-v-7ee70ebd {
+  width: 100%;
+  height: 120rpx;
+  padding: 0 25rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #eee;
+  background-color: #FFFFFF;
+}
+.bottom_btn .collect_left.data-v-7ee70ebd {
+  width: 440rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: #aaaaaa;
+  float: left;
+}
+.bottom_btn .primary.data-v-7ee70ebd {
+  width: 130rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  overflow: hidden;
+  text-align: center;
+  color: #FFFFFF;
+}
+.bottom_btn .primary text.data-v-7ee70ebd {
+  padding: 10rpx 20rpx;
+  border-radius: 5rpx;
+  background-color: #ed3f14;
+}
+.bottom_btn .default_btn.data-v-7ee70ebd {
+  width: 130rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  overflow: hidden;
+  text-align: center;
+  color: #FFFFFF;
+}
+.bottom_btn .default_btn text.data-v-7ee70ebd {
+  padding: 10rpx 20rpx;
+  border-radius: 5rpx;
+  background-color: #C0C4CC;
+}
+
