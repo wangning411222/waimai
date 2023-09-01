@@ -19,7 +19,7 @@
               </view>
               <view class="stars">
                 <text>评分</text>
-                <uni-rate size="14" :value="item.star_nums"></uni-rate>
+                <u-rate size="28" :count="count" active-color="rgb(247, 186, 42)" :value="item.star_nums"></u-rate>
               </view>
               <view class="evaluate-content">
                 <text>{{ item.message || "用户暂未评价" }}</text>
@@ -73,7 +73,6 @@
 </template>
 
 <script>
-// import uniRate from "@/components/uni-rate/uni-rate.vue";
 
 export default {
   name: "hx-comment",
@@ -111,7 +110,8 @@ export default {
       canReplay: 0,//是否展示回复按钮
       inputFieldShow: false,//回复输入框展示隐藏
       replayPid: null,//点击回复的pid
-      replayValue: ''
+      replayValue: '',
+      count:5
     };
   },
 

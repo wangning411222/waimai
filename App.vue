@@ -43,7 +43,13 @@
 	.bg-white {
 		background-color: #FFFFFF;
 	}
-	
+	.text-through{
+    text-decoration: line-through;
+    flex:1;
+    display: flex;
+    align-items: center;
+    margin-left:15rpx;
+  }
 	
 	// card
 	.uni-card {

@@ -56,7 +56,7 @@ page {
   border-radius: 50rpx;
   padding: 5rpx 15rpx;
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #6ee4c1;
 }
 .item-menu-image {

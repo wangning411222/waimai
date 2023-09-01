@@ -82,8 +82,7 @@
         "runnerApply",
         "areaAdministrator/shopList",
         "areaAdministrator/banner",
-        "areaAdministrator/addShop",
-        "teach/teach"
+        "areaAdministrator/addShop"
       ]
     },
     {
@@ -154,5 +153,6 @@
   "usingComponents": {
     "mescroll-body": "/components/mescroll-uni/mescroll-body",
     "mescroll-uni": "/components/mescroll-uni/mescroll-uni"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

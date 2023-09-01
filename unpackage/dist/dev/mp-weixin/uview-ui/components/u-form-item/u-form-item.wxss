@@ -17,8 +17,10 @@ image.data-v-006449ec {
 /*文字颜色*/
 /* 背景颜色 */
 .u-form-item.data-v-006449ec {
+
   display: flex;
   flex-direction: row;
+
   padding: 20rpx 0;
   font-size: 28rpx;
   color: #303133;
@@ -30,18 +32,23 @@ image.data-v-006449ec {
   border-color: #fa3534;
 }
 .u-form-item__body.data-v-006449ec {
+
   display: flex;
   flex-direction: row;
 }
 .u-form-item--left.data-v-006449ec {
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
 }
 .u-form-item--left__content.data-v-006449ec {
   position: relative;
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
   padding-right: 10rpx;
   flex: 1;
@@ -57,8 +64,10 @@ image.data-v-006449ec {
   padding-top: 6rpx;
 }
 .u-form-item--left__content__label.data-v-006449ec {
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
   flex: 1;
 }
@@ -66,8 +75,10 @@ image.data-v-006449ec {
   flex: 1;
 }
 .u-form-item--right__content.data-v-006449ec {
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
   flex: 1;
 }

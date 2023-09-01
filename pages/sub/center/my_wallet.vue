@@ -98,7 +98,7 @@
             </view>
             <view class="money" :class="{ less: is_withdraw }">{{ is_withdraw ? "-" : "+" }}{{ currentTab == 1 ?
               item.rmbs_fmt : item.incomermbs_fmt }} <br>
-              <text @click="naviToDetail(item)">查看订单</text>
+              <text v-if="currentTab == 0" @click="naviToDetail(item)">查看订单</text>
             </view>
           </view>
         </view>

@@ -48,10 +48,6 @@
         提交申请
       </button>
     </view>
-    <view style="text-align:center;padding-left: 30rpx" v-if="showTips" @click="toReach">
-        <u-icon name="question-circle" color="#6ee4c1" size="28"></u-icon>
-        <text style="color:#6ee4c1">无法提交？点击查看</text>
-      </view>
 
     <u-toast ref="uToast" />
   </view>
@@ -105,7 +101,6 @@ export default {
       },
       errorType: ["message"],
       checkboxValue1: ["1"],
-      showTips:false
     };
   },
   computed: {
@@ -127,12 +122,6 @@ export default {
     uni.$off("getSchool");
   },
   methods: {
-    // 教学开启权限页面
-    toReach(){
-      uni.navigateTo({
-        url:"/pages/sub/center/teach/teach"
-      })
-    },
     getLogo(callback) {
       let _this = this;
       let files = [];
@@ -182,39 +171,21 @@ export default {
             });
             return false;
           }
-          let tampid = this.config.runner_income_tmplid;
-          let tampid2 = this.config.runner_neworder_tmplid;
-          // 获取推送权限,统一再提交接口,拒绝不执行后续提交
-          uni.requestSubscribeMessage({
-            tmplIds: [tampid, tampid2],
-            success(res) {
-              if (res[tampid] == "reject" || res[tampid2] == "reject") {
-                // 拒绝授权
-                _this.$refs.uToast.show({
-                  title: "为保证订单信息及时推送,请同意授权",
-                  type: "error",
-                });
-                _this.showTips=true
-                return;
-              }
-              if (res[tampid] == "accept"&&res[tampid2] == "accept") {
-                _this.$store
-                  .dispatch("runner/runnerApply", _this.form)
-                  .then((res) => {
-                    if (res.code == 0) {
-                      _this.$refs.uToast.show({
-                        title: res.message,
-                      });
-                      uni.navigateBack();
-                    } else {
-                      _this.$refs.uToast.show({
-                        title: res.message,
-                      });
-                    }
+        _this.$store
+              .dispatch("runner/runnerApply", _this.form)
+              .then((res) => {
+                if (res.code == 0) {
+                  _this.$refs.uToast.show({
+                    title: res.message,
                   });
-              }
-            },
-          });
+                  uni.navigateBack();
+                } else {
+                  _this.$refs.uToast.show({
+                    title: res.message,
+                  });
+                }
+              });
+          
         }
       });
     },

@@ -33,11 +33,11 @@
           暂无
         </view>
       </view>
-      <u-cell-item
+      <!-- <u-cell-item
         title="入学年份"
         :arrow="false"
         :value="content.real_name != '' ? content.real_name : '暂无'"
-      ></u-cell-item>
+      ></u-cell-item> -->
       <u-cell-item
         v-if="config.isshow == 1"
         title="心动式"

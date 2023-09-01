@@ -24,8 +24,10 @@ image.data-v-1c764f86 {
   color: #303133;
 }
 .u-field-inner.data-v-1c764f86 {
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
 }
 .u-textarea-inner.data-v-1c764f86 {
@@ -37,8 +39,10 @@ image.data-v-1c764f86 {
   font-size: 28rpx;
 }
 .fild-body.data-v-1c764f86 {
+
   display: flex;
   flex-direction: row;
+
   flex: 1;
   align-items: center;
 }
@@ -60,8 +64,10 @@ image.data-v-1c764f86 {
   flex: 1 1 130rpx;
   text-align: left;
   position: relative;
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
 }
 .u-required.data-v-1c764f86::before {
@@ -82,8 +88,10 @@ image.data-v-1c764f86 {
   width: auto;
 }
 .u-clear-icon.data-v-1c764f86 {
+
   display: flex;
   flex-direction: row;
+
   align-items: center;
 }
 .u-error-message.data-v-1c764f86 {

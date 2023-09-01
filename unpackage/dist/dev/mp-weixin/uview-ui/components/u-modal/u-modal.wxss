@@ -38,6 +38,7 @@ image.data-v-3626fcec {
   color: #606266;
 }
 .u-model__footer.data-v-3626fcec {
+
   display: flex;
   flex-direction: row;
 }

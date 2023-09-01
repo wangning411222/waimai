@@ -25,9 +25,9 @@
 				<u-form-item label="学校" prop="school">
 					<u-input v-model="form.school" @click="choose_school" disabled/>
 				</u-form-item>
-				<u-form-item label="入学年份" prop="real_name">
+				<!-- <u-form-item label="入学年份" prop="real_name">
 					<u-input type="text" v-model="form.real_name" :clearable="false" />
-				</u-form-item>
+				</u-form-item> -->
 				<u-form-item v-if="config.isshow == 1" label="心动式" prop="wechat">
 					<u-input type="text" v-model="form.wechat" :clearable="false" placeholder="QQ或微信(选填,仅用于发帖交友)"/>
 				</u-form-item>

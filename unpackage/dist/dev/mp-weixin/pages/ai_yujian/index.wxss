@@ -120,7 +120,7 @@ page {
 }
 .shop-box .shop-tabs .shop-tabs-item text {
   margin-top: 10rpx;
-  color: #ccc;
+  color: #999;
 }
 .shop-box .shop-content {
   background: whitesmoke;
@@ -223,9 +223,11 @@ page {
 .shop-box .shop-content .shop-list .shop-item .item-tag u-tag {
   margin-right: 10rpx;
 }
+.shop-box .shop-content .shop-list .shop-item .list-height {
+  height: 240rpx;
+}
 .shop-box .shop-content .shop-list .shop-item .goods_list {
   margin-top: 10rpx;
-  height: 240rpx;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;

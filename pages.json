@@ -339,15 +339,6 @@
             "navigationBarBackgroundColor": "#ffffff"
           }
         }
-          ,{
-                    "path" : "teach/teach",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
             ]
     },
     {

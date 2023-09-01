@@ -123,6 +123,10 @@ page {
 .text-center {
   text-align: center;
 }
+.filter {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
 .list_card {
   border-bottom: 8rpx solid #EFEFEF;
 }
@@ -204,14 +208,23 @@ page {
   color: #FFFFFF;
 }
 .uni-list .shop-price {
-  margin-right: 5px;
   font-size: 12px;
   color: #ff5a5f;
 }
-.uni-list .uni-note {
+.uni-list .sales-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.uni-list .sales-box .uni-note {
   margin-top: 10px;
   color: #999;
   font-size: 24rpx;
+}
+.uni-list .sales-box .sales-end {
+  color: red;
+  font-size: 28rpx;
 }
 .uni-list .shop-price-text {
   font-size: 16px;

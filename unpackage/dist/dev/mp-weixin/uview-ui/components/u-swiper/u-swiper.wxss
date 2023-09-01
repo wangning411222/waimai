@@ -31,8 +31,10 @@ image.data-v-a5b2d580 {
 .u-swiper-indicator.data-v-a5b2d580 {
   padding: 0 24rpx;
   position: absolute;
+
   display: flex;
   flex-direction: row;
+
   width: 100%;
   z-index: 1;
 }
@@ -101,8 +103,10 @@ image.data-v-a5b2d580 {
   color: rgba(255, 255, 255, 0.9);
 }
 .u-swiper-item.data-v-a5b2d580 {
+
   display: flex;
   flex-direction: row;
+
   overflow: hidden;
   align-items: center;
 }

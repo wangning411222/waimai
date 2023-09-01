@@ -98,7 +98,7 @@
                 <view class="item-tag" @click="toShopDetail(item)">
                   <u-tag :text="setText(item.enough_free_dyrmbs)" type="info" size="mini" />
                 </view>
-                <scroll-view scroll-x="true" class="goods_list">
+                <scroll-view scroll-x="true" class="goods_list" :class="item.goods_list.length?'list-height':''">
                   <view class="goods_item" v-for="(goodsitem, goodsindex) in item.goods_list" :key="goodsindex"
                     @click="toGoodsDetail(goodsitem, item)">
                     <view class="goods_item-imgbox">
@@ -460,13 +460,13 @@ export default {
   },
 
   onShow() {
-    this.getShopList()
+    
     var _this = this;
     uni.getStorage({
       key: "getSchoolLocation",
       success: function (res) {
         _this.SchoolLocation = res.data;
-
+        _this.getShopList()
         // 如果第二次获取到了地址，发出请求
         if (_this.address_state) {
           _this.getThreadRanks(0, _this.area);
@@ -498,45 +498,11 @@ export default {
         });
       }
     });
+   
   },
   onLoad() {
 
     let _this = this;
-    // #ifdef MP-WEIXIN
-    // 在页面onLoad回调事件中创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: "adunit-8230f2e7e5ee5725",
-      });
-      videoAd.onLoad(() => { });
-      videoAd.onError((err) => { });
-      videoAd.onClose((res) => {
-        // 用户点击了【关闭广告】按钮
-        if (res && res.isEnded) {
-          // 正常播放结束，可以下发游戏奖励
-          _this.$store
-            .dispatch("user/getWechat", { cuid: _this.getWechatUid })
-            .then((res) => {
-              console.log(res.message);
-              _this.$refs.uToast.show({
-                title: res.message,
-              });
-              if (res.code == 0) {
-                uni.setClipboardData({
-                  data: res.message,
-                  success: function () {
-                    console.log("success");
-                  },
-                });
-              }
-            });
-        } else {
-          // 播放中途退出，不下发游戏奖励
-        }
-      });
-    }
-
-    // #endif
 
     this.$store.dispatch("login/checkLogin").then((res) => {
       if (res && res.code != 0) {
@@ -561,15 +527,8 @@ export default {
     uni.$on("getLocation", (e) => {
       _this.SchoolLocation = e;
       _this.location = e.location_name;
-      // _this.onReady()
-
       this.getThreadList(this.active_nav, this.area, 0, 1);
-      // this.getThreadRanks(0, this.area);
     });
-  },
-  onReady() {
-    // this.getThreadList(this.active_nav, this.area, 0, 1);
-    // this.getThreadRanks(0, this.area);
   },
   onUnload() {
     uni.$off("shuaxin");
@@ -582,7 +541,7 @@ export default {
       }
       this.shopStatus = 'loading'
       let _this = this
-      let schoolid = uni.getStorageSync('getSchoolLocation').schoolid;
+      let schoolid = _this.SchoolLocation.schoolid;
       let data = {
         page: this.shopPage,
         schoolid: schoolid,
@@ -602,7 +561,6 @@ export default {
             _this.shopPage++;
           }
           _this.shopStatus = 'loadmore'
-          console.log(_this.compayList, ' _this.compayList _this.compayList')
         }
       });
     },
@@ -639,7 +597,6 @@ export default {
     },
     // 跳转分类页面
     cateHandle(item) {
-      console.log(item, 'itme```````````')
       uni.navigateTo({
         url: `/pages/sub/cateShopList/cateShopList?catid=${item.cateid}&title=${item.title}`,
       });
@@ -1095,7 +1052,7 @@ page {
 
       text {
         margin-top: 10rpx;
-        color: #ccc;
+        color: #999;
       }
     }
   }
@@ -1219,10 +1176,12 @@ page {
             margin-right: 10rpx;
           }
         }
-
+        .list-height{
+           height: 240rpx;
+        }
         .goods_list {
           margin-top: 10rpx;
-          height: 240rpx;
+         
           width: 100%;
           overflow: hidden;
           white-space: nowrap;

@@ -2710,7 +2710,9 @@ text {
   font-size: 34rpx;
 }
 .u-flex {
+
   display: flex;
+
   flex-direction: row;
   align-items: center;
 }
@@ -2754,7 +2756,9 @@ text {
   text-align: right;
 }
 .u-flex-col {
+
   display: flex;
+
   flex-direction: column;
 }
 .u-flex-0 {
@@ -5728,7 +5732,9 @@ page {
 .u-border-top-bottom:after,
 .u-border-top:after,
 .u-border:after {
+
   content: ' ';
+
   position: absolute;
   left: 0;
   top: 0;
@@ -5765,7 +5771,9 @@ page {
 /* start--clearfix--start */
 .u-clearfix:after,
 .clearfix:after {
+
   content: '';
+
   display: table;
   clear: both;
 }
@@ -5778,6 +5786,14 @@ page {
 }
 /* end--高斯模糊tabbar底部处理--end */
 /* start--提升H5端uni.toast()的层级，避免被uView的modal等遮盖--start */
+
+
+
+
+
+
+
+
 /* end--提升H5端uni.toast()的层级，避免被uView的modal等遮盖--end */
 /* start--去除button的所有默认样式--start */
 .u-reset-button {
@@ -5791,6 +5807,13 @@ page {
   border: none;
 }
 /* end--去除button的所有默认样式--end */
+
+
+
+
+
+
+
 /* start--微信小程序编译后页面有组件名的元素，特别处理--start */
 u-td, u-th {
   flex: 1;
@@ -5817,9 +5840,42 @@ u-switch {
 u-dropdown {
   flex: 1;
 }
+
 /* end-微信小程序编译后页面有组件名的元素，特别处理--end */
+
+
+
+
+
 /* start--头条小程序编译后页面有组件名的元素，特别处理--start */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* end-头条小程序编译后页面有组件名的元素，特别处理--end */
+
+
+
+
+
+
+
+
+
+
+
 /*每个页面公共css */
 .bg_theme {
   background-color: #6ee4c1;
@@ -5841,6 +5897,13 @@ u-dropdown {
 }
 .bg-white {
   background-color: #FFFFFF;
+}
+.text-through {
+  text-decoration: line-through;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-left: 15rpx;
 }
 .uni-card {
   display: flex;

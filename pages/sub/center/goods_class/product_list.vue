@@ -4,7 +4,8 @@
 			<view class="list_card u-padding-top-20 u-padding-bottom-20 u-padding-left-20 u-padding-right-20" v-for="(item,index) in data" :key="index">
 				<view class="uni-list" @click="goods_detail(item.goods_id)">
 					<view class="uni-thumb shop-picture">
-						<image :src="item.goods_pic" mode="aspectFill"></image>
+						<image :src="item.goods_pic" mode="aspectFill" :class="item.ischeck == 0?'filter':''"></image>
+            <text>{{item.ischeck}}</text>
 					</view>
 					<view class="shop">
 						<view>
@@ -32,9 +33,12 @@
 									<text class="">{{ item.market_price }}</text>
 								</view>
 							</view>
+							<view class="sales-box">
+                <view class="uni-note">销量 {{ item.sales }}</view>
+                <view v-if="item.stock==0" class="sales-end">已售完</view>
+              </view>
 							
 							
-							<view class="uni-note">月销量 {{ item.sales }}</view>
 							
 						</view>
 					</view>
@@ -133,6 +137,9 @@
 					if(res.code == 0) {
 						_this.data = _this.data.concat(res.message.goods_list);
 				
+         	_this.data=	_this.data.sort((a,b)=>{
+            return b.ischeck-a.ischeck
+          })
 						_this.maxpage = res.message.maxpage;
 						if(_this.maxpage > 1){
 							_this.page++;
@@ -199,14 +206,16 @@
 							_this.$refs.uToast.show({
 								title: '下架成功',
 							})
+             
 						} else {
 							_this.data[index].ischeck = 1;
 							_this.$refs.uToast.show({
 								title: '上架成功',
 							})
 						}
-						
-						
+						_this.data=	_this.data.sort((a,b)=>{
+            return b.ischeck-a.ischeck
+          })
 					} else {
 						_this.$refs.uToast.show({
 							title: res.message,
@@ -240,7 +249,9 @@
 	}
 	
 	
-	
+	.filter{
+    filter: grayscale(100%);
+  }
 	
 	.list_card {
 		
@@ -351,15 +362,25 @@
 		}
 		
 		.shop-price {
-		    margin-right: 5px;
 		    font-size: 12px;
 		    color: #ff5a5f;
 		}
-		.uni-note {
+    .sales-box{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      .uni-note {
 		    margin-top: 10px;
 		    color: #999;
 		    font-size: 24rpx;
 		}
+    .sales-end{
+      color:red;
+      font-size:28rpx;
+    }
+    }
+		
 		.shop-price-text {
 		    font-size: 16px;
 		}

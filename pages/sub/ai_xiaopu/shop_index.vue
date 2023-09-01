@@ -85,9 +85,12 @@
 												<text class="font24 gray3">月售{{ item1.sales }}份</text>
 											</view>
 										</view>
-										<view class="d-row padding-top-20">
-											<view class="color-orange flex-1 font38 font-bold"><text
-													class="font28">¥</text>{{ item1.price }}</view>
+										<view class="d-row padding-top-20" style="align-item:center">
+											<view class="color-orange font38 font-bold">
+                        <text class="font28">¥</text>
+                        {{ item1.price }}
+                      </view>
+                      <view class="gray3 text-through">¥{{item1.market_price}}</view>
 											<view v-if="item1.sku_fmt.length <= 0">
 												<view class="d-row" v-if="Number(item1.stock) != 0">
 													<view v-show="goodCartNum(item1.goods_id, -1)"
@@ -275,8 +278,11 @@
 										class="reduc">
 										<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 									</view>
-									<view v-show="goodCartNum(item1.goods_id, -1)" class="number">
-										{{ goodCartNum(item1.goods_id, -1) }}</view>
+									<view v-show="goodCartNum(item1.goods_id, -1)&&item1.sku_fmt.length==0" class="number">
+										{{ goodCartNum(item1.goods_id, -1) }}
+                  </view>
+                    <view v-show="goodCartNum(item1.goods_id, item1.skuActive)&&item1.sku_fmt.length>0" class="number">{{
+								goodCartNum(item1.goods_id, item1.skuActive) }}</view>
 									<view @tap="addShopClick(item1, 1)" class="add">
 										<u-icon name="plus-circle-fill" color="#ef5f1b" size="60"></u-icon>
 									</view>
@@ -417,8 +423,7 @@ export default {
 			return ((this.getCartGoodsPrice < Number(this.form.start_delivery_rmbs_fmt)) ? true : false)
 		},
 		spread() { //差多少元起送
-
-			return parseFloat(((this.form.start_delivery_rmbs - this.getCartGoodsPrice) / 2).toFixed(2))
+			return parseFloat(((this.form.start_delivery_rmbs_fmt - this.getCartGoodsPrice) / 2).toFixed(2))
 		}
 	},
 	methods: {
@@ -594,11 +599,11 @@ export default {
 					goods_desc: good.goods_desc,
 					skuActive: good.skuActive,
 					skuName: skuName,
-					sales: good.sales
+					sales: good.sales,
+          stock:good.stock,
+          sku_fmt:good.sku_fmt
 				})
 			}
-
-
 		},
 		// 加购物车 sku
 		addShopClickSku(good, num, skuindex = -1) {
