@@ -45,10 +45,8 @@ image.data-v-a577ac80 {
   border: 1px solid #dcdfe6;
 }
 .u-select__header.data-v-a577ac80 {
-
   display: flex;
   flex-direction: row;
-
   align-items: center;
   justify-content: space-between;
   height: 80rpx;
@@ -65,10 +63,8 @@ image.data-v-a577ac80 {
   box-sizing: border-box;
 }
 .u-select__body__picker-view__item.data-v-a577ac80 {
-
   display: flex;
   flex-direction: row;
-
   align-items: center;
   justify-content: center;
   font-size: 32rpx;

@@ -34,10 +34,8 @@ image.data-v-4f1b1b40 {
   width: 32rpx;
   color: #ffffff;
   height: 32rpx;
-
   display: flex;
   flex-direction: row;
-
   justify-content: center;
   align-items: center;
   border-radius: 100rpx;
@@ -60,10 +58,8 @@ image.data-v-4f1b1b40 {
   width: 32rpx;
   color: #ffffff;
   height: 32rpx;
-
   display: flex;
   flex-direction: row;
-
   justify-content: center;
   align-items: center;
   border-radius: 100rpx;

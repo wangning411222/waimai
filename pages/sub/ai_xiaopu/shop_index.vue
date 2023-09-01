@@ -87,13 +87,13 @@
 										</view>
 										<view class="d-row padding-top-20" style="align-item:center">
 											<view class="color-orange font38 font-bold">
-                        <text class="font28">¥</text>
-                        {{ item1.price }}
-                      </view>
-                      <view class="gray3 text-through">¥{{item1.market_price}}</view>
+												<text class="font28">¥</text>
+												{{ item1.price }}
+											</view>
+											<view class="gray3 text-through">¥{{ item1.market_price }}</view>
 											<view v-if="item1.sku_fmt.length <= 0">
-												<view class="d-row" v-if="Number(item1.stock) != 0">
-													<view v-show="goodCartNum(item1.goods_id, -1)"
+												<view class="d-row" v-if="Number(item1.stock) != 0 ">
+													<view v-show="goodCartNum(item1.goods_id, -1)&& goodCartNum(item1.goods_id, -1)<=item1.start"
 														@tap="reducShopClick(item1, -1)" class="reduc">
 														<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 													</view>
@@ -195,8 +195,8 @@
 		<u-popup v-model="goodsDetailShow" mode="center" closeable border-radius="14" width="80%" height="80%">
 			<view style="display: flex;flex-direction: column;height: 100%;">
 				<view>
-				<image :src="goodsDetail.goods_pic" mode="aspectFill" style="height: 480rpx; width: 100%"></image>
-			</view>
+					<image :src="goodsDetail.goods_pic" mode="aspectFill" style="height: 480rpx; width: 100%"></image>
+				</view>
 				<view class="padding-left-30 padding-top-20 padding-bottom-10"><text class="font-bold font36">{{
 					goodsDetail.goods_name }}</text></view>
 				<view class="padding-left-30"><text class="gray3 font22">月销{{ goodsDetail.sales }}份</text></view>
@@ -264,7 +264,7 @@
 								<view>
 									<text class="font32 font-bold">{{ item1.goods_name }}</text>
 								</view>
-								<view class="padding-top-10">
+								<view class="padding-top-10" style="display:flex;flex-direction: column;">
 									<text v-if="item1.goods_desc != ''" class="font24 gray3 margin-right-20">{{
 										item1.goods_desc }}</text>
 									<text class="font24 gray3">月售{{ item1.sales }}份</text>
@@ -278,11 +278,12 @@
 										class="reduc">
 										<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 									</view>
-									<view v-show="goodCartNum(item1.goods_id, -1)&&item1.sku_fmt.length==0" class="number">
+									<view v-show="goodCartNum(item1.goods_id, -1) && item1.sku_fmt.length == 0" class="number">
 										{{ goodCartNum(item1.goods_id, -1) }}
-                  </view>
-                    <view v-show="goodCartNum(item1.goods_id, item1.skuActive)&&item1.sku_fmt.length>0" class="number">{{
-								goodCartNum(item1.goods_id, item1.skuActive) }}</view>
+									</view>
+									<view v-show="goodCartNum(item1.goods_id, item1.skuActive) && item1.sku_fmt.length > 0"
+										class="number">{{
+											goodCartNum(item1.goods_id, item1.skuActive) }}</view>
 									<view @tap="addShopClick(item1, 1)" class="add">
 										<u-icon name="plus-circle-fill" color="#ef5f1b" size="60"></u-icon>
 									</view>
@@ -580,7 +581,12 @@ export default {
 					return false
 				}
 				this.animation_fun()
-				this.cart[index].number += num
+				if(good.start_num){
+					this.cart[index].number=good.start_num
+				}else{
+					this.cart[index].number += num
+				}
+				
 			} else {
 				this.animation_fun()
 				let skuName;
@@ -600,8 +606,8 @@ export default {
 					skuActive: good.skuActive,
 					skuName: skuName,
 					sales: good.sales,
-          stock:good.stock,
-          sku_fmt:good.sku_fmt
+					stock: good.stock,
+					sku_fmt: good.sku_fmt
 				})
 			}
 		},

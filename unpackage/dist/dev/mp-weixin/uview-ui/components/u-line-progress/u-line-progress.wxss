@@ -28,10 +28,8 @@ image.data-v-0fa21744 {
   width: 0;
   height: 100%;
   align-items: center;
-
   display: flex;
   flex-direction: row;
-
   justify-items: flex-end;
   justify-content: space-around;
   font-size: 20rpx;

@@ -27,12 +27,17 @@
 					<u-input v-model="form.deliver_way_title" disabled @click="deliverWayShow = true" placeholder="请选择配送方式"/>
 				</u-form-item> -->
 				<u-form-item label="库存"  label-width="170rpx" left-icon="edit-pen">
-					<u-input v-model="form.stock" type="number" placeholder="请输入库存"/>
+					<u-input v-model="form.stock" type="number" placeholder="不提交库存则表示该商品无限库存"/>
+				</u-form-item>
+				<u-form-item label="起购(件)"  label-width="170rpx" left-icon="edit-pen">
+					<u-input v-model="form.start_num" type="number" placeholder="请输入起购件数"/>
 				</u-form-item>
 				<u-form-item label="打包费" label-width="170rpx" left-icon="edit-pen">
 					<u-input v-model="form.box_price" type="digit" placeholder="请输入打包费(元)"/>
 				</u-form-item>
-				
+				<u-form-item label="商品描述" label-width="170rpx" left-icon="edit-pen">
+					<u-input v-model="form.goods_desc" type="digit" placeholder="请输入描述"/>
+				</u-form-item>
 				<u-select v-model="CateShow" value-name="cateid" label-name="title" :list="CateList" @confirm="cateConfirm"></u-select>
 				<!-- <u-select v-model="deliverWayShow" :list="deliverWayList" @confirm="deliverWayConfirm"></u-select> -->
 				
@@ -88,6 +93,8 @@ export default {
 				box_price:'',
 				sku_name:[],
 				sku_price:[],
+				goods_desc:'',
+				start_num:""
 			},
 			model:{
 				cateid:0,
@@ -105,6 +112,7 @@ export default {
 				box_price:0,
 				sku_name:[],
 				sku_price:[],
+				start_num:""
 			},
 			rules: {
 				goods_name: [
@@ -192,6 +200,9 @@ export default {
 					_this.form.goods_name = res.message.goods_name;
 					_this.form.market_price = res.message.market_price;
 					_this.form.price = res.message.price;
+					_this.form.goods_desc = res.message.goods_desc;
+					_this.form.start_num = res.message.start_num;
+					
 					if(res.message.stock == -1) {
 						_this.form.stock = '';
 					} else {
@@ -305,7 +316,8 @@ export default {
 			_this.model.box_price = _this.form.box_price;
 			_this.model.sku_name = _this.form.sku_name.filter(value => value !== '');
 			_this.model.sku_price = _this.form.sku_price.filter(value => value !== '');
-			
+			_this.model.goods_desc=_this.form.goods_desc
+			_this.model.start_num=_this.form.start_num
 			
 			// logo
 			// _this.getLogo();

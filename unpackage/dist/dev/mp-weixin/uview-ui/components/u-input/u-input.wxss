@@ -19,7 +19,6 @@ image.data-v-460c1d26 {
 .u-input.data-v-460c1d26 {
   position: relative;
   flex: 1;
-
   display: flex;
   flex-direction: row;
 }

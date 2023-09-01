@@ -40,10 +40,8 @@ scroll-view.data-v-9c8ef540 {
   position: relative;
 }
 .u-tabs-scorll-flex.data-v-9c8ef540 {
-
   display: flex;
   flex-direction: row;
-
   justify-content: space-between;
 }
 .u-tabs-scorll-flex .u-tabs-item.data-v-9c8ef540 {
@@ -78,10 +76,8 @@ scroll-view.data-v-9c8ef540 {
   position: absolute;
   top: 0;
   transition-property: left, background-color;
-
   display: flex;
   flex-direction: row;
-
   flex-direction: row;
   justify-content: center;
   align-items: center;

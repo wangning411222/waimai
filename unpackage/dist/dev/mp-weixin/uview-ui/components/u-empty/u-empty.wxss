@@ -17,10 +17,8 @@ image.data-v-2e22d22c {
 /*文字颜色*/
 /* 背景颜色 */
 .u-empty.data-v-2e22d22c {
-
   display: flex;
   flex-direction: row;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -30,10 +28,8 @@ image.data-v-2e22d22c {
   margin-bottom: 20rpx;
 }
 .u-slot-wrap.data-v-2e22d22c {
-
   display: flex;
   flex-direction: row;
-
   justify-content: center;
   align-items: center;
   margin-top: 20rpx;
