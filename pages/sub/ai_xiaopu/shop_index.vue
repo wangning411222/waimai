@@ -4,7 +4,7 @@
 		<view>
 			<view class="width100 d-row d-jc-centen padding-20" style=" background: #333333;">
 				<view class="padding-right-20">
-					<image class="s-head-img" mode="aspectFill" :src="form.logo"></image>
+					<image class="s-head-img" mode="aspectFill" :src="form.logo" @click="priviewImg(form.logo)"></image>
 				</view>
 				<view class="flex-1" style="align-self: center;">
 					<view class="colorWhite margin-bottom-20">
@@ -16,6 +16,7 @@
 						<u-icon name="map" color="#bbbbbb" size="24"></u-icon>
 						<text style="color: #bbbbbb; font-size: 24rpx;">{{ form.address }}</text>
 					</view>
+          <u-notice-bar mode="horizontal" bg-color="#333333" padding="16px 20px" :list="[form.notice]"></u-notice-bar>
 				</view>
 			</view>
 			<view v-if="coupon_list.length > 0" class="d-row d-ai-centen padding-left-10 padding-right-10 padding-top-20 "
@@ -60,7 +61,7 @@
 				<view v-for="(item, index) in cate_list" :key="index" class="u-tab-item"
 					:class="[current == index ? 'u-tab-item-active' : '']" :data-current="index"
 					@tap.stop="swichMenu(index)">
-					<text class="u-line-1">{{ item.title }}</text>
+					<text class="u-line-1" style="-webkit-line-clamp: 2;">{{ item.title }}</text>
 				</view>
 			</scroll-view>
 			<block v-for="(item, index) in goods_list" :key="index">
@@ -71,7 +72,8 @@
 								<text>{{ item.name }}</text>
 							</view>
 							<view class="item-container">
-								<view class="thumb-box" v-for="(item1, index1) in item.list" :key="index1">
+                <view v-for="(item1, index1) in item.list" :key="index1" style="width:100%;">
+                  	<view class="thumb-box" >
 									<image class="item-menu-image" :src="item1.goods_pic" mode="aspectFill"
 										@tap="handelGoodsDetail(item1, index, index1)"></image>
 									<view class="item-menu-name padding-left-20">
@@ -79,28 +81,33 @@
 											<view>
 												<text class="font32 font-bold">{{ item1.goods_name }}</text>
 											</view>
-											<view class="padding-top-10">
-												<text v-if="item1.goods_desc != ''" class="font24 gray3 margin-right-20">{{
-													item1.goods_desc }}</text>
+											<view>
+												<view v-if="item1.goods_desc != ''" class="font24 gray3 margin-right-20" style=" overflow: hidden;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;">{{
+													item1.goods_desc }}</view>
 												<text class="font24 gray3">月售{{ item1.sales }}份</text>
 											</view>
 										</view>
-										<view class="d-row padding-top-20" style="align-item:center">
-											<view class="color-orange font38 font-bold">
+										<view class="d-row" style="align-item:center">
+											<view class=" flex1 font34 font-bold d-row d-ai-end" style='color:#ff9800'>
 												<text class="font28">¥</text>
 												{{ item1.price }}
+                        <view v-if="item1.price!=item1.market_price" class="gray3 text-through">¥{{ item1.market_price }}</view>
 											</view>
-											<view class="gray3 text-through">¥{{ item1.market_price }}</view>
+											
 											<view v-if="item1.sku_fmt.length <= 0">
 												<view class="d-row" v-if="Number(item1.stock) != 0 ">
-													<view v-show="goodCartNum(item1.goods_id, -1)&& goodCartNum(item1.goods_id, -1)<=item1.start"
+													<view v-show="goodCartNum(item1.goods_id, -1)"
 														@tap="reducShopClick(item1, -1)" class="reduc">
 														<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 													</view>
 													<view v-show="goodCartNum(item1.goods_id, -1)" class="number">
 														{{ goodCartNum(item1.goods_id, -1) }}</view>
 													<view @tap="addShopClick(item1, 1)" class="add">
-														<u-icon name="plus-circle-fill" color="#ef5f1b" size="60"></u-icon>
+														<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
 													</view>
 												</view>
 
@@ -109,7 +116,7 @@
 											</view>
 											<view v-if="item1.sku_fmt.length > 0">
 												<view @tap="handelGoodsDetail(item1, index, index1)"
-													style="position: relative; background: #ef5f1b; color: #fff; border-radius: 5rem; padding: 10rpx 20rpx; font-size: 24rpx;">
+													style="position: relative; background: rgb(247, 186, 42); color: #fff; border-radius: 5rem; padding: 10rpx 20rpx; font-size: 24rpx;">
 													选规格
 													<text v-show="goodCartNum(item1.goods_id, -1)"
 														style="position: absolute;border-radius: 5rem;background: #cc0909;top: -10rpx;width: 35rpx;height: 35rpx;text-align: center;">{{
@@ -119,7 +126,15 @@
 
 										</view>
 									</view>
-								</view>
+                  
+								    </view>
+                   <view class="start_num" v-if="item1.start_num>1">
+                      <u-icon name="tags" color="rgb(247, 186, 42)" size="24"></u-icon>
+                      <text >{{item1.start_num}}份起购</text>
+                    </view>
+                </view>
+							
+               
 							</view>
 						</view>
 					</view>
@@ -149,7 +164,7 @@
 					</view>
 					<view v-else>
 						<view v-show="!disabledPay" @tap="goPay" class="font28 text-center"
-							style="height: 105rpx;line-height: 105rpx;  background: #ef5f1b; color: #FFFFFF;">
+							style="height: 105rpx;line-height: 105rpx;  background: rgb(247, 186, 42); color: #FFFFFF;">
 							去结算
 						</view>
 						<view v-show="disabledPay" class="font28 text-center"
@@ -161,27 +176,41 @@
 			</view>
 		</view>
 		<view v-if="tabcurrent == 1" class="width100">
-			<!-- <view class="font-bold font30 padding-top-30 padding-left-30 padding-bottom-20">公告</view>
-			<view class="padding-left-30 padding-right-30 gray3">{{form.notice}}</view> -->
-			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30">
+      <view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
+				<view class="font-bold font30 gray2 ">营业执照</view>
+				<view class="text-right flex-1 cert-img" >
+          <image :src="form.cert_img_url" mode="aspectFit" @click="priviewImg(form.cert_img_url)"></image>
+        </view>
+			</view>
+       <view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
+				<view class="font-bold font30 gray2 ">卫生许可证</view>
+				<view class="text-right flex-1 cert-img" >
+          <image :src="form.sanitary_img_url" mode="aspectFit" @click="priviewImg(form.sanitary_img_url)"></image>
+        </view>
+			</view>
+			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">营业时间</view>
 				<view class="text-right flex-1">{{ form.business_time }}</view>
 			</view>
-			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30">
+			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">店铺地址</view>
 				<view class="text-right flex-1">{{ form.address }}</view>
 			</view>
-			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30">
+			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">配送费</view>
 				<view class="text-right flex-1">{{ form.delivery_rmbs_fmt }}</view>
 			</view>
-			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30">
+			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">起步价</view>
 				<view class="text-right flex-1">{{ form.start_delivery_rmbs_fmt }}</view>
 			</view>
-			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30">
+			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">满多少免配送费</view>
 				<view class="text-right flex-1">{{ form.enough_free_dyrmbs_fmt }}</view>
+			</view>
+      <view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 padding-bottom-30 borderT">
+				<view class="font-bold font30 gray2 ">商家电话</view>
+				<view @click="call()" class="text-right flex-1"><u-icon name="phone" color="rgb(247, 186, 42)" size="40"></u-icon></view>
 			</view>
 		</view>
 		<view v-if="tabcurrent == 2" class="u-menu-wrap">
@@ -223,7 +252,7 @@
 							<view v-show="goodCartNum(goodsDetail.goods_id, index)" class="number">{{
 								goodCartNum(goodsDetail.goods_id, index) }}</view>
 							<view @tap="addShopClickSku(goodsDetail, 1, index)" class="add">
-								<u-icon name="plus-circle-fill" color="#ef5f1b" size="60"></u-icon>
+								<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
 							</view>
 						</view>
 					</view>
@@ -267,25 +296,30 @@
 								<view class="padding-top-10" style="display:flex;flex-direction: column;">
 									<text v-if="item1.goods_desc != ''" class="font24 gray3 margin-right-20">{{
 										item1.goods_desc }}</text>
-									<text class="font24 gray3">月售{{ item1.sales }}份</text>
+									<text v-if="item1.sku_fmt.length" class="font24 gray3">规格:{{ item1.skuName }}</text>
 								</view>
 							</view>
 							<view class="d-row padding-top-20">
 								<view class="color-orange flex-1 font38 font-bold"><text class="font28">¥</text>{{
 									item1.price }}</view>
 								<view class="d-row" v-if="Number(item1.stock) != 0">
+                  <!-- 没有sku商品购物车减购(区别商品数量不同) -->
 									<view v-show="goodCartNum(item1.goods_id, -1)" @tap="reducShopClick(item1, -1)"
 										class="reduc">
 										<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 									</view>
+                  <!-- 有sku商品购物车减购 -->
+                <!-- 没有sku的购物车商品数量 -->
 									<view v-show="goodCartNum(item1.goods_id, -1) && item1.sku_fmt.length == 0" class="number">
 										{{ goodCartNum(item1.goods_id, -1) }}
 									</view>
+                  <!-- 有sku的购物车商品数量 -->
 									<view v-show="goodCartNum(item1.goods_id, item1.skuActive) && item1.sku_fmt.length > 0"
 										class="number">{{
 											goodCartNum(item1.goods_id, item1.skuActive) }}</view>
+                  <!-- 购物车加购 -->
 									<view @tap="addShopClick(item1, 1)" class="add">
-										<u-icon name="plus-circle-fill" color="#ef5f1b" size="60"></u-icon>
+										<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
 									</view>
 								</view>
 
@@ -300,9 +334,14 @@
 		</u-popup>
 
 		<u-popup v-model="goodsDetailShowImg" mode="center" border-radius="14" width="80%" height="65%">
-			<view style="width:100%;height:100%;">
+			<view class="no-sku-box" style="width:100%;height:100%;">
 				<image :src="goodsDetail.goods_pic" mode="aspectFill" style="height: 100%; width: 100%"></image>
+        <view class="good_desc" v-if="goodsDetail.goods_desc!=''">
+        <text>商品描述:</text>
+        <text>{{goodsDetail.goods_desc}}</text>
+      </view>
 			</view>
+      
 		</u-popup>
 	</view>
 </template>
@@ -355,7 +394,8 @@ export default {
 			goodsDetail: {},
 			companyid: "",
 			shopCarPopShow: false,//购物车弹窗显示
-			goodsDetailShowImg: false
+			goodsDetailShowImg: false,
+      shopPhone:""
 		}
 	},
 	onShow: function () {
@@ -428,6 +468,28 @@ export default {
 		}
 	},
 	methods: {
+    priviewImg(url){
+      uni.previewImage({
+			urls: [url],
+      success(res){
+
+      },
+      fail(err){
+      }
+		});
+    },
+    // 拨打商家电话
+    call(){
+      wx.makePhoneCall({
+          phoneNumber: this.shopPhone,
+          success: function() {
+            console.log("拨打电话成功！")
+          },
+          fail: function(err) {
+            console.log(err,"拨打电话失败！")
+          }
+        })
+    },
 		// 清空购物车
 		clearCart() {
 			this.cart = []
@@ -456,7 +518,7 @@ export default {
 							})
 						})
 						this.cate_list = res.message.cate_list
-
+            this.shopPhone=res.message.company_info.contacts_mobile
 						res.message.goods_list.map((item) => {
 							item['skuActive'] = 0
 						})
@@ -581,13 +643,11 @@ export default {
 					return false
 				}
 				this.animation_fun()
-				if(good.start_num){
-					this.cart[index].number=good.start_num
-				}else{
+        
 					this.cart[index].number += num
-				}
 				
 			} else {
+        	let numbers=good.start_num-0
 				this.animation_fun()
 				let skuName;
 				if (good.sku_fmt.length == 0) {
@@ -601,13 +661,14 @@ export default {
 					goods_name: good.goods_name,
 					goods_pic: good.goods_pic,
 					price: good.price,
-					number: num,
+					number: numbers,
 					goods_desc: good.goods_desc,
 					skuActive: good.skuActive,
 					skuName: skuName,
 					sales: good.sales,
 					stock: good.stock,
-					sku_fmt: good.sku_fmt
+					sku_fmt: good.sku_fmt,
+          start_num:good.start_num
 				})
 			}
 		},
@@ -628,7 +689,12 @@ export default {
 				}
 
 			})
-			this.cart[index].number -= 1
+      if(good.start_num && this.goodCartNum(good.goods_id, -1)>good.start_num ){
+        this.cart[index].number -= 1
+      }else{
+        this.cart[index].number=0
+      }
+			
 			if (this.cart[index].number <= 0) {
 				this.cart.splice(index, 1)
 			}
@@ -684,6 +750,19 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
+.borderT{
+  border-bottom:1px solid rgba(204, 204, 204, 0.596);
+  padding-bottom:30rpx;
+}
+.cert-img{
+  width: 300rpx;
+  height:200rpx;
+  margin-left:20rpx;
+  image{
+    width: 100%;
+    height: 100%;
+  }
+}
 .shop-car-box {
 	padding: 20rpx 40rpx;
 	display: flex;
@@ -734,7 +813,7 @@ export default {
 .active {
 	font-weight: bold;
 	color: #767676;
-	border-bottom: 3rpx solid #ef5f1b;
+	border-bottom: 3rpx solid rgb(247, 186, 42);
 }
 
 .s-head-img {
@@ -786,15 +865,17 @@ export default {
 	font-size: 30rpx;
 	font-weight: 600;
 	background: #fff;
+  padding-left:10rpx;
 }
 
 .u-tab-item-active::before {
 	content: "";
 	position: absolute;
-	border-left: 4px solid #ef5f1b; //  $u-theme-color
+	border-left: 4px solid rgb(247, 186, 42); //  $u-theme-color
 	height: 32rpx;
 	left: 0;
 	top: 39rpx;
+  
 }
 
 .u-tab-view {
@@ -827,10 +908,11 @@ export default {
 }
 
 .item-menu-name {
-	flex: 1;
+	float:left;
 	font-weight: normal;
 	font-size: 24rpx;
 	color: $u-main-color;
+ width: calc(100% - 170rpx);
 }
 
 .item-container {
@@ -842,14 +924,27 @@ export default {
 	padding: 15rpx;
 
 	width: 100%;
-	display: flex;
+  overflow:hidden;
 
 	// margin-top: 10rpx;
 }
-
+.start_num{
+  margin-left:170rpx;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top:-20rpx;
+  font-size:22rpx;
+  flex:1;
+  text{
+    margin-left:10rpx;
+    color:rgb(247, 186, 42);
+  }
+}
 .item-menu-image {
 	width: 150rpx;
 	height: 150rpx;
+  float:left;
 }
 
 
@@ -934,8 +1029,25 @@ export default {
 }
 
 .skuActive {
-	border: 1rpx solid #ef5f1b !important;
+	border: 1rpx solid rgb(247, 186, 42) !important;
 	background: rgba(255, 151, 151, 0.1);
-	color: #ef5f1b;
+	color: rgb(247, 186, 42);
 }
+.no-sku-box{
+  display:flex;
+  flex-direction: column;
+  image{
+    flex:1;
+  }
+  .good_desc{
+    padding:20rpx;
+  display:flex;
+  flex-direction: column;
+  text{
+    margin:5rpx;
+  }
+
+}
+}
+
 </style>

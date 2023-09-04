@@ -26,8 +26,10 @@ image.data-v-da6758f0 {
 }
 .u-radio__icon-wrap.data-v-da6758f0 {
   color: #606266;
+
   display: flex;
   flex-direction: row;
+
   flex: none;
   align-items: center;
   justify-content: center;

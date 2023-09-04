@@ -22,6 +22,9 @@
 				<u-form-item label="商店地址" label-width="170rpx" right-icon="map">
 					<u-input v-model="form.address" @click="remap" disabled placeholder="定位地址"/>
 				</u-form-item>
+        <u-form-item label="商家公告" label-width="170rpx">
+					<u-input v-model="form.notice"  placeholder="公告不超过100字"/>
+				</u-form-item>
 			</view>
 			<view class="card-list">
 				<view style="text-align: center; color:#bbbbbb;">
@@ -73,6 +76,14 @@
 				<view style="text-align: center; color:#bbbbbb;">（或大学生创业上传身份证即可）</view>
 				<u-upload :action="upimgUrl" :file-list="cert_img_start" ref="uUploadlicense" width="160" height="160" multiple='false' upload-text="营业执照" max-count="1"></u-upload>
 			</view>
+      	<view class="card-list logo">
+				<view style="text-align: center; color:#bbbbbb;">
+					<u-icon name="star-fill" color="#cccccc" size="24"></u-icon>
+					卫生许可证(必填)
+					<u-icon name="star-fill" color="#cccccc" size="24"></u-icon>
+				</view>
+				<u-upload :action="upimgUrl" :file-list="sanitary_img_start" ref="uUploadlicense2" width="160" height="160" multiple='false' upload-text="卫生许可证" max-count="1"></u-upload>
+			</view>
 			<view class="card-list">
 				
 				<view style="text-align: center; color:#bbbbbb;">
@@ -93,7 +104,10 @@
 		</u-form>
 		<u-select v-model="catelist_show" label-name="title" value-name="cateid" :list="config.shop_catelist" @confirm="cateconfirm"></u-select>
 		<u-select v-model="deliverWayShow" :list="deliverWayList" @confirm="deliverWayConfirm"></u-select>
-		<u-button @click="submit" type="warning">提交</u-button>
+    <view class="submit-box"> 
+      <u-button @click="submit" type="warning">提交</u-button>
+    </view>
+		
 		<u-toast ref="uToast" />
 	</view>
 </template>
@@ -123,6 +137,7 @@ export default {
 				deliver_way_title:'', // 配送方式
 				auto_ordered_checked: false,
 				auto_ordered: 0,
+        notice:''
 			},
 			model: {
 				companyid:0,
@@ -134,7 +149,7 @@ export default {
 				message:'',
 				message_img:[],
 				cert_img_url:"",
-
+        sanitary_img_url:'',
 				contacts_name:'',
 				contacts_mobile:'',
 				cateid:0,
@@ -145,6 +160,7 @@ export default {
 				business_status: 0,
 				deliver_way: 99,
 				auto_ordered: 0,
+        notice:''
 			},
 			rules: {
 				name: [
@@ -185,7 +201,7 @@ export default {
 			logo_start:[],
 			fileList:[],
 			cert_img_start:[],
-			
+			sanitary_img_start:[],
 			deliverWayList:[{
 				value: '0',
 				label: '店内和外卖'
@@ -231,7 +247,7 @@ export default {
 					})
 					_this.fileList = message_img_new_arr;
 					_this.cert_img_start = [{url:res.message.cert_img_url}];
-					
+					_this.sanitary_img_start=[{url:res.message.sanitary_img_url}]
 					_this.config.shop_catelist.map(function(v,i){
 						if(v.cateid == res.message.cateid) {
 							_this.form.catename = v.title;
@@ -243,8 +259,9 @@ export default {
 					_this.form.checked = res.message.business_status == 0 ? false : true;
 					
 					_this.form.auto_ordered = res.message.auto_ordered;
+          _this.form.notice = res.message.notice;
 					_this.form.auto_ordered_checked = res.message.auto_ordered == 0 ? false : true;
-					
+				
 					if(res.message.deliver_way == 0) {
 						_this.form.deliver_way_title = "店内和外卖";
 					} else if(res.message.deliver_way == 1) {	
@@ -261,8 +278,9 @@ export default {
 					_this.model.message=res.message.message;
 					_this.model.contacts_name=res.message.contacts_name;
 					_this.model.contacts_mobile=res.message.contacts_mobile;
-					
+						_this.model.notice=res.message.notice
 					_this.model.shop_type=res.message.shop_type
+          
 					
 				}
 			});
@@ -297,6 +315,23 @@ export default {
 						_this.model.cert_img_url = v['response']['message']['url'];
 					} else {
 						_this.model.cert_img_url = v['url'];
+					}	
+				})
+			}
+		},
+    getLicense2(){
+			let _this = this;
+			let files = [];
+			files = this.$refs.uUploadlicense2.lists.filter(val => {
+				return val.progress == 100;
+			})
+			if(files.length > 0) {
+        	_this.model.sanitary_img_url=''
+				files.map(function(v,i){
+					if(v['response']) {
+							_this.model.sanitary_img_url= v['response']['message']['url'];
+					} else {
+							_this.model.sanitary_img_url = v['url'];
 					}	
 				})
 			}
@@ -357,11 +392,13 @@ export default {
 			_this.model.business_status = _this.form.business_status;
 			
 			_this.model.auto_ordered = _this.form.auto_ordered;
+      _this.model.notice=_this.form.notice
 			
 			// logo
 			_this.getLogo();
 			_this.getComimg();
 			_this.getLicense();
+      _this.getLicense2()
 
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
@@ -525,5 +562,19 @@ page {
 .u-gab {
     height: 10rpx;
     background-color: #eaeaec;
+}
+.submit-box{
+  width: 100%;
+  height: 105rpx;
+  position: fixed;
+  bottom:0;
+  left:0;
+  opacity: 1;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  u-button{
+    flex:1;
+  }
 }
 </style>

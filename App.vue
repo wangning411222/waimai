@@ -48,9 +48,13 @@
     flex:1;
     display: flex;
     align-items: center;
-    margin-left:15rpx;
+    font-size:24rpx;
+    font-weight:normal;
+    margin-left:6rpx;
   }
-	
+	.flex1{
+    flex:1
+  }
 	// card
 	.uni-card {
 		/* #ifndef APP-NVUE */
@@ -781,6 +785,9 @@
 		.padding-right-30{
 			padding-right: 30rpx;
 		}
+    .padding-bottom-30{
+      padding-bottom:30rpx;
+    }
 		.padding-right-40{
 			padding-right: 40rpx;
 		}
@@ -804,7 +811,7 @@
 			color:#303133;
 		}
 		.color-orange{
-			color: #ff6634;
+			color:rgb(247, 186, 42);
 		}
 		.color-red{
 			color: red;

@@ -74,7 +74,21 @@ const actions = {
 			})
 		})
 	},
-	getPhoneNum({commit}, data) {
+	isRecommend({commit}, data) {
+		console.log('phone start.');
+		return new Promise((resolve, reject) => {
+			post('goods/is_recommend',data,false).then((res)=> {
+				console.log(res);
+				if(res.code==0) {
+					//手机号
+					resolve(res)
+				} else {
+					reject();
+				}
+			})
+		})
+	},
+  getPhoneNum({commit}, data) {
 		console.log('phone start.');
 		return new Promise((resolve, reject) => {
 			post('user/wxphone',data,false).then((res)=> {

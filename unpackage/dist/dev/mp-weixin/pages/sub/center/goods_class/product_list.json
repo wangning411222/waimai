@@ -2,6 +2,7 @@
   "navigationBarTitleText": "商品列表",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "u-switch": "/uview-ui/components/u-switch/u-switch",
     "u-row": "/uview-ui/components/u-row/u-row",
     "u-col": "/uview-ui/components/u-col/u-col",
     "u-empty": "/uview-ui/components/u-empty/u-empty",

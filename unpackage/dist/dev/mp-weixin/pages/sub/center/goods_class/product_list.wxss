@@ -162,10 +162,23 @@ page {
 }
 .uni-list .uni-title {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 16rpx;
   font-size: 32rpx;
   font-weight: bold;
   color: #3b4144;
+}
+.uni-list .uni-title .is-recommend {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.uni-list .uni-title .is-recommend text {
+  margin-right: 10rpx;
+  font-weight: normal;
+  font-size: 28rpx;
 }
 .uni-list .uni-ellipsis-2 {
   overflow: hidden;

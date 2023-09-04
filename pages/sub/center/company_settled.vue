@@ -52,6 +52,14 @@
 				<view style="text-align: center; color:#bbbbbb;">（或大学生创业上传身份证即可）</view>
 				<u-upload :action="upimgUrl" ref="uUploadlicense" width="160" height="160" multiple='false' upload-text="营业执照" max-count="1"></u-upload>
 			</view>
+      	<view class="card-list logo">
+				<view style="text-align: center; color:#bbbbbb;">
+					<u-icon name="star-fill" color="#cccccc" size="24"></u-icon>
+					卫生许可证(必填)
+					<u-icon name="star-fill" color="#cccccc" size="24"></u-icon>
+				</view>
+				<u-upload :action="upimgUrl"  ref="uUploadlicense2" width="160" height="160" multiple='false' upload-text="卫生许可证" max-count="1"></u-upload>
+			</view>
 			<view class="card-list">
 				
 				<view style="text-align: center; color:#bbbbbb;">
@@ -112,7 +120,7 @@ export default {
 				message:'',
 				message_img:[],
 				cert_img_url:"",
-
+         sanitary_img_url:'',
 				contacts_name:'',
 				contacts_mobile:'',
 				cateid:0,
@@ -204,6 +212,23 @@ export default {
 				})
 			}
 		},
+    getLicense2(){
+			let _this = this;
+			let files = [];
+			files = this.$refs.uUploadlicense2.lists.filter(val => {
+				return val.progress == 100;
+			})
+			if(files.length > 0) {
+        	_this.model.sanitary_img_url=''
+				files.map(function(v,i){
+					if(v['response']) {
+							_this.model.sanitary_img_url= v['response']['message']['url'];
+					} else {
+							_this.model.sanitary_img_url = v['url'];
+					}	
+				})
+			}
+		},
 		getComimg(){
 			let _this = this;
 			let files = [];
@@ -237,6 +262,7 @@ export default {
 			_this.getLogo();
 			_this.getComimg();
 			_this.getLicense();
+      _this.getLicense2();
 
 			this.$refs.uForm.validate(valid => {
 				if (valid) {

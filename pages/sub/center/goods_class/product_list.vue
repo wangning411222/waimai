@@ -11,6 +11,11 @@
 						<view>
 							<view class="uni-title">
 								<text class="uni-ellipsis-2">{{ item.goods_name }}</text>
+                <view class="is-recommend">
+                  <text>是否热销:</text>
+                   <u-switch :value="recommendValue(item.is_recommend)" @change="isRecommend(item)" active-color="#fa3534" size='30'></u-switch>
+                </view>
+               
 							</view>
 							<view>
 								<text v-if="item.is_own_business == 1" class="shop-tag-ziying">
@@ -122,6 +127,31 @@
 			console.log(this.data.length);
 		},
 		methods: {
+      recommendValue(value){
+        return value==0?false:true
+      },
+      //是否热销切换
+      isRecommend(item){
+        let isRecommend=!this.recommendValue(item.is_recommend)
+        let value=isRecommend?1:0
+        let data={
+          goods_id:item.goods_id,
+          is_recommend:value
+        }
+        	let _this = this;
+				_this.$store.dispatch('user/isRecommend',data).then((res) => {
+					if(res.code == 0) {
+            	_this.$refs.uToast.show({
+							title: res.message,
+						})
+            _this.init_list(_this.cateid)
+					} else {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+					}
+				});
+      },
 			init_list:function(cateid,callback=()=>{}){
 				let _this = this;
 				_this.data = [];
@@ -310,10 +340,23 @@
 		  display: -webkit-box;
 		  display: -webkit-flex;
 		  display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 		  margin-bottom: 16rpx;
 		  font-size: 32rpx;
 		  font-weight: bold;
 		  color: #3b4144;
+      .is-recommend{
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        text{
+          margin-right:10rpx;
+          font-weight:normal;
+          font-size:28rpx;
+        }
+      }
 		}
 		.uni-ellipsis-2 {
 		    overflow: hidden;

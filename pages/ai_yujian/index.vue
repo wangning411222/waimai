@@ -18,7 +18,7 @@
     <view style="padding: 20rpx">
       <u-swiper :list="config.banner_list" @click="swiperclick"></u-swiper>
       <view v-if="config.notice != ''">
-        <u-notice-bar mode="horizontal" :list="[config.notice]"></u-notice-bar>
+        <u-notice-bar mode="horizontal"  :list="[config.notice]"></u-notice-bar>
       </view>
       <view v-if="config.isshow == 1" class="dnwmBox">
         <!-- <view
@@ -95,10 +95,10 @@
                     </view>
                   </view>
                 </view>
-                <view class="item-tag" @click="toShopDetail(item)">
+                <view class="item-tag" @click.stop="toShopDetail(item)">
                   <u-tag :text="setText(item.enough_free_dyrmbs)" type="info" size="mini" />
                 </view>
-                <scroll-view scroll-x="true" class="goods_list" :class="item.goods_list.length?'list-height':''">
+                <scroll-view scroll-x="true" class="goods_list" :class="item.goods_list.length?'list-height':'list-height-0'">
                   <view class="goods_item" v-for="(goodsitem, goodsindex) in item.goods_list" :key="goodsindex"
                     @click="toGoodsDetail(goodsitem, item)">
                     <view class="goods_item-imgbox">
@@ -112,12 +112,12 @@
                 </scroll-view>
               </view>
             </view>
-            <u-empty v-else text="暂无数据" mode="data"></u-empty>
+            <u-empty v-else text="暂无数据" mode="data" style='margin-top:80rpx;'></u-empty>
           </view>
         </view>
       </view>
     </view>
-    <u-sticky>
+    <u-sticky  v-if="config.isshow == 0">
       <view style="padding: 10rpx 0; background: #fff">
         <liuyuno-tabs :tabData="tab_list" :activeIndex="current" @tabClick="tabClick" />
 
@@ -131,7 +131,7 @@
         </view>
       </view>
     </u-sticky>
-    <view v-if="thread_list.length > 0" style="padding-top: 20rpx; background: #fff; padding-bottom: 5rem">
+    <view  v-if="thread_list.length > 0&&config.isshow == 0" style="padding-top: 20rpx; background: #fff; padding-bottom: 5rem">
       <view v-for="(item, index) in thread_list" :key="index">
         <view class="uni-card uni-border">
           <view class="uni-card__title uni-border-bottom">
@@ -253,29 +253,22 @@
         <u-loadmore :status="nomore" />
       </view>
     </view>
-    <view class="empty_box" v-if="thread_list.length == 0">
+    <view  class="empty_box" v-if="thread_list.length == 0&&config.isshow == 0">
       <u-empty text="暂无数据" src="../../../static/imgs/empty.png" icon-size="300"></u-empty>
-    </view>
-    <view @click="send_page" style="
-        width: 100rpx;
-        height: 100rpx;
-        line-height: 96rpx;
-        text-align: center;
-        border-radius: 100%;
-        overflow: hidden;
-        background-color: #6ee4c1;
-        position: fixed;
-        bottom: 80rpx;
-        right: 30rpx;
-        z-index: 1000;
-      ">
-      <u-icon name="plus" color="#ffffff" size="64" style="vertical-align: middle"></u-icon>
     </view>
     <u-toast ref="uToast" />
     <u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"
       confirm-color="#6ee4c1"></u-modal>
     <u-modal v-model="dele_modal_show" show-cancel-button="true" content="确定删除？" @confirm="delete_post"
       confirm-color="#6ee4c1"></u-modal>
+    <u-popup v-model="infoSHow" mode="center" border-radius="14" width="80%" height="65%" :closeable="true">
+			<view class="info-image" >
+        <image
+          :src="config.tips_img"
+          mode="scaleToFill"
+        />
+      </view>
+		</u-popup>
   </view>
 </template>
 
@@ -407,7 +400,8 @@ export default {
       value: 5,
       shopMaxpage: 0,
       shopPage: 1,
-      shopStatus: 'loadmore'
+      shopStatus: 'loadmore',
+      infoSHow:true
     };
   },
   computed: {
@@ -431,7 +425,6 @@ export default {
     }
   },
   onReachBottom() {
-    console.log('22222222222')
     let _this = this;
     this.status = "loading";
     if (this.current != 0) {
@@ -466,6 +459,7 @@ export default {
       key: "getSchoolLocation",
       success: function (res) {
         _this.SchoolLocation = res.data;
+         _this.shopPage = 1;
         _this.getShopList()
         // 如果第二次获取到了地址，发出请求
         if (_this.address_state) {
@@ -501,7 +495,7 @@ export default {
    
   },
   onLoad() {
-
+    
     let _this = this;
 
     this.$store.dispatch("login/checkLogin").then((res) => {
@@ -523,6 +517,7 @@ export default {
         _this.location = res.data.schoolname;
       },
     });
+    this.infoSHow=true
     // 监听位置变化
     uni.$on("getLocation", (e) => {
       _this.SchoolLocation = e;
@@ -551,8 +546,8 @@ export default {
       this.$store.dispatch("ai_yujian/companyList", data).then((res) => {
         if (res.code == 0) {
           _this.shopMaxpage = res.message.maxpage;
-          if (load == 'loading') {
-            _this.compayList = _this.compayList.concat(res.message.company_list)
+          if (load == 'loding') {
+            _this.compayList = [..._this.compayList,...res.message.company_list]
           } else {
             _this.compayList = res.message.company_list
           }
@@ -736,7 +731,6 @@ export default {
           this.active_nav = 1;
         }
         this.init();
-        console.log(this.area);
         this.getThreadList(this.active_nav, this.area, 0, 1);
       }
     },
@@ -928,7 +922,14 @@ export default {
 page {
   background-color: #eeeeee;
 }
-
+.info-image{
+  width:100%;
+  height:100%;
+  image{
+    width:100%;
+    height: 100%;
+  }
+}
 .u-col-4 {
   padding: 0 !important;
 }
@@ -1178,6 +1179,9 @@ page {
         }
         .list-height{
            height: 240rpx;
+        }
+        .list-height-0{
+          height:0;
         }
         .goods_list {
           margin-top: 10rpx;
