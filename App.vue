@@ -427,6 +427,9 @@
 		.width95{
 			width: 95%;
 		}
+    .maxwidth100{
+     width: 100vw;
+    }
 		.width100{
 			width: 100%;
 		}

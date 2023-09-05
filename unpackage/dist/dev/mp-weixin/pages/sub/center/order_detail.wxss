@@ -236,9 +236,80 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* page不能写带scope的style标签中，否则无效 */
 page {
-	background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240);
 }
 
 @charset "UTF-8";
@@ -287,6 +358,12 @@ image.data-v-d5b852b8 {
 .order_msg.data-v-d5b852b8 {
   font-size: 24rpx;
   margin-top: 15rpx;
+}
+.order_pt.data-v-d5b852b8 {
+  font-size: 24rpx;
+  margin-top: 15rpx;
+  display: flex;
+  align-items: center;
 }
 .order.data-v-d5b852b8 {
   width: 710rpx;

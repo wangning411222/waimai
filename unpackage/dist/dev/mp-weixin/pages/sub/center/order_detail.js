@@ -258,8 +258,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
-
 {
   data: function data() {
     return {
@@ -274,38 +341,43 @@ var _default =
     priceDecimal: function priceDecimal() {
       return function (val) {
         if (val !== parseInt(val)) return val.slice(-2);else
-        return '00';
+        return "00";
       };
     },
     // 价格整数
     priceInt: function priceInt() {
       return function (val) {
-        if (val !== parseInt(val)) return val.split('.')[0];else
+        if (val !== parseInt(val)) return val.split(".")[0];else
         return val;
       };
     } },
 
   methods: {
     // 联系商家
-    call: function call() {
-      wx.makePhoneCall({
-        phoneNumber: this.order.company_mobile });
+    call: function call(phone) {
+      if (phone) {
+        wx.makePhoneCall({
+          phoneNumber: phone });
 
+      } else {
+        wx.makePhoneCall({
+          phoneNumber: this.order.company_mobile });
+
+      }
     },
     getOrderList: function getOrderList(orderid) {
       var _this = this;
-      _this.$store.dispatch('user/orderRead', { 'orderid': orderid }).then(function (res) {
+      _this.$store.
+      dispatch("user/orderRead", { orderid: orderid }).
+      then(function (res) {
         if (res.code == 0) {
           _this.order = res.message;
-
         } else {
           _this.$refs.uToast.show({
             title: res.message });
 
         }
       });
-
-
     },
     // 总价
     totalPrice: function totalPrice(item) {
@@ -325,9 +397,10 @@ var _default =
     },
     payOrder: function payOrder(order_token) {
       var _this = this;
-      _this.$store.dispatch('ai_xiaopu/orderPay', { 'order_token': order_token }).then(function (res) {
+      _this.$store.
+      dispatch("ai_xiaopu/orderPay", { order_token: order_token }).
+      then(function (res) {
         if (res.code == 0) {
-
         } else {
           _this.$refs.uToast.show({
             title: res.message });
@@ -338,11 +411,13 @@ var _default =
     cancelOrder: function cancelOrder(orderid) {
       var _this = this;
       uni.showModal({
-        title: '提示',
-        content: '确定取消订单？',
+        title: "提示",
+        content: "确定取消订单？",
         success: function success(res) {
           if (res.confirm) {
-            _this.$store.dispatch('ai_xiaopu/orderCancel', { 'orderid': orderid }).then(function (res) {
+            _this.$store.
+            dispatch("ai_xiaopu/orderCancel", { orderid: orderid }).
+            then(function (res) {
               if (res.code == 0) {
                 _this.$refs.uToast.show({
                   title: res.message });
@@ -355,10 +430,9 @@ var _default =
               }
             });
           } else if (res.cancel) {
-            console.log('用户点击取消');
+            console.log("用户点击取消");
           }
         } });
-
 
     },
     fuzhi_yundan: function fuzhi_yundan(waybill) {
@@ -375,11 +449,13 @@ var _default =
     refund: function refund(orderid) {
       var _this = this;
       uni.showModal({
-        title: '提示',
-        content: '确认退款？',
+        title: "提示",
+        content: "确认退款？",
         success: function success(res) {
           if (res.confirm) {
-            _this.$store.dispatch('user/userRefund', { 'orderid': orderid }).then(function (res) {
+            _this.$store.
+            dispatch("user/userRefund", { orderid: orderid }).
+            then(function (res) {
               if (res.code == 0) {
                 _this.$refs.uToast.show({
                   title: res.message });
@@ -391,10 +467,9 @@ var _default =
               }
             });
           } else if (res.cancel) {
-            console.log('用户点击取消');
+            console.log("用户点击取消");
           }
         } });
-
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

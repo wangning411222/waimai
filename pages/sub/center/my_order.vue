@@ -12,7 +12,10 @@
 							<view v-if="orderList[0].length != 0" class="order" v-for="(res, index) in orderList[0]"
 								:key="res.orderid" @click="orderRead(res.orderid)">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>

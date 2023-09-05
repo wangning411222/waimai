@@ -9,7 +9,7 @@
 				@click.stop="toGoodsPage(0, item)">
 				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
 					<view class="flex-1">
-						{{ item.orderid }}
+						餐号:M{{ item.lastnum }}
 					</view>
 					<view class="">{{ item.create_date_fmt }}</view>
 				</view>
@@ -51,7 +51,7 @@
 			<view v-for="(item, index) in goods2" :key="index" class="goodsproduct product">
 				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
 					<view class="flex-1">
-						{{ item.order_token }}
+					餐号:M{{ item.lastnum }}
 					</view>
 					<view class="">{{ item.create_date_fmt }}</view>
 				</view>
@@ -96,7 +96,7 @@
 			<view v-for="(item, index) in goods3" :key="index" class="goodsproduct product">
 				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
 					<view class="flex-1">
-						{{ item.order_token }}
+						餐号:M{{ item.lastnum }}
 					</view>
 					<view class="">{{ item.create_date_fmt }}</view>
 				</view>

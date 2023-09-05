@@ -10,7 +10,10 @@
 						<view class="page-box">
 							<view v-if="orderList[0].length != 0" class="order" v-for="(res, index) in orderList[0]" :key="res.orderid">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>
@@ -39,7 +42,7 @@
 
 								<view class="bottom">
 									<view style="flex: 1; text-align: right;">
-										<text v-if="res.status == 1 || res.status == 2 || res.status == 3 || res.status == 4" class="btn evaluate margin-left-20" style="padding: 10rpx 25rpx;" @tap="print(item.order_token)">打印小票</text>
+										<text v-if="res.status == 1 || res.status == 2 || res.status == 3 || res.status == 4" class="btn evaluate margin-left-20" style="padding: 10rpx 25rpx;" @tap="print(res.order_token)">打印小票</text>
 										<text v-if="res.status == 9" class="btn evaluate margin-left-20" style="padding: 10rpx 25rpx;" @tap="companyOrderUpdate(item.orderid)">手动接单</text>
 										
 									</view>

@@ -2,8 +2,8 @@
 	<view class="u-wrap">
 		<!-- 商家信息 -->
 		<view>
-			<view class="width100 d-row d-jc-centen padding-20" style=" background: #333333;">
-				<view class="padding-right-20">
+			<view class="maxwidth100 d-row d-jc-centen padding-20" style=" background: #333333;">
+				<view class="margin-right-20" style="width:120rpx;height:120rpx;flex-shrink:0;">
 					<image class="s-head-img" mode="aspectFill" :src="form.logo" @click="priviewImg(form.logo)"></image>
 				</view>
 				<view class="flex-1" style="align-self: center;">
