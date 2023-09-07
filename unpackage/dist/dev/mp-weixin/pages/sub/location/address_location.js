@@ -217,6 +217,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _utils = __webpack_require__(/*! @/tools/utils.js */ 18); //
 //
 //
@@ -268,28 +285,31 @@ var _utils = __webpack_require__(/*! @/tools/utils.js */ 18); //
 //
 //
 //
-var _default = { data: function data() {return { keyword: '', search_show: false, latitude: 0, longitude: 0, address: '', schoolList: [], activeSchoolShow: false, activeSchool: [], activeSchoolIndex: 0, searchList: [], type: 1 };}, onLoad: function onLoad(option) {this.type = option.type;this.getLocation();}, methods: { getLocation: function getLocation() {var _this = this;uni.getLocation({ type: 'gcj02', geocode: true, success: function success(res) {_this.latitude = res.latitude;_this.longitude = res.longitude;_this.getSchool({ 'latitude': res.latitude, 'longitude': res.longitude }, 0);uni.request({ header: { "Content-Type": "application/text" }, //注意:这里的key值需要高德地图的 web服务生成的key  只有web服务才有逆地理编码  IUPBZ-2YKKF-H6UJW-NDQUP-SG33J-WNF63
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { keyword: "", search_show: false, latitude: 0, longitude: 0, address: "", schoolList: [], activeSchoolShow: false, activeSchool: [], activeSchoolIndex: 0, searchList: [], type: 1 };}, onLoad: function onLoad(option) {this.type = option.type;this.getLocation();}, methods: { getLocation: function getLocation() {var _this = this;uni.getLocation({ type: "gcj02", geocode: true, success: function success(res) {_this.latitude = res.latitude;_this.longitude = res.longitude;_this.getSchool({ latitude: res.latitude, longitude: res.longitude }, 0);uni.request({ header: { "Content-Type": "application/text" }, //注意:这里的key值需要高德地图的 web服务生成的key  只有web服务才有逆地理编码  IUPBZ-2YKKF-H6UJW-NDQUP-SG33J-WNF63
             // url:'https://restapi.amap.com/v3/geocode/regeo?output=JSON&location='+res.longitude+','+res.latitude+'&key=280802ed0116fef931dbcf5e7e9278d7&radius=1000&extensions=all',
-            url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + _this.latitude + ',' + _this.longitude + '&key=2W4BZ-CZNWO-GQUWR-SK4LN-W3CJV-7WF6O', success: function success(res) {if (res.statusCode === 200) {_this.address = res.data.result.address;} else {console.log("获取信息失败，请重试！");
-              }
-            } });
-
-        } });
-
-    },
-    getSchool: function getSchool(data, type) {var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
-      var _this = this;
-      _this.$store.dispatch('user/schoolList', data).then(function (res) {
-        if (res && res.code == 0) {
-          if (type == 0) {
+            url: "https://apis.map.qq.com/ws/geocoder/v1/?location=" + _this.latitude + "," + _this.longitude + "&key=2W4BZ-CZNWO-GQUWR-SK4LN-W3CJV-7WF6O", success: function success(res) {if (res.statusCode === 200) {_this.address = res.data.result.address;} else {console.log("获取信息失败，请重试！");}} });} });}, getSchool: function getSchool(data, type) {var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};var _this = this;_this.$store.dispatch("user/schoolList", data).then(function (res) {if (res && res.code == 0) {console.log(res.message, type, "res.messageres.message");if (type == 0) {
             _this.schoolList = res.message;
           } else if (type == 1) {
             _this.searchList = res.message;
           }
-
         } else {
-
-
         }
       });
     },
@@ -298,7 +318,7 @@ var _default = { data: function data() {return { keyword: '', search_show: false
     },
     changeSearchShow: function changeSearchShow(type) {
       if (type == 1) {
-        if (this.keyword == '') {
+        if (this.keyword == "") {
           this.search_show = false;
           this.searchList = [];
         } else {
@@ -310,16 +330,24 @@ var _default = { data: function data() {return { keyword: '', search_show: false
         this.search_show = false;
         this.searchList = [];
       }
-
     },
     tosearch: function tosearch() {
-      this.getSchool({ 'keyword': this.keyword }, 1);
+      this.getSchool({ keyword: this.keyword }, 1);
     },
-    handlebuilding: function handlebuilding(index) {var _this2 = this;
+    handlebuilding: function handlebuilding(index, type) {var _this2 = this;
+      this.type = type;
       var list = [];
-      this.schoolList[index]['building_num'].map(function (item, index) {
-        list.push({ value: index, label: item });
-      });
+
+      if (type == 0) {
+        this.schoolList[index]["building_num"].map(function (item, index) {
+          list.push({ value: index, label: item });
+        });
+      } else {
+        this.searchList[index]["building_num"].map(function (item, index) {
+          list.push({ value: index, label: item });
+        });
+      }
+
       this.activeSchool = list;
       this.activeSchoolIndex = index;
       setTimeout(function () {
@@ -327,16 +355,26 @@ var _default = { data: function data() {return { keyword: '', search_show: false
       }, 10);
     },
     confirm: function confirm(e) {
+      var floor = e[0]["label"];
+      var obj = this.type == 0 ? this.schoolList[this.activeSchoolIndex] : this.searchList[this.activeSchoolIndex];var
+      schoolname = obj.schoolname,schoolid = obj.schoolid;
+      var address = floor + " " + schoolname;
 
-      var floor = e[0]['label'];var _this$schoolList$this =
-      this.schoolList[this.activeSchoolIndex],schoolname = _this$schoolList$this.schoolname,schoolid = _this$schoolList$this.schoolid;
-      var address = floor + ' ' + schoolname;
+      // 调用上一个页面的 uplist 方法
+      (0, _utils.goBack)("seTaddress", {
+        schoolname: schoolname,
+        floor: floor,
+        address: address,
+        schoolid: schoolid,
+        buid: e[0]["value"] });
 
-      // 调用上一个页面的 uplist 方法 
-      (0, _utils.goBack)('seTaddress', { 'schoolname': schoolname, 'floor': floor, 'address': address, 'schoolid': schoolid, 'buid': e[0]['value'] });
 
       if (this.type == 0) {
-        (0, _utils.setLocalStorage)('address', { 'address': address, 'schoolid': schoolid, 'buid': e[0]['value'] });
+        (0, _utils.setLocalStorage)("address", {
+          address: address,
+          schoolid: schoolid,
+          buid: e[0]["value"] });
+
       }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

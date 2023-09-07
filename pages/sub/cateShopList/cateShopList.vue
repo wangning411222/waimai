@@ -17,7 +17,7 @@
                 <image :src="item.logo"></image>
                 <view class="business" v-if="item.business_status == 1">歇业</view>
               </view>
-              <view class="item-top-right" @click="toShopDetail(item)">
+              <view class="item-top-right">
                 <view class="item-top-right-name">{{ item.name }}</view>
                 <view class="item-top-right-rate">
                   <!-- <u-icon
@@ -101,7 +101,8 @@ export default {
       catid: "",
       shopMaxpage: 0,
       shopPage: 1,
-      shopStatus: 'loadmore'
+      shopStatus: 'loadmore',
+      count:5
     };
   },
   onLoad(option) {
@@ -109,7 +110,6 @@ export default {
       title: option.title
     })
     this.catid = option.catid;
-    console.log(this.catid, " this.catid this.catid");
     this.getShopList();
   },
   onReachBottom() {

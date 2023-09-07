@@ -430,6 +430,15 @@ var _default = { data: function data() {return { address: '', StatusBar: this.St
   },
   onLoad: function onLoad() {
     this.getSchoolList();
+    wx.getSetting({
+      success: function success(res) {
+        console.log(res.authSetting);
+        // res.authSetting = {
+        //   "scope.userInfo": true,
+        //   "scope.userLocation": true
+        // }
+      } });
+
 
   },
   onReady: function onReady() {

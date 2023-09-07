@@ -109,7 +109,7 @@
                 </view>
               </view>
               <view
-                v-if="canReplay && item.replay != ''"
+                v-if="item.replay != ''"
                 class="replay-content"
               >
                 <view>商家回复</view>

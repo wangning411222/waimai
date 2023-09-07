@@ -68,27 +68,29 @@
 				<view class="margin-bottom-20" v-if="Object.keys(statistics).length > 0" style="background: #FFFFFF;">
 					<view class="padding-30">
 
-						<view class="d-flex padding-bottom-40">
-							<view class="flex-1">今日订单数：{{ statistics.today_count }}</view>
-							<view class="flex-1">本周订单数：{{ statistics.week_count }}</view>
-						</view>
 						<view class="d-flex">
+							<view class="flex-1">今日订单数：{{ statistics.today_count }}</view>
+              	<view class="flex-1">总订单数：{{ statistics.total_count }}</view>
+							<!-- <view class="flex-1">本周订单数：{{ statistics.week_count }}</view> -->
+						</view>
+						<!-- <view class="d-flex">
 							<view class="flex-1">本月订单数：{{ statistics.month_count }}</view>
 							<view class="flex-1">总订单数：{{ statistics.total_count }}</view>
-						</view>
+						</view> -->
 					</view>
 				</view>
 				<view v-if="Object.keys(statistics).length > 0" style="background: #FFFFFF;">
 					<view class="padding-30">
 
-						<view class="d-flex padding-bottom-40">
+						<view class="d-flex ">
 							<view class="flex-1">当天收入：￥{{ statistics.today_rmbs }}</view>
-							<view class="flex-1">本周收入：￥{{ statistics.week_rmbs }}</view>
+              	<view class="flex-1">总收入：￥{{ statistics.total_rmbs }}</view>
+							<!-- <view class="flex-1">本周收入：￥{{ statistics.week_rmbs }}</view> -->
 						</view>
-						<view class="d-flex">
+						<!-- <view class="d-flex">
 							<view class="flex-1">本月收入：￥{{ statistics.month_rmbs }}</view>
-							<view class="flex-1">总收入：￥{{ statistics.total_rmbs }}</view>
-						</view>
+						
+						</view> -->
 					</view>
 				</view>
 			</view>

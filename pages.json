@@ -19,7 +19,7 @@
     {
       "path": "pages/sub/cateShopList/cateShopList",
       "style": {
-        "navigationBarTitleText": "",
+        "navigationBarTitleText": "商品分类",
         "enablePullDownRefresh": false
       }
     },
@@ -413,7 +413,7 @@
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uView",
+    "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#eeeeee",
     "backgroundColor": "#eeeeee"
   },

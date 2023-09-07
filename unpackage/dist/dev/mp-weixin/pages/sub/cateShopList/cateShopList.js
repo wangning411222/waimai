@@ -287,7 +287,8 @@ var _default =
       catid: "",
       shopMaxpage: 0,
       shopPage: 1,
-      shopStatus: 'loadmore' };
+      shopStatus: 'loadmore',
+      count: 5 };
 
   },
   onLoad: function onLoad(option) {
@@ -295,7 +296,6 @@ var _default =
       title: option.title });
 
     this.catid = option.catid;
-    console.log(this.catid, " this.catid this.catid");
     this.getShopList();
   },
   onReachBottom: function onReachBottom() {

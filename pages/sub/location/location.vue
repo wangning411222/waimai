@@ -218,6 +218,15 @@
 		},
 		onLoad() {
 			this.getSchoolList()
+      wx.getSetting({
+        success (res) {
+          console.log(res.authSetting)
+          // res.authSetting = {
+          //   "scope.userInfo": true,
+          //   "scope.userLocation": true
+          // }
+        }
+      })
 
 		},
 		onReady() {

@@ -100,7 +100,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uView",
+    "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#eeeeee",
     "backgroundColor": "#eeeeee"
   },
@@ -153,6 +153,5 @@
   "usingComponents": {
     "mescroll-body": "/components/mescroll-uni/mescroll-body",
     "mescroll-uni": "/components/mescroll-uni/mescroll-uni"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
