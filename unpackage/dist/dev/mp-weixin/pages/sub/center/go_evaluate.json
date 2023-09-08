@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "评价",
-  "usingComponents": {
-    "u-toast": "/uview-ui/components/u-toast/u-toast",
-    "my-issue": "/pages/sub/center/components/myIssue"
-  }
-}

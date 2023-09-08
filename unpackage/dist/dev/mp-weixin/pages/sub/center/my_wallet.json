@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的钱包",
-  "usingComponents": {
-    "tui-tabs": "/components/tui-tabs/tui-tabs"
-  }
-}

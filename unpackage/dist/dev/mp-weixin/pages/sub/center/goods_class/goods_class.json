@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "分类管理",
-  "usingComponents": {
-    "u-input": "/uview-ui/components/u-input/u-input",
-    "u-toast": "/uview-ui/components/u-toast/u-toast",
-    "u-modal": "/uview-ui/components/u-modal/u-modal",
-    "h-m-drag-sorts": "/pages/sub/center/components/HM-dragSorts/components/HM-dragSorts/HM-dragSorts"
-  }
-}
