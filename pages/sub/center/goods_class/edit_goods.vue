@@ -5,145 +5,62 @@
 				<u-upload :action="upimgUrl" ref="uUploadLogo" width="160" height="160" multiple='false' upload-text="商品封面" max-count="1"></u-upload>
 			</view> -->
       <view class="card-list">
-        <u-upload
-          :action="upimgUrl"
-          :file-list="fileBannerList"
-          ref="uUpBannerimg"
-          width="160"
-          height="160"
-          multiple="false"
-          upload-text="商品图"
-          max-count="1"
-        ></u-upload>
+        <u-upload :action="upimgUrl" :file-list="fileBannerList" ref="uUpBannerimg" width="160" height="160"
+          multiple="false" upload-text="商品图" max-count="1"></u-upload>
       </view>
       <view class="card-list">
-        <u-form-item
-          label="商品名"
-          prop="goods_name"
-          label-width="170rpx"
-          left-icon="edit-pen"
-          required="true"
-        >
+        <u-form-item label="商品名" prop="goods_name" label-width="170rpx" left-icon="edit-pen" required="true">
           <u-input v-model="form.goods_name" placeholder="请输入商品名" />
         </u-form-item>
 
-        <u-form-item
-          label="市场价"
-          prop="market_price"
-          label-width="170rpx"
-          left-icon="edit-pen"
-          required="true"
-        >
-          <u-input
-            v-model="form.market_price"
-            type="digit"
-            placeholder="请输入市场价(元)"
-          />
+        <u-form-item label="市场价" prop="market_price" label-width="170rpx" left-icon="edit-pen" required="true">
+          <u-input v-model="form.market_price" type="digit" placeholder="请输入市场价(元)" />
         </u-form-item>
-        <u-form-item
-          label="销售价"
-          prop="price"
-          label-width="170rpx"
-          left-icon="edit-pen"
-          required="true"
-        >
-          <u-input
-            v-model="form.price"
-            type="digit"
-            placeholder="请输入销售价(元)"
-          />
+        <u-form-item label="销售价" prop="price" label-width="170rpx" left-icon="edit-pen" required="true">
+          <u-input v-model="form.price" type="digit" placeholder="请输入销售价(元)" />
         </u-form-item>
 
-        <u-form-item
-          label="分类"
-          label-width="170rpx"
-          left-icon="edit-pen"
-          required="true"
-        >
-          <u-input
-            v-model="form.cate_title"
-            disabled
-            @click="CateShow = true"
-            placeholder="请选择分类"
-          />
+        <u-form-item label="分类" label-width="170rpx" left-icon="edit-pen" required="true">
+          <u-input v-model="form.cate_title" disabled @click="CateShow = true" placeholder="请选择分类" />
         </u-form-item>
         <!-- <u-form-item label="配送" label-width="170rpx" left-icon="edit-pen" required="true">
 					<u-input v-model="form.deliver_way_title" disabled @click="deliverWayShow = true" placeholder="请选择配送方式"/>
 				</u-form-item> -->
         <u-form-item label="库存" label-width="170rpx" left-icon="edit-pen">
-          <u-input
-            v-model="form.stock"
-            type="number"
-            placeholder="不提交库存则表示该商品无限库存"
-          />
+          <u-input v-model="form.stock" type="number" placeholder="不提交库存则表示该商品无限库存" />
         </u-form-item>
         <u-form-item label="起购(件)" label-width="170rpx" left-icon="edit-pen">
-          <u-input
-            v-model="form.start_num"
-            type="number"
-            placeholder="请输入起购件数"
-          />
+          <u-input v-model="form.start_num" type="number" placeholder="请输入起购件数" />
         </u-form-item>
         <u-form-item label="打包费" label-width="170rpx" left-icon="edit-pen">
-          <u-input
-            v-model="form.box_price"
-            type="digit"
-            placeholder="请输入打包费(元)"
-          />
+          <u-input v-model="form.box_price" type="digit" placeholder="请输入打包费(元)" />
         </u-form-item>
         <u-form-item label="商品描述" label-width="170rpx" left-icon="edit-pen">
-          <u-input
-            v-model="form.goods_desc"
-            type="digit"
-            placeholder="请输入描述"
-          />
+          <u-input v-model="form.goods_desc" type="digit" placeholder="请输入描述" />
         </u-form-item>
-        <u-select
-          v-model="CateShow"
-          value-name="cateid"
-          label-name="title"
-          :list="CateList"
-          @confirm="cateConfirm"
-        ></u-select>
+        <u-select v-model="CateShow" value-name="cateid" label-name="title" :list="CateList"
+          @confirm="cateConfirm"></u-select>
         <!-- <u-select v-model="deliverWayShow" :list="deliverWayList" @confirm="deliverWayConfirm"></u-select> -->
       </view>
       <view class="card-list" style="padding: 35rpx 25rpx">
         <view class="d-flex" style="padding: 0 0 15rpx">
           <view class="flex">规格配置</view>
-          <view style="padding: 0 0 0 15rpx"
-            ><u-icon name="plus-circle" size="36" @click="skuAdd"></u-icon
-          ></view>
+          <view style="padding: 0 0 0 15rpx"><u-icon name="plus-circle" size="36" @click="skuAdd"></u-icon></view>
         </view>
-        <view
-          class="d-flex"
-          v-for="(item, index) in skuNum"
-          :key="index"
-          style="padding: 15rpx 0; border-bottom: 1rpx solid #efefef"
-        >
+        <view class="d-flex" v-for="(item, index) in skuNum" :key="index"
+          style="padding: 15rpx 0; border-bottom: 1rpx solid #efefef">
           <view class="flex">
             <u-input v-model="form.sku_name[index]" placeholder="规格名称" />
           </view>
           <view class="flex">
-            <u-input
-              v-model="form.sku_price[index]"
-              type="digit"
-              placeholder="规格价格"
-            />
+            <u-input v-model="form.sku_price[index]" type="digit" placeholder="规格价格" />
           </view>
           <view style="align-self: center; padding: 0 0 0 15rpx">
-            <u-icon
-              name="minus-circle"
-              size="36"
-              @click="skuDel(index)"
-            ></u-icon>
+            <u-icon name="minus-circle" size="36" @click="skuDel(index)"></u-icon>
           </view>
         </view>
       </view>
-      <view
-        class="card-list"
-        style="padding: 35rpx 25rpx"
-        v-if="skuNopriceArr.length > 0"
-      >
+      <view class="card-list" style="padding: 35rpx 25rpx" v-if="skuNopriceArr.length > 0">
         <view v-for="(item, index) in skuNopriceArr" :key="index" class="sku-noprice-arr">
           <view class="d-flex" style="padding: 0 0 15rpx;justify-content:space-between">
             <view class="flex" style="color:#fa3534;font-weight:bold;">{{ item.skuType }}</view>
@@ -151,32 +68,16 @@
               <u-button type="error" size='mini' :plain="true" @click="DelSkuNoPrice(index)">移除类目</u-button>
               <u-button type="error" size='mini' :plain="true" @click="EditSkuNoPrice(index)">编辑类目</u-button>
             </view>
-            <view  style="padding: 0 0 0 15rpx;display:flex;flex:1;justify-content:flex-end;"
-              ><u-icon
-                name="plus-circle"
-                size="36"
-                @click="skuNoPriceAdd(index,item)"
-              ></u-icon
-            ></view>
+            <view style="padding: 0 0 0 15rpx;display:flex;flex:1;justify-content:flex-end;"><u-icon name="plus-circle"
+                size="36" @click="skuNoPriceAdd(index, item)"></u-icon></view>
           </view>
-          <view
-            class="d-flex"
-            v-for="(itemChildren, indexChildren) in item.skuNoPriceNum"
-            :key="indexChildren"
-            style="padding: 15rpx 0; border-bottom: 1rpx solid #efefef"
-          >
+          <view class="d-flex" v-for="(itemChildren, indexChildren) in item.skuNoPriceNum" :key="indexChildren"
+            style="padding: 15rpx 0; border-bottom: 1rpx solid #efefef">
             <view class="flex">
-              <u-input
-                v-model="skuNopriceArr[index].skuArr[indexChildren].name"
-                placeholder="规格名称"
-              />
+              <u-input v-model="skuNopriceArr[index].skuArr[indexChildren].name" placeholder="规格名称" />
             </view>
             <view style="align-self: center; padding: 0 0 0 15rpx">
-              <u-icon
-                name="minus-circle"
-                size="36"
-                @click="skuNopriceDel(index, indexChildren,item)"
-              ></u-icon>
+              <u-icon name="minus-circle" size="36" @click="skuNopriceDel(index, indexChildren, item)"></u-icon>
             </view>
           </view>
         </view>
@@ -186,35 +87,18 @@
       </view>
       <view class="card-list" style="padding: 35rpx 25rpx; display: none">
         <view>
-          <u-upload
-            :action="upimgUrl"
-            :file-list="fileDescList"
-            ref="uUpDescimg"
-            width="160"
-            height="160"
-            multiple="false"
-            upload-text="商品详情图"
-          ></u-upload>
+          <u-upload :action="upimgUrl" :file-list="fileDescList" ref="uUpDescimg" width="160" height="160"
+            multiple="false" upload-text="商品详情图"></u-upload>
         </view>
       </view>
     </u-form>
     <u-button @click="submit" type="error">提交</u-button>
 
     <u-toast ref="uToast" />
-    <u-modal
-      v-model="skuNameInputShow"
-      title="请输入规格类别"
-      :showCancelButton="true"
-      @confirm="skuNameInputConfirm"
-      @cancel="skuNameInputCancel"
-    >
+    <u-modal v-model="skuNameInputShow" title="请输入规格类别" :showCancelButton="true" @confirm="skuNameInputConfirm"
+      @cancel="skuNameInputCancel">
       <view style="padding: 20px">
-        <u-input
-          placeholder="请输入规格类别"
-          border="surround"
-          v-model="skuNameInputValue"
-          clearable
-        ></u-input>
+        <u-input placeholder="请输入规格类别" border="surround" v-model="skuNameInputValue" clearable></u-input>
       </view>
     </u-modal>
   </view>
@@ -315,67 +199,66 @@ export default {
       skuNopriceArr: [],
       skuNoPriceNum: 0,
       noPirceSku: [],
-      noPriceStatus:'add',
-      noPriceIndex:0
+      noPriceStatus: 'add',
+      noPriceIndex: 0
     };
   },
   computed: {
     ...mapGetters("config", ["config"]),
     ...mapGetters("detail", ["upimgUrl"]),
-    isDisabled(){
-      return   this.skuNopriceArr.length>=2?true:false
+    isDisabled() {
+      return this.skuNopriceArr.length >= 2 ? true : false
     }
   },
   onLoad(option) {
     this.model.goods_id = option.goods_id;
-    this.model.goods_id = 838;
   },
   mounted() {
     this.formatData();
   },
   methods: {
     // 编辑类目名
-    EditSkuNoPrice(index){
-      this.noPriceStatus='editor'
-      this.noPriceIndex=index
-      this.skuNameInputShow=true
-      this.skuNameInputValue=this.skuNopriceArr[index].skuType
+    EditSkuNoPrice(index) {
+      this.noPriceStatus = 'editor'
+      this.noPriceIndex = index
+      this.skuNameInputShow = true
+      this.skuNameInputValue = this.skuNopriceArr[index].skuType
     },
     // 附属规格--
-    skuNopriceDel(index, childIndex,item) {
+    skuNopriceDel(index, childIndex, item) {
       this.skuNopriceArr[index].skuNoPriceNum = Number(item.skuNoPriceNum) - 1;
       this.skuNopriceArr[index].skuArr.splice(childIndex, 1);
     },
     // 附属规格++
-    skuNoPriceAdd(index,item) {
+    skuNoPriceAdd(index, item) {
       this.skuNopriceArr[index].skuArr.push({
         name: "",
       });
-     this.skuNopriceArr[index].skuNoPriceNum = Number(item.skuNoPriceNum) + 1;
+      this.skuNopriceArr[index].skuNoPriceNum = Number(item.skuNoPriceNum) + 1;
       this.skuNopriceArr[index].skuArr[item.skuNoPriceNum - 1].name = "";
     },
     // 输入附属规格名确认
     skuNameInputConfirm() {
-      if( this.noPriceStatus=='add'){
+      if (this.noPriceStatus == 'add') {
         this.skuNopriceArr.push({
-        skuType: this.skuNameInputValue,
-        skuNoPriceNum:0,
-        skuArr:[]
-       
-      })
-      }else{
-         this.skuNopriceArr[this.noPriceIndex].skuType=this.skuNameInputValue
+          skuType: this.skuNameInputValue,
+          skuNoPriceNum: 0,
+          skuArr: []
+
+        })
+      } else {
+        this.skuNopriceArr[this.noPriceIndex].skuType = this.skuNameInputValue
       }
       this.skuNameInputValue = "";
-     
+
     },
     // 输入附属规格名取消
     skuNameInputCancel() {
       this.skuNameInputValue = "";
     },
     // 点击移除附属规格
-    DelSkuNoPrice(index){
-       this.skuNopriceArr.splice(index,1)
+    DelSkuNoPrice(index) {
+      this.skuNopriceArr.splice(index, 1)
     },
     // 点击新增附属规格
     addSkuNoPrice() {
@@ -404,17 +287,17 @@ export default {
             _this.form.price = res.message.price;
             _this.form.goods_desc = res.message.goods_desc;
             _this.form.start_num = res.message.start_num;
-            let otherSku=res.message.other_sku_fmt
-            if(otherSku.length){
-              otherSku.forEach((item,index)=>{
-                  _this.skuNopriceArr[index]={
-                    "skuNoPriceNum":item.other_sku_data.length,
-                    "skuType":item.other_sku_name,
-                    "skuArr":item.other_sku_data.map((item1,index1)=>{
-                    return {"name":item1}
+            let otherSku = res.message.other_sku_fmt
+            if (otherSku.length) {
+              otherSku.forEach((item, index) => {
+                _this.skuNopriceArr[index] = {
+                  "skuNoPriceNum": item.other_sku_data.length,
+                  "skuType": item.other_sku_name,
+                  "skuArr": item.other_sku_data.map((item1, index1) => {
+                    return { "name": item1 }
                   })
 
-                  }
+                }
               })
             }
             if (res.message.stock == -1) {
@@ -529,25 +412,25 @@ export default {
       );
       _this.model.goods_desc = _this.form.goods_desc;
       _this.model.start_num = _this.form.start_num;
-      let  other_sku_data1, other_sku_data2,other_sku_name1,other_sku_name2;
-      this.skuNopriceArr.forEach((item,index)=>{
-        if(index==0){
-          other_sku_name1=item.skuType
-          other_sku_data1=item.skuArr.map((item1,index1)=>{
-            
+      let other_sku_data1, other_sku_data2, other_sku_name1, other_sku_name2;
+      this.skuNopriceArr.forEach((item, index) => {
+        if (index == 0) {
+          other_sku_name1 = item.skuType
+          other_sku_data1 = item.skuArr.map((item1, index1) => {
+
             return item1.name
           }).join(',')
-        }else if(index==1){
-           other_sku_name2=item.skuType
-          other_sku_data2=item.skuArr.map((item1,index1)=>{
+        } else if (index == 1) {
+          other_sku_name2 = item.skuType
+          other_sku_data2 = item.skuArr.map((item1, index1) => {
             return item1.name
           }).join(',')
         }
       })
-      _this.model.other_sku_data1=other_sku_data1
-      _this.model.other_sku_data2=other_sku_data2
-      _this.model.other_sku_name1=other_sku_name1
-      _this.model.other_sku_name2=other_sku_name2
+      _this.model.other_sku_data1 = other_sku_data1
+      _this.model.other_sku_data2 = other_sku_data2
+      _this.model.other_sku_name1 = other_sku_name1
+      _this.model.other_sku_name2 = other_sku_name2
       _this.getComimg();
       _this.getDescimg();
 
@@ -586,29 +469,36 @@ export default {
 page {
   background-color: #f8f8f8;
 }
-.sku-noprice-arr{
-  margin-bottom:30rpx;
+
+.sku-noprice-arr {
+  margin-bottom: 30rpx;
 }
+
 .content_box {
   padding: 0 20rpx 25rpx;
 }
+
 .u-checkbox {
   margin-bottom: 20rpx;
 }
+
 .u-checkbox__icon-wrap {
   display: none !important;
 }
+
 .u-checkbox__label {
   border-radius: 3px;
   padding: 0 10rpx;
   border: 1rpx solid #cccccc;
   color: #bbbbbb !important;
 }
+
 .checked .u-checkbox__label {
   border-color: #ea9518;
   background-color: #ea9518;
   color: #ffffff !important;
 }
+
 .card-list {
   width: 710upx;
   border-radius: 8upx;
@@ -620,10 +510,12 @@ page {
   border-bottom: unset;
   background-color: #ffffff;
 }
+
 .u-form-left {
   width: 200rpx !important;
   flex: 0 0 200rpx;
 }
+
 .u-action-sheet-item {
   display: -webkit-box;
   display: -webkit-flex;
@@ -644,11 +536,13 @@ page {
   -webkit-flex-direction: column;
   flex-direction: column;
 }
+
 .u-action-sheet-item__subtext {
   font-size: 24rpx;
   color: $u-tips-color;
   margin-top: 20rpx;
 }
+
 .u-actionsheet-cancel {
   color: $u-main-color;
 }
@@ -669,11 +563,13 @@ page {
   border-bottom: 1rpx solid #e4e7ed;
   z-index: 2;
 }
+
 .u-line-1 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .u-gab {
   height: 10rpx;
   background-color: #eaeaec;

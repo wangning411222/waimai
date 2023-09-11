@@ -220,6 +220,11 @@ export default {
     // 扫码取货
     signfor() {
       let _this = this;
+      uni.vibrateLong({
+            success: function () {
+                console.log('success');
+            }
+        });
       // 只允许通过相机扫码
       uni.scanCode({
         scanType: ["qrCode"],

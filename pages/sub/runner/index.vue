@@ -206,7 +206,6 @@ export default {
 		this.sectionChange(this.current)
 	},
 	onReachBottom() {
-		console.log("到底部");
 		console.log(this.current);
 
 
@@ -217,7 +216,7 @@ export default {
 			if (maxpage > page) {
 				this.tabs[0].page = page + 1;
 				this.runnerOrderPoolList({ 'page': page + 1, 'status': 0 }, function (msg) {
-					_this.concatGoods(msg);
+					_this.concatGoods(msg,'loading');
 				})
 			} else {
 				_this.$refs.uToast.show({
@@ -232,7 +231,7 @@ export default {
 			if (maxpage > page) {
 				this.tabs[1].page = page + 1;
 				this.runnerOrderPoolList({ 'page': page + 1, 'status': 1 }, function (msg) {
-					_this.concatGoods2(msg);
+					_this.concatGoods2(msg,'loading');
 				})
 			} else {
 				_this.$refs.uToast.show({
@@ -246,7 +245,7 @@ export default {
 			if (maxpage > page) {
 				this.tabs[2].page = page + 1;
 				this.runnerOrderPoolList({ 'page': page + 1, 'status': 2 }, function (msg) {
-					_this.concatGoods3(msg);
+					_this.concatGoods3(msg,'loading');
 				})
 			} else {
 				_this.$refs.uToast.show({
@@ -297,7 +296,7 @@ export default {
 				_this.concatGoods3(msg);
 			});
 		},
-		concatGoods(msg) {
+		concatGoods(msg,status) {
 			let _this = this;
 			let curTab = this.tabs[0];
 			let newGoodsData = msg.orderlist;
@@ -318,9 +317,14 @@ export default {
 			// 	});
 			// }
 			// curPageData = newGoodsData;
-			curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+      if(status==='loading'){
+        	curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+      }else{
+        	curTab.goods=newGoodsData
+      }
+		
 		},
-		concatGoods2(msg) {
+		concatGoods2(msg,status) {
 			let _this = this;
 			let curTab = this.tabs[1];
 			let newGoodsData = msg.orderlist;
@@ -342,7 +346,11 @@ export default {
 			// 	});
 			// }
 			// curPageData = newGoodsData;
-			curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+       if(status==='loading'){
+        	curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+      }else{
+        	curTab.goods=newGoodsData
+      }
 
 		},
 		concatGoods3(msg) {
@@ -389,6 +397,11 @@ export default {
 		signfor() {
 			let _this = this;
 			// 只允许通过相机扫码
+      uni.vibrateLong({
+            success: function () {
+                console.log('success');
+            }
+        });
 			uni.scanCode({
 				scanType: ['qrCode'],
 				onlyFromCamera: true,

@@ -602,6 +602,11 @@ export default {
     },
     scanCodeTakeFoot() {
       let _this = this;
+      uni.vibrateLong({
+            success: function () {
+                console.log('success');
+            }
+        });
       // 只允许通过相机扫码
       uni.scanCode({
         scanType: ["qrCode"],

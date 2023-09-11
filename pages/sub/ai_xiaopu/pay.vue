@@ -69,6 +69,7 @@
 					<view class="d-clo padding-left-10">
 						<view class="font28 font-bold margin-bottom-10">{{ item.goods_name }}</view>
 						<view class="font22 gray4">{{ item.skuName }}</view>
+            <view v-if="item.othersku" class="font22 gray4">{{item.othersku.replace('=','')}}</view>
 					</view>
 				</view>
 				<view class="flex-1 text-right">
@@ -256,21 +257,44 @@ export default {
 		}
 
 		this.cart = uni.getStorageSync('cart') || []
-		console.log(this.cart)
 		let goods_ids = []
 		let goods_nums = []
 		let sku_indexes = []
+    let otherSkuArr=[]
+    let otherName1=[]
+    let otherName2=[]
 		this.cart.map((item) => {
 			goods_ids.push(item.goods_id)
 			goods_nums.push(item.number)
 			sku_indexes.push(item.skuActive)
+      otherSkuArr.push(item.othersku)
 		})
+    console.log(otherSkuArr,'otherSkuArrotherSkuArr')
+    this.cart.forEach((item,index)=>{
+
+    })
+    otherSkuArr.forEach((item,index)=>{
+      if(item){
+          if(item.indexOf('=')>0){
+          otherName1.push(item.split('=')[0])
+          otherName2.push(item.split('=')[1])
+        }else{
+            otherName1.push(item)
+            otherName2.push('')
+        }
+      }else{
+         otherName1.push('')
+        otherName2.push('')
+      }
+     
+    })
 		this.model.goods_ids = goods_ids.toString()
 		this.model.goods_nums = goods_nums.toString()
 		this.model.sku_indexes = sku_indexes.toString()
-
+    this.model.other_sku_name1=otherName1.toString()
+    this.model.other_sku_name2=otherName2.toString()
 		this.model.deliver_way = Number(this.deliverWayCurrent) + 1 // 当前选择的什么配送方式
-
+  console.log(this.model,'this.modelthis.model')
 		this.addressdefault()
 		this.mycoupon()
 

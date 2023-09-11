@@ -3,7 +3,7 @@
     <view class="shop-box">
       <u-search placeholder="请输入商家名称" v-model="keywordShopName" :action-style="actionStyle" action-text="搜索"
         border-color="#6ee4c1" search-icon-color="#6ee4c1" bg-color="#fff" @custom="companySearch" @search="companySearch"
-        @clear="getShopList"></u-search>
+        @clear="clear"></u-search>
       <view class="shop-content">
         <text class="shop-content-title">附近商家</text>
         <view class="select-box">
@@ -117,13 +117,18 @@ export default {
     // 店铺下拉加载更多
     if (this.shopPage != 0) {
       if (this.shopMaxpage > 1 && this.shopPage <= this.shopMaxpage) {
-        this.getShopList('loding')
+        this.getShopList('loading')
       } else {
         _this.shopStatus = "nomore";
       }
     }
   },
   methods: {
+     // 清空搜索框
+     clear(){
+      this.shopPage = 1
+      this.getShopList()
+    },
     // 点击商品
     toGoodsDetail(goodsitem, item) {
       uni.navigateTo({

@@ -476,6 +476,11 @@ export default {
 		signfor() {
 			let _this = this;
 			// 只允许通过相机扫码
+      uni.vibrateLong({
+            success: function () {
+                console.log('success');
+            }
+        });
 			uni.scanCode({
 				scanType: ['qrCode'],
 				onlyFromCamera: true,
