@@ -1,101 +1,64 @@
 <template>
   <view class="indexContent">
     <view class="product-list" style="padding-top: 24rpx">
-      <view
-        v-for="(item, index) in goods3"
-        :key="index"
-        class="goodsproduct product"
-      >
-        <view
-          class="d-flex padding-bottom-30 margin-bottom-20"
-          style="border-bottom: 1rpx solid #eee"
-        >
+      <view v-for="(item, index) in goods3" :key="index" class="goodsproduct product">
+        <view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee">
           <view class="flex-1">
             {{ item.order_token }}
           </view>
           <view class="">{{ item.create_date_fmt }}</view>
         </view>
         <view class="d-flex">
-          <view
-            class="padding-right-20 font-bold"
-            style="align-self: center; white-space: nowrap"
-            >取货</view
-          >
+          <view class="padding-right-20 font-bold" style="align-self: center; white-space: nowrap">取货</view>
           <view>
             <view style="font-size: 34rpx" class="font-bold margin-bottom-10">{{
               item.company_name
             }}</view>
-            <view class="name" @click.stop="openMapApp(item.company_address)"
-              >{{ item.company_address
-              }}<u-icon name="map" color="#0099ee" size="28"></u-icon
-            ></view>
+            <view class="name" @click.stop="openMapApp(item.company_address)">{{ item.company_address
+            }}<u-icon name="map" color="#0099ee" size="28"></u-icon></view>
           </view>
         </view>
 
         <view class="info" style="padding-left: 20rpx">
-          <view
-            style="width: 0.5rpx; height: 80rpx; background-color: #eee"
-          ></view>
+          <view style="width: 0.5rpx; height: 80rpx; background-color: #eee"></view>
         </view>
 
         <view class="d-flex">
-          <view
-            class="padding-right-20 font-bold"
-            style="align-self: center; white-space: nowrap"
-            >送货</view
-          >
+          <view class="padding-right-20 font-bold" style="align-self: center; white-space: nowrap">送货</view>
           <view>
-            <view
-              style="font-size: 34rpx"
-              class="font-bold"
-              @click.stop="openMapApp(item.schoolinfo)"
-              >{{ item.schoolinfo }}{{ item.address
-              }}<u-icon name="map" color="#0099ee" size="28"></u-icon
-            ></view>
+            <view style="font-size: 34rpx" class="font-bold" @click.stop="openMapApp(item.schoolinfo)">{{ item.schoolinfo
+            }}{{ item.address
+}}<u-icon name="map" color="#0099ee" size="28"></u-icon></view>
           </view>
         </view>
-        <view
-          @tap="endOrder(item.orderid)"
-          class="margin-top-30"
-          style="
+        <view @tap="endOrder(item.orderid)" class="margin-top-30" style="
             font-size: 35rpx;
             border-radius: 15rpx;
             text-align: center;
             background: #e0620d;
             padding: 25rpx;
             color: #efefef;
-          "
-        >
+          ">
           完成订单
         </view>
-        <view
-          @tap="zhuandan(item.order_token)"
-          class="margin-top-30"
-          style="
+        <view @tap="zhuandan(item.order_token)" class="margin-top-30" style="
             font-size: 35rpx;
             border-radius: 15rpx;
             text-align: center;
             background: #0092e0;
             padding: 25rpx;
             color: #efefef;
-          "
-        >
+          ">
           转单
         </view>
       </view>
       <view v-if="goods3.length == 0">
         <view class="text-center padding-top-50">
-          <u-empty
-            text="没有相关数据"
-            mode="order"
-            style="margin: 0 auto"
-          ></u-empty>
+          <u-empty text="没有相关数据" mode="order" style="margin: 0 auto"></u-empty>
         </view>
       </view>
     </view>
-    <view
-      @tap="signfor"
-      style="
+    <view @tap="signfor" style="
         position: fixed;
         left: 50%;
         bottom: 10%;
@@ -105,31 +68,18 @@
         border-radius: 100rpx;
         background: #e0620d;
         text-align: center;
-      "
-    >
-      <u-icon
-        name="scan"
-        color="#fff"
-        size="55"
-        style="vertical-align: middle"
-      ></u-icon>
-      <text
-        style="
+      ">
+      <u-icon name="scan" color="#fff" size="55" style="vertical-align: middle"></u-icon>
+      <text style="
           color: #fff;
           font-size: 40rpx;
           vertical-align: middle;
           margin-left: 10rpx;
-        "
-        >扫码取餐</text
-      >
+        ">扫码取餐</text>
     </view>
     <u-popup v-model="ZdQrcodeShow" mode="center" closeable>
       <view>
-        <image
-          :src="ZdQrcode"
-          mode="aspectFit"
-          style="width: 400rpx; height: 400rpx"
-        >
+        <image :src="ZdQrcode" mode="aspectFit" style="width: 400rpx; height: 400rpx">
         </image>
       </view>
     </u-popup>
@@ -148,10 +98,10 @@ export default {
         goods: [],
         page: 1,
         maxpage: 0,
-       
+
       },
-       ZdQrcodeShow: false,
-        ZdQrcode: "",
+      ZdQrcodeShow: false,
+      ZdQrcode: "",
     };
   },
   onShow() {
@@ -189,7 +139,7 @@ export default {
     }
   },
   methods: {
-    init_list3: function (data, callback = () => {}) {
+    init_list3: function (data, callback = () => { }) {
       let _this = this;
 
       this.runnerOrderPoolList(data, function (msg) {
@@ -203,7 +153,7 @@ export default {
       curTab.maxpage = msg.maxpage;
       curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
     },
-    runnerOrderPoolList(data, callback = (company_list) => {}) {
+    runnerOrderPoolList(data, callback = (company_list) => { }) {
       let _this = this;
       _this.$store.dispatch("runner/runnerOrderPool", data).then((res) => {
         if (res.code == 0) {
@@ -221,10 +171,10 @@ export default {
     signfor() {
       let _this = this;
       uni.vibrateLong({
-            success: function () {
-                console.log('success');
-            }
-        });
+        success: function () {
+          console.log('success');
+        }
+      });
       // 只允许通过相机扫码
       uni.scanCode({
         scanType: ["qrCode"],
@@ -259,21 +209,21 @@ export default {
           }
         });
     },
-   zhuandan(order_token) {
-			let _this = this;
-			_this.$store.dispatch('runner/runnerZdQrcode', { 'order_token': order_token }).then((res) => {
-				if (res.code == 0) {
-					_this.ZdQrcodeShow = true
-					_this.ZdQrcode = res.message
-				} else {
-					// _this.ZdQrcodeShow = false
-					_this.$refs.uToast.show({
-						title: res.message,
-					})
-				}
-			});
+    zhuandan(order_token) {
+      let _this = this;
+      _this.$store.dispatch('runner/runnerZdQrcode', { 'order_token': order_token }).then((res) => {
+        if (res.code == 0) {
+          _this.ZdQrcodeShow = true
+          _this.ZdQrcode = res.message
+        } else {
+          // _this.ZdQrcodeShow = false
+          _this.$refs.uToast.show({
+            title: res.message,
+          })
+        }
+      });
 
-		},
+    },
     openMapApp(address) {
       uni.request({
         url:
@@ -288,7 +238,7 @@ export default {
             longitude: location.lng,
             latitude: location.lat,
             destination: address,
-            success() {},
+            success() { },
             fail(err) {
               console.log(err);
             },
@@ -310,17 +260,21 @@ export default {
 page {
   background-color: #efefef;
 }
+
 #tabInList {
   background-color: #ffffff;
   padding: 20rpx 0 0;
 }
+
 .u-mode-center-box {
   border-radius: 20rpx !important;
 }
+
 .product {
   /* width: 100%; */
   margin-bottom: 20rpx;
 }
+
 .product.shopproduct {
   width: 100%;
 }
@@ -329,10 +283,12 @@ page {
 .indexContent {
   position: relative;
 }
+
 .u-subsection .u-item-bg {
   background-color: #ffffff;
   color: #6ee4c1;
 }
+
 .authorBtn {
   position: absolute;
   width: 100%;
@@ -397,11 +353,13 @@ page {
     background-color: #fff;
     margin: 0 0 25upx 0;
     box-shadow: 0upx 5upx 25upx rgba(0, 0, 0, 0.1);
+
     image {
       width: 100%;
       height: 300rpx;
       border-radius: 15upx 15upx 0 0;
     }
+
     .name {
       width: 100%;
       display: -webkit-box;
@@ -411,6 +369,7 @@ page {
       overflow: hidden;
       font-size: 30upx;
     }
+
     .info {
       display: flex;
       justify-content: space-between;
@@ -424,6 +383,7 @@ page {
         font-weight: 600;
       }
     }
+
     .slogan {
       padding: 0 4% 10upx;
       color: #807c87;
@@ -431,6 +391,7 @@ page {
     }
   }
 }
+
 .popup-content {
   border-radius: 20rpx;
   padding: 40rpx 20rpx;
@@ -456,6 +417,7 @@ page {
 
     .item {
       flex: auto;
+
       &:nth-child(2) {
         padding-right: 10rpx;
       }
