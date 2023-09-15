@@ -1,71 +1,89 @@
 import Vue from 'vue'
-import { post, get, wx_pay, showToast,reBuildUrl } from '../../tools/utils.js'
+import {
+	post,
+	get,
+	wx_pay,
+	showToast,
+	reBuildUrl
+} from '../../tools/utils.js'
 const state = {
-	content:[],
-	upimgUrl:'user/upimg',
-	upIDCardUrl:'user/upidcard'
+	content: [],
+	upimgUrl: 'user/upimg',
+	upIDCardUrl: 'user/upidcard'
 }
 
 const getters = {
-    content(state) {
-    	return state.content
-    },
+	content(state) {
+		return state.content
+	},
 	upimgUrl(state) {
 		return reBuildUrl(state.upimgUrl);
 	},
 	upIDCardUrl(state) {
 		return reBuildUrl('user/upidcard');
 	}
-	
+
 }
 
 const mutations = {
-	
+
 
 }
 const actions = {
 	// 商家回复
-	postReplay({state}, data) {
+	postReplay({
+		state
+	}, data) {
 		return new Promise((resolve) => {
-			post('post/replay',data).then((res) => {
+			post('post/replay', data).then((res) => {
 				resolve(res);
 			})
 		})
 	},
 	// 评论列表
-	postList({state}, data) {
+	postList({
+		state
+	}, data) {
 		return new Promise((resolve) => {
-			post('post/list',data).then((res) => {
+			post('post/list', data).then((res) => {
 				resolve(res);
 			})
 		})
 	},
 	// 删除评论
-	postDelete({state}, data) {
+	postDelete({
+		state
+	}, data) {
 		return new Promise((resolve) => {
-			post('post/delete',data).then((res) => {
+			post('post/delete', data).then((res) => {
 				resolve(res);
 			})
 		})
 	},
 	// 评论
-	postCreate({state}, data) {
+	postCreate({
+		state
+	}, data) {
 		return new Promise((resolve) => {
-			post('post/create',data).then((res) => {
+			post('post/create', data).then((res) => {
 				resolve(res);
 			})
 		})
 	},
 	// 我的优惠券
-	mycoupon({state}, data){
-		return new Promise((resolve,reject)=>{
-			get('user/mycoupon',data).then((res)=>{
+	mycoupon({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			get('user/mycoupon', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 商铺列表
-	companyList({state}, data) {
+	companyList({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('company/list', data).then((res) => {
 				resolve(res)
@@ -73,16 +91,20 @@ const actions = {
 		})
 	},
 	// 商铺详情
-	companyRead({state}, data) {
+	companyRead({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('goods/list', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
-	
+
 	// 商品详情
-	goodsRead({state}, data) {
+	goodsRead({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('goods/read', data).then((res) => {
 				resolve(res)
@@ -90,7 +112,9 @@ const actions = {
 		})
 	},
 	// 商品评价列表
-	evaluateList({state}, data) {
+	evaluateList({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('post/list', data).then((res) => {
 				resolve(res)
@@ -98,7 +122,9 @@ const actions = {
 		})
 	},
 	// 商品价格计算
-	calculatePrice({state}, data) {
+	calculatePrice({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('goods/price', data).then((res) => {
 				resolve(res)
@@ -106,7 +132,9 @@ const actions = {
 		})
 	},
 	// 商品下单
-	orderAdd({state}, data) {
+	orderAdd({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('order/add', data).then((res) => {
 				resolve(res)
@@ -114,7 +142,9 @@ const actions = {
 		})
 	},
 	// 取消订单
-	orderCancel({state}, data) {
+	orderCancel({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('order/cancel', data).then((res) => {
 				resolve(res)
@@ -122,7 +152,9 @@ const actions = {
 		})
 	},
 	// 删除订单
-	orderDelete({state}, data) {
+	orderDelete({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('order/delete', data).then((res) => {
 				resolve(res)
@@ -130,41 +162,39 @@ const actions = {
 		})
 	},
 	// 商品支付
-	orderPay({state}, data) {
-		return new Promise((resolve,reject) => {
+	orderPay({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
 			post('order/pay', data).then((res) => {
-				wx_pay(res.message).then(r=>{			
-					uni.showToast({
-						title:"支付成功"
-					})
-					resolve();
-				},function(reason){ //状态为rejected时执行
-
-					reject(res);
-				});
-				
-				
+				resolve(res)
 			})
 		})
 	},
 	// 用户扫码签收订单
-	userScan({state}, data) {
+	userScan({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('user/scan', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
-	
+
 	// 推荐商品
-	goods_recommend_list({state}, data) {
+	goods_recommend_list({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('goods/recommend_list', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
-	goods_all_list({state}, data) {
+	goods_all_list({
+		state
+	}, data) {
 		return new Promise((resolve) => {
 			post('goods/all_list', data).then((res) => {
 				resolve(res)
@@ -172,49 +202,61 @@ const actions = {
 		})
 	},
 	// 领取优惠券
-	couponGet({state}, data){
-		return new Promise((resolve,reject)=>{
-			post('user/coupon_get',data).then((res)=>{
+	couponGet({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			post('user/coupon_get', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 优惠券添加
-	couponadd({state}, data){
-		return new Promise((resolve,reject)=>{
-			post('coupon/add',data).then((res)=>{
+	couponadd({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			post('coupon/add', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 优惠券列表
-	couponlist({state}){
-		return new Promise((resolve,reject)=>{
-			get('coupon/list').then((res)=>{
+	couponlist({
+		state
+	}) {
+		return new Promise((resolve, reject) => {
+			get('coupon/list').then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 优惠券详情
-	couponread({state}, data){
-		return new Promise((resolve,reject)=>{
-			post('coupon/read',data).then((res)=>{
+	couponread({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			post('coupon/read', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 优惠券功能开关
-	couponisclose({state}, data){
-		return new Promise((resolve,reject)=>{
-			post('coupon/isclose',data).then((res)=>{
+	couponisclose({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			post('coupon/isclose', data).then((res) => {
 				resolve(res)
 			})
 		})
 	},
 	// 优惠券编辑
-	couponedit({state}, data){
-		return new Promise((resolve,reject)=>{
-			post('coupon/edit',data).then((res)=>{
+	couponedit({
+		state
+	}, data) {
+		return new Promise((resolve, reject) => {
+			post('coupon/edit', data).then((res) => {
 				resolve(res)
 			})
 		})

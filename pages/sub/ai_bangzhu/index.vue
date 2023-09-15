@@ -76,7 +76,7 @@
 		<view class="empty_box" v-if="thread_list.length == 0">
 			<u-empty text="暂无数据"  src="../../../static/imgs/empty.png" icon-size="300"></u-empty>
 		</view>
-		<view @click="send_page" style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #ff9900; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 999;">
+		<view  style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #ff9900; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 999;">
 			<u-icon name="plus" color="#ffffff" size="64" style="vertical-align: middle;"></u-icon>
 		</view>
 		<u-toast ref="uToast" />
@@ -256,15 +256,6 @@ export default {
 					url: '/pages/sub/ai_yujian/yujian_comment?tid='+tid
 				});
 			}
-		},
-		send_page() {
-			if(this.userInfo.is_cert == 0) {
-				this.user_show = true;
-				return false;
-			}
-			uni.navigateTo({
-				url: '/pages/sub/ai_yujian/send?type=1'
-			});
 		},
 		confirm(){
 			uni.navigateTo({

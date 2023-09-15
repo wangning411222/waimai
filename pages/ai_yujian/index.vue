@@ -9,7 +9,7 @@
 				</view>
 			</view>
 			<view style="width: max-content; text-align: right" :class="[noticenums != 0 ? 'text-red' : '']">
-				<u-icon name="bell" size="34" @click="news" style="vertical-align: middle"></u-icon>
+				<u-icon name="bell" size="34" style="vertical-align: middle"></u-icon>
 				<text v-if="noticenums != 0" style="vertical-align: middle">{{
           noticenums
         }}</text>
@@ -86,162 +86,14 @@
 									</view>
 								</scroll-view>
 							</view>
-              <u-divider  textColor="#000" v-if="shopPage>shopMaxpage" text="暂无更多">暂无更多</u-divider>
+							<u-divider textColor="#000" v-if="shopPage>shopMaxpage" text="暂无更多">暂无更多</u-divider>
 						</view>
-						<u-empty  v-else text="暂无数据" mode="data" style='margin-top:80rpx;'></u-empty>
+						<u-empty v-else text="暂无数据" mode="data" style='margin-top:80rpx;'></u-empty>
 					</view>
 				</view>
 			</view>
-		</view>
-		<u-sticky v-if="config.isshow == 0">
-			<view style="padding: 10rpx 0; background: #fff">
-				<liuyuno-tabs :tabData="tab_list" :activeIndex="current" @tabClick="tabClick" />
-
-				<view v-if="current == 0" style="height: 80rpx">
-					<ren-dropdown-filter :filterData="filterData" :defaultIndex="defaultIndex" @onSelected="onSelected"
-						ref="dropdown"></ren-dropdown-filter>
-				</view>
-				<view v-if="current != 0" style="height: 80rpx">
-					<ren-dropdown-filter :filterData="filterData2" :defaultIndex="defaultIndex2"
-						@onSelected="onSelected" ref="dropdown"></ren-dropdown-filter>
-				</view>
-			</view>
-		</u-sticky>
-		<view v-if="thread_list.length > 0 && config.isshow == 0"
-			style="padding-top: 20rpx; background: #fff; padding-bottom: 5rem">
-			<view v-for="(item, index) in thread_list" :key="index">
-				<view class="uni-card uni-border">
-					<view class="uni-card__title uni-border-bottom">
-						<view class="uni-card__title-box">
-							<view class="uni-card__title-header" @click="user_detail(item.uid)">
-								<image :src="item.avatar_url" class="uni-card__title-header-image" mode="scaleToFill"
-									role="img"></image>
-							</view>
-							<view class="uni-card__title-content">
-								<view class="uni-card__title-content-title uni-ellipsis">
-									{{ item.nick_name }}
-									<u-icon v-if="item.sex == 1" name="man" size="28"></u-icon>
-									<u-icon v-if="item.sex == 2" name="woman" size="28"></u-icon>
-								</view>
-								<text class="uni-card__title-content-extra uni-ellipsis">{{
-                  item.school
-                }}</text>
-							</view>
-							<view v-if="current == 0" style="padding: 0 15rpx; align-self: baseline">
-								<text :style="{
-                  color:
-                    index == 0
-                      ? '#fe2d46'
-                      : index == 1
-                        ? '#f60'
-                        : index == 2
-                          ? '#faa90e'
-                          : '#9195a3',
-                  'font-weight':
-                    index == 0 || index == 1 || index == 2
-                      ? 'bold'
-                      : 'initial',
-                }" style="font-size: 50rpx; font-style: italic">{{ index + 1 }}</text>
-							</view>
-							<view v-if="userInfo.gid == 1 || userInfo.gid == 5"
-								style="align-self: flex-start; color: #aaaaaa" @click="dele_modal(item.tid, index)">
-								<u-icon name="trash"></u-icon>删除
-							</view>
-						</view>
-						<!-- <view @click.stop="report_method(1,0)" style="color: #BBBBBB;">
-							<u-icon name="warning"></u-icon> 举报
-						</view> -->
-					</view>
-					<view @click="clickCard(item.tid)" class="uni-card__content uni-card__content--pd"
-						style="padding-bottom: 20rpx">
-						<view>
-							<view class="content-box">
-								<text class="content-box-text">{{ item.message }}</text>
-							</view>
-							<u-row style="text-align: center" v-if="item.img_arr.length > 0">
-								<u-col span="4" v-for="(it, i) in item.img_arr" :key="i">
-									<image class="image" mode="aspectFill" :src="it.url" />
-								</u-col>
-							</u-row>
-						</view>
-					</view>
-					<view class="uni-card__footer uni-border-top">
-						<view class="footer-box">
-							<view>
-								<image v-if="item.xindong == 1" @tap="getWechat(item.uid)"
-									src="../../static/icon/xindong.png" mode="widthFix"
-									style="width: 43rpx; vertical-align: middle"></image>
-								<text v-if="item.xindong == 1" style="padding: 0 15rpx">|</text>
-								{{ item.create_date_fmt }}
-							</view>
-							<view style="color: #aaa">
-								<view style="margin-right: 25rpx; display: inline-block">
-									<u-icon name="eye" color="#aaa" size="28"></u-icon>
-									<text>{{ item.views }}</text>
-								</view>
-								<view v-if="item.is_like == 0" @click.stop="like(item.tid, index)"
-									style="margin-right: 25rpx; display: inline-block">
-									<u-icon name="heart" color="#aaa" size="28"></u-icon>
-									<text v-if="item.likes != 0">{{ item.likes }}</text>
-									点赞
-								</view>
-								<view v-if="item.is_like != 0" @click.stop="unlike(item.tid, index)"
-									style="margin-right: 25rpx; display: inline-block">
-									<u-icon name="heart-fill" color="red" size="28"></u-icon>
-									<text v-if="item.likes != 0">{{ item.likes }}</text>
-									点赞
-								</view>
-
-								<view @click.stop="footerClick('comment', item.tid)" style="display: inline-block">
-									<u-icon name="chat" color="#aaa" size="28"></u-icon>
-									<text v-if="item.posts != 0">{{ item.posts }}</text>
-									评论
-								</view>
-							</view>
-						</view>
-					</view>
-					<view style="padding: 0 24rpx">
-						<view style="background: #f3f3f3; border: 6rpx">
-							<view class="reply_box" v-for="(item2, index2) in item.reply_list" :key="index2">
-								<view class="reply_user">{{ item2.nick_name }}</view>
-								<view class="reply_con">：{{ item2.reply_msg }}</view>
-								<view style="width: max-content; color: #aaa">
-									<view v-if="item2.is_like == 0"
-										@click.stop="replaylike(item2.replyid, index, index2)"
-										style="display: inline-block">
-										<u-icon name="heart" size="28"></u-icon>
-										<text v-if="item2.likes != 0"> {{ item2.likes }}</text>
-									</view>
-									<view v-if="item2.is_like != 0"
-										@click.stop="replayunlike(item2.replyid, index, index2)"
-										style="display: inline-block">
-										<u-icon name="heart-fill" color="red" size="28"></u-icon>
-										<text v-if="item2.likes != 0"> {{ item2.likes }}</text>
-									</view>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-
-				<u-gap height="12" bg-color="#efefef" v-if="index < thread_list.length - 1"></u-gap>
-			</view>
-
-			<view v-if="current == 1 && maxpage > 1" style="padding-bottom: 50rpx">
-				<u-loadmore :status="status" />
-			</view>
-			<view v-if="current == 0" style="padding-bottom: 50rpx">
-				<u-loadmore :status="nomore" />
-			</view>
-		</view>
-		<view class="empty_box" v-if="thread_list.length == 0 && config.isshow == 0">
-			<u-empty text="暂无数据" src="../../../static/imgs/empty.png" icon-size="300"></u-empty>
 		</view>
 		<u-toast ref="uToast" />
-		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？"
-			@confirm="confirm" confirm-color="#ff9900"></u-modal>
-		<u-modal v-model="dele_modal_show" show-cancel-button="true" content="确定删除？" @confirm="delete_post"
-			confirm-color="#ff9900"></u-modal>
 		<u-popup v-model="infoSHow" mode="center" border-radius="14" width="80%" height="65%" :closeable="true">
 			<view class="info-image">
 				<image :src="config.tips_img" mode="scaleToFill" />
@@ -261,89 +113,19 @@
 		data() {
 			return {
 				location: "选择位置",
-
+				noticenums: '',
 				user_show: false,
-				noticenums: 0,
-				dele_modal_show: false,
 				choose_tid: 0,
 				choose_index: 0,
 
 				status: "loadmore",
-
-				filterData: [
-					[{
-							text: "本周",
-							value: 0,
-						},
-						{
-							text: "本月",
-							value: 1,
-						},
-					],
-					[{
-							text: "同城",
-							value: 0,
-						},
-						{
-							text: "本校",
-							value: 1,
-						},
-						{
-							text: "全国",
-							value: 99,
-						},
-					],
-				],
-				defaultIndex: [0, 1],
-				filterData2: [
-					[{
-							text: "同城",
-							value: 0,
-						},
-						{
-							text: "本校",
-							value: 1,
-						},
-						{
-							text: "全国",
-							value: 99,
-						},
-					],
-					[{
-							text: "时间",
-							value: 0,
-						},
-						{
-							text: "热度",
-							value: 1,
-						},
-					],
-				],
-				defaultIndex2: [1, 0],
-
-				tab_list: [{
-						name: "Hot",
-						img: "../../static/icon/hot.png",
-					},
-					{
-						name: "Ai世界",
-					},
-				],
 				current: 1,
 
-				rank_type: 0, //热度
-
-				active_nav: 0, // 热度99
 				area: 1,
 				orderby: 0,
-
-				thread_list: [],
 				page: 1,
 				maxpage: 0,
-
 				address_state: false,
-
-				getWechatUid: 0, // 要获取微信的用户的uid
 				keywordShopName: "", //搜索关键字
 				actionStyle: {
 					color: "#ff9900",
@@ -383,40 +165,8 @@
 			...mapGetters("user", ["userInfo"]),
 			...mapGetters("config", ["config"]),
 		},
-		onPullDownRefresh() {
-			let _this = this;
-			if (this.current != 0) {
-				this.init();
-				this.$refs.dropdown.initial([1, 0]);
-				this.getThreadList(this.active_nav, this.area, 0, this.page, function() {
-					uni.stopPullDownRefresh();
-				});
-			} else {
-				this.init();
-				this.$refs.dropdown.initial([0, 1]);
-				this.getThreadRanks(this.rank_type, this.area, function() {
-					uni.stopPullDownRefresh();
-				});
-			}
-		},
 		onReachBottom() {
 			let _this = this;
-			this.status = "loading";
-			if (this.current != 0) {
-				if (this.maxpage > 1 && _this.page <= _this.maxpage) {
-					this.getThreadList(
-						this.active_nav,
-						this.area,
-						this.orderby,
-						this.page,
-						function() {
-							_this.status = "loadmore";
-						}
-					);
-				} else {
-					_this.status = "nomore";
-				}
-			}
 			// 店铺下拉加载更多
 			if (this.shopPage != 0) {
 				if (this.shopMaxpage > 1 && this.shopPage <= this.shopMaxpage) {
@@ -428,7 +178,6 @@
 		},
 
 		onShow() {
-
 			var _this = this;
 			uni.getStorage({
 				key: "getSchoolLocation",
@@ -440,8 +189,6 @@
 					if (_this.address_state) {
 						_this.getThreadRanks(0, _this.area);
 					}
-
-					_this.getThreadList(_this.active_nav, _this.area, 0, 1);
 				},
 				fail() {
 					_this.address_state = true;
@@ -467,12 +214,9 @@
 					});
 				}
 			});
-
 		},
 		onLoad() {
-
 			let _this = this;
-
 			this.$store.dispatch("login/checkLogin").then((res) => {
 				if (res && res.code != 0) {
 					_this.$refs.uToast.show({
@@ -483,7 +227,6 @@
 					_this.user();
 				}
 			});
-
 			// 获取位置变化
 			uni.getStorage({
 				key: "getSchoolLocation",
@@ -492,20 +235,18 @@
 					_this.location = res.data.schoolname;
 				},
 			});
-      
-			
 			// 监听位置变化
 			uni.$on("getLocation", (e) => {
 				_this.SchoolLocation = e;
 				_this.location = e.location_name;
 				this.getThreadList(this.active_nav, this.area, 0, 1);
 			});
-      setTimeout(()=>{
-        console.log(this.config,this.config.tips_img,'config.tips_imgconfig.tips_img')
-        if(this.config.tips_img){
-          this.infoSHow = true
-        }
-      },100)
+			setTimeout(() => {
+				console.log(this.config, this.config.tips_img, 'config.tips_imgconfig.tips_img')
+				if (this.config.tips_img) {
+					this.infoSHow = true
+				}
+			}, 100)
 		},
 		onUnload() {
 			uni.$off("shuaxin");
@@ -606,210 +347,10 @@
 					}
 				});
 			},
-			news() {
-				uni.navigateTo({
-					url: "/pages/sub/ai_news/index",
-				});
-			},
-			init() {
-				this.thread_list = [];
-				this.rank_type = 0;
-				this.page = 1;
-				this.area = 1;
-				this.orderby = 0;
-				this.defaultIndex2 = [1, 0];
-				// this.$refs.dropdown.initial([0, 0]);
-			},
 			get_location() {
 				uni.navigateTo({
 					url: "/pages/sub/location/location",
 				});
-			},
-			handleDNWM(type) {
-				if (type == 1) {
-					uni.navigateTo({
-						url: "/pages/sub/ai_xiaopu/index",
-					});
-					return false;
-				}
-				this.$refs.uToast.show({
-					title: "敬请期待",
-				});
-			},
-			onSelected(res) {
-				if (this.current == 0) {
-					this.thread_list = [];
-					this.page = 1;
-
-					let rank_type = res[0][0]["value"];
-					this.area = res[1][0]["value"];
-					this.rank_type = rank_type;
-					this.getThreadRanks(rank_type, this.area);
-				} else {
-					this.thread_list = [];
-					this.page = 1;
-					this.area = res[0][0]["value"];
-					this.orderby = res[1][0]["value"];
-
-					this.getThreadList(this.active_nav, this.area, this.orderby, this.page);
-				}
-			},
-			getThreadRanks(rank_type, area, callback = () => {}) {
-				area = this.area;
-				var _this = this;
-				var data_arr = {
-					rank_type: rank_type,
-					area: area,
-					schoolid: _this.SchoolLocation.schoolid,
-				};
-
-				this.$store.dispatch("ai_yujian/getThreadRank", data_arr).then((res) => {
-					if (res.code == 0) {
-						_this.thread_list = _this.thread_list.concat(res.message);
-
-						_this.maxpage = res.message.maxpage;
-						if (_this.maxpage > 1 && _this.page <= _this.maxpage) {
-							_this.page++;
-						}
-
-						callback();
-					} else {}
-				});
-			},
-
-			getThreadList(fid, area, orderby, page, callback = () => {}) {
-				area = this.area;
-				var _this = this;
-				var data_arr = {
-					orderby: orderby,
-					fid: fid,
-					area: area,
-					page: page,
-					schoolid: _this.SchoolLocation.schoolid,
-				};
-
-				_this.maxpage = 0;
-				this.$store.dispatch("ai_yujian/getThreadList", data_arr).then((res) => {
-					if (res.code == 0) {
-						_this.thread_list = _this.thread_list.concat(res.message.thread_list);
-
-						_this.maxpage = res.message.maxpage;
-						if (_this.maxpage > 1 && _this.page <= _this.maxpage) {
-							_this.page++;
-						}
-						callback();
-					} else {}
-				});
-			},
-			tabClick(index) {
-				this.current = index;
-
-				if (index == 0) {
-					this.init();
-					this.getThreadRanks(0, this.area);
-				} else {
-					if (index == 1) {
-						this.active_nav = 99;
-					} else if (index == 2) {
-						this.active_nav = 0;
-					} else if (index == 3) {
-						this.active_nav = 1;
-					}
-					this.init();
-					this.getThreadList(this.active_nav, this.area, 0, 1);
-				}
-			},
-			user_detail(uid) {
-				uni.navigateTo({
-					url: "/pages/sub/ai_user/index?uid=" + uid,
-				});
-			},
-			clickCard(tid) {
-				uni.navigateTo({
-					url: "/pages/sub/ai_yujian/yujian_comment?tid=" + tid,
-				});
-			},
-			footerClick(types, tid) {
-				if (types == "comment") {
-					uni.navigateTo({
-						url: "/pages/sub/ai_yujian/yujian_comment?tid=" + tid,
-					});
-				}
-			},
-			send_page() {
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-				uni.navigateTo({
-					url: "/pages/sub/ai_yujian/send",
-				});
-			},
-			confirm() {
-				uni.navigateTo({
-					url: "/pages/sub/center/userinfo_add",
-				});
-			},
-			like(tid, index) {
-				let _this = this;
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-
-				this.$store
-					.dispatch("ai_yujian/postThreadLike", {
-						tid: tid,
-					})
-					.then((res) => {
-						if (res.code == 0) {
-							let likes = _this.thread_list[index]["likes"];
-							_this.thread_list[index]["likes"] = Number(likes) + 1;
-							_this.thread_list[index]["is_like"] = 1;
-						} else {}
-					});
-			},
-			unlike(tid, index) {
-				let _this = this;
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-				this.$store
-					.dispatch("ai_yujian/postThreadUnlike", {
-						tid: tid,
-					})
-					.then((res) => {
-						if (res.code == 0) {
-							let likes = _this.thread_list[index]["likes"];
-							_this.thread_list[index]["likes"] = Number(likes) - 1;
-							_this.thread_list[index]["is_like"] = 0;
-						} else {}
-					});
-			},
-			dele_modal(tid, index) {
-				this.dele_modal_show = true;
-				this.choose_tid = tid;
-				this.choose_index = index;
-			},
-			delete_post() {
-				let _this = this;
-				_this.$store
-					.dispatch("user/deleThread", {
-						tid: this.choose_tid,
-					})
-					.then((res) => {
-						if (res.code == 0) {
-							_this.thread_list.splice(this.choose_index, 1);
-							_this.$refs.uToast.show({
-								title: res.message,
-							});
-						} else {
-							_this.$refs.uToast.show({
-								title: res.message,
-							});
-						}
-					});
 			},
 			swiperclick: function(index) {
 				if (this.config.banner_list[index]["url"]) {
@@ -817,83 +358,6 @@
 						url: this.config.banner_list[index]["url"],
 					});
 				}
-			},
-
-			getWechat(cuid) {
-				let _this = this;
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-				this.getWechatUid = cuid;
-				// #ifdef MP-WEIXIN
-				// 用户触发广告后，显示激励视频广告
-				if (videoAd) {
-					videoAd.show().catch(() => {
-						// 失败重试
-						videoAd
-							.load()
-							.then(() => videoAd.show())
-							.catch((err) => {
-								console.log("激励视频 广告显示失败");
-							});
-					});
-				}
-				// #endif
-			},
-			replaylike(replyid, index, index2) {
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-
-				let _this = this;
-				this.$store
-					.dispatch("ai_yujian/postReplyLike", {
-						replyid: replyid
-					})
-					.then((res) => {
-						if (res.code == 0) {
-							let likes = _this.thread_list[index]["reply_list"][index2]["likes"];
-							_this.$set(
-								_this.thread_list[index]["reply_list"][index2],
-								"likes",
-								Number(likes) + 1
-							);
-							_this.$set(
-								_this.thread_list[index]["reply_list"][index2],
-								"is_like",
-								1
-							);
-						} else {}
-					});
-			},
-			replayunlike(replyid, index, index2) {
-				if (this.userInfo.is_cert == 0) {
-					this.user_show = true;
-					return false;
-				}
-
-				let _this = this;
-				this.$store
-					.dispatch("ai_yujian/postReplyUnlike", {
-						replyid: replyid
-					})
-					.then((res) => {
-						if (res.code == 0) {
-							let likes = _this.thread_list[index]["reply_list"][index2]["likes"];
-							_this.$set(
-								_this.thread_list[index]["reply_list"][index2],
-								"likes",
-								Number(likes) - 1
-							);
-							_this.$set(
-								_this.thread_list[index]["reply_list"][index2],
-								"is_like",
-								0
-							);
-						} else {}
-					});
 			},
 		},
 		onShareAppMessage() {},

@@ -16,7 +16,8 @@
 				<view class="d-flex">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
-						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}</view>
+						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
+						</view>
 						<view class="name">{{ item.company_address }}</view>
 					</view>
 				</view>
@@ -51,14 +52,15 @@
 			<view v-for="(item, index) in goods2" :key="index" class="goodsproduct product">
 				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
 					<view class="flex-1">
-					餐号:M{{ item.lastnum }}
+						餐号:M{{ item.lastnum }}
 					</view>
 					<view class="">{{ item.create_date_fmt }}</view>
 				</view>
 				<view class="d-flex">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
-						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}</view>
+						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
+						</view>
 						<view class="name" @click.stop="openMapApp(item.company_address)"><text user-select>{{
 							item.company_address }}</text> <u-icon name="map" color="#0099ee" size="28"></u-icon></view>
 					</view>
@@ -71,9 +73,10 @@
 				<view class="d-flex">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">送货</view>
 					<view>
-						<view style="font-size: 34rpx;" class="font-bold" @click.stop="openMapApp(item.schoolinfo)"><text
-								user-select>{{ item.schoolinfo }}{{ item.address }}</text> <u-icon name="map"
-								color="#0099ee" size="28"></u-icon></view>
+						<view style="font-size: 34rpx;" class="font-bold" @click.stop="openMapApp(item.schoolinfo)">
+							<text user-select>{{ item.schoolinfo }}{{ item.address }}</text> <u-icon name="map"
+								color="#0099ee" size="28"></u-icon>
+						</view>
 					</view>
 				</view>
 				<view @tap="signfor(item.order_token)" class="margin-top-30"
@@ -103,9 +106,11 @@
 				<view class="d-flex">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
-						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}</view>
-						<view class="name" @click.stop="openMapApp(item.company_address)">{{ item.company_address }}<u-icon
-								name="map" color="#0099ee" size="28"></u-icon></view>
+						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
+						</view>
+						<view class="name" @click.stop="openMapApp(item.company_address)">
+							{{ item.company_address }}<u-icon name="map" color="#0099ee" size="28"></u-icon>
+						</view>
 					</view>
 				</view>
 
@@ -148,514 +153,514 @@
 </template>
 
 <script>
+	import {
+		mapGetters
+	} from 'vuex'
 
-import { mapGetters } from 'vuex'
+	export default {
 
-export default {
-
-	data() {
-		return {
-			tabs: [
-				{
-					name: '新任务',
-					goods: [],
-					page: 1,
-					maxpage: 0
-				},
-				{
-					name: '待取货',
-					goods: [],
-					page: 1,
-					maxpage: 0
-				},
-				{
-					name: '配送中',
-					goods: [],
-					page: 1,
-					maxpage: 0
-				}
-			],
-			current: 0,
-			ZdQrcodeShow: false,
-			ZdQrcode: ''
-		};
-	},
-
-	onLoad() {
-		let _this = this;
-		_this.init_list({ 'page': 1, 'status': this.current });
-	},
-	computed: {
-		goods() {
-			return this.tabs[0].goods;
+		data() {
+			return {
+				tabs: [{
+						name: '新任务',
+						goods: [],
+						page: 1,
+						maxpage: 0
+					},
+					{
+						name: '待取货',
+						goods: [],
+						page: 1,
+						maxpage: 0
+					},
+					{
+						name: '配送中',
+						goods: [],
+						page: 1,
+						maxpage: 0
+					}
+				],
+				current: 0,
+				ZdQrcodeShow: false,
+				ZdQrcode: ''
+			};
 		},
-		goods2() {
-			return this.tabs[1].goods;
-		},
-		goods3() {
-			return this.tabs[2].goods;
-		}
-	},
-	onPullDownRefresh() {
-		this.tabs[0].goods = [];
-		this.tabs[0].page = 1;
-		this.tabs[1].goods = [];
-		this.tabs[1].page = 1;
-		this.tabs[2].goods = [];
-		this.tabs[2].page = 1;
-		this.sectionChange(this.current)
-	},
-	onReachBottom() {
-		console.log(this.current);
 
-
-		let _this = this;
-		if (this.current == 0) {
-			let maxpage = this.tabs[0].maxpage;
-			let page = this.tabs[0].page;
-			if (maxpage > page) {
-				this.tabs[0].page = page + 1;
-				this.runnerOrderPoolList({ 'page': page + 1, 'status': 0 }, function (msg) {
-					_this.concatGoods(msg,'loading');
-				})
-			} else {
-				_this.$refs.uToast.show({
-					title: "没有更多了",
-				})
-			}
-		}
-
-		if (this.current == 1) {
-			let maxpage = this.tabs[1].maxpage;
-			let page = this.tabs[1].page;
-			if (maxpage > page) {
-				this.tabs[1].page = page + 1;
-				this.runnerOrderPoolList({ 'page': page + 1, 'status': 1 }, function (msg) {
-					_this.concatGoods2(msg,'loading');
-				})
-			} else {
-				_this.$refs.uToast.show({
-					title: "没有更多了",
-				})
-			}
-		}
-		if (this.current == 2) {
-			let maxpage = this.tabs[2].maxpage;
-			let page = this.tabs[2].page;
-			if (maxpage > page) {
-				this.tabs[2].page = page + 1;
-				this.runnerOrderPoolList({ 'page': page + 1, 'status': 2 }, function (msg) {
-					_this.concatGoods3(msg,'loading');
-				})
-			} else {
-				_this.$refs.uToast.show({
-					title: "没有更多了",
-				})
-			}
-		}
-	},
-	methods: {
-		handleRefresh() {
-			uni.startPullDownRefresh();
-		},
-		sectionChange(index) {
+		onLoad() {
 			let _this = this;
-			this.current = index;
-
-			if (index == 0) {
-				_this.init_list({ 'page': 1, 'status': this.current });
-			}
-			if (index == 1) {
-				_this.init_list2({ 'page': 1, 'status': this.current });
-			}
-			if (index == 2) {
-				let data = { 'page': 1, 'status': this.current };
-				_this.init_list3({ 'page': 1, 'status': this.current });
-			}
-
-		},
-		init_list: function (data, callback = () => { }) {
-			let _this = this;
-
-			this.runnerOrderPoolList(data, function (msg) {
-				_this.concatGoods(msg);
-
+			_this.init_list({
+				'page': 1,
+				'status': this.current
 			});
 		},
-		init_list2: function (data, callback = () => { }) {
-			let _this = this;
-
-			this.runnerOrderPoolList(data, function (msg) {
-				_this.concatGoods2(msg);
-			});
+		computed: {
+			goods() {
+				return this.tabs[0].goods;
+			},
+			goods2() {
+				return this.tabs[1].goods;
+			},
+			goods3() {
+				return this.tabs[2].goods;
+			}
 		},
-		init_list3: function (data, callback = () => { }) {
-			let _this = this;
-
-			this.runnerOrderPoolList(data, function (msg) {
-				_this.concatGoods3(msg);
-			});
+		onPullDownRefresh() {
+			this.tabs[0].goods = [];
+			this.tabs[0].page = 1;
+			this.tabs[1].goods = [];
+			this.tabs[1].page = 1;
+			this.tabs[2].goods = [];
+			this.tabs[2].page = 1;
+			this.sectionChange(this.current)
 		},
-		concatGoods(msg,status) {
-			let _this = this;
-			let curTab = this.tabs[0];
-			let newGoodsData = msg.orderlist;
-			// let goods_list = msg.orderlist;
-			curTab.maxpage = msg.maxpage;
-			// for (let i = 0; i < goods_list.length; i++) {
-			// 	newGoodsData.push({
-			// 		id: goods_list[i]['goods_id'],
-			// 		logo:goods_list[i]['goods_pic'],
-			// 		name: goods_list[i]['goods_name'],
-			// 		price: goods_list[i]['price'],
-			// 		market_price: goods_list[i]['market_price'],
-			// 		slogan:goods_list[i]['sales'],
-			// 		company_name:goods_list[i]['company_name'],
-			// 		companyid:goods_list[i]['companyid'],
-			// 		cateid:goods_list[i]['cateid'],
-			// 		boxType: _this.tabIndex == 0 ? 'goods' : 'shops'
-			// 	});
-			// }
-			// curPageData = newGoodsData;
-      if(status==='loading'){
-        	curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
-      }else{
-        	curTab.goods=newGoodsData
-      }
-		
-		},
-		concatGoods2(msg,status) {
-			let _this = this;
-			let curTab = this.tabs[1];
-			let newGoodsData = msg.orderlist;
-			curTab.maxpage = msg.maxpage;
+		onReachBottom() {
+			console.log(this.current);
 
-			// let goods_list = msg.goods_list;
-			// for (let i = 0; i < goods_list.length; i++) {
-			// 	newGoodsData.push({
-			// 		id: goods_list[i]['goods_id'],
-			// 		logo:goods_list[i]['goods_pic'],
-			// 		name: goods_list[i]['goods_name'],
-			// 		price: goods_list[i]['price'],
-			// 		market_price: goods_list[i]['market_price'],
-			// 		slogan:goods_list[i]['sales'],
-			// 		company_name:goods_list[i]['company_name'],
-			// 		companyid:goods_list[i]['companyid'],
-			// 		cateid:goods_list[i]['cateid'],
-			// 		boxType: _this.tabIndex == 0 ? 'goods' : 'shops'
-			// 	});
-			// }
-			// curPageData = newGoodsData;
-       if(status==='loading'){
-        	curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
-      }else{
-        	curTab.goods=newGoodsData
-      }
 
-		},
-		concatGoods3(msg) {
 			let _this = this;
-			let curTab = this.tabs[2];
-			let newGoodsData = msg.orderlist;
-			curTab.maxpage = msg.maxpage;
-			curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
-
-			console.log(curTab)
-		},
-		runnerOrderPoolList(data, callback = (company_list) => { }) {
-			let _this = this;
-			_this.$store.dispatch('runner/runnerOrderPool', data).then((res) => {
-				if (res.code == 0) {
-					callback(res.message);
+			if (this.current == 0) {
+				let maxpage = this.tabs[0].maxpage;
+				let page = this.tabs[0].page;
+				if (maxpage > page) {
+					this.tabs[0].page = page + 1;
+					this.runnerOrderPoolList({
+						'page': page + 1,
+						'status': 0
+					}, function(msg) {
+						_this.concatGoods(msg, 'loading');
+					})
 				} else {
 					_this.$refs.uToast.show({
-						title: res.message,
+						title: "没有更多了",
 					})
 				}
-				uni.stopPullDownRefresh();
-			});
-		},
-		// 抢单
-		seizeOrder(order_token) {
-			let _this = this;
-			_this.$store.dispatch('runner/runnerReceiveOrder', { 'order_token': order_token }).then((res) => {
-				if (res.code == 0) {
-					_this.$refs.uToast.show({
-						title: res.message,
+			}
+
+			if (this.current == 1) {
+				let maxpage = this.tabs[1].maxpage;
+				let page = this.tabs[1].page;
+				if (maxpage > page) {
+					this.tabs[1].page = page + 1;
+					this.runnerOrderPoolList({
+						'page': page + 1,
+						'status': 1
+					}, function(msg) {
+						_this.concatGoods2(msg, 'loading');
 					})
-					_this.sectionChange(1)
-					
 				} else {
 					_this.$refs.uToast.show({
-						title: res.message,
+						title: "没有更多了",
 					})
 				}
-
-			});
-		},
-		// 扫码取货
-		signfor() {
-			let _this = this;
-			// 只允许通过相机扫码
-      uni.vibrateLong({
-            success: function () {
-                console.log('success');
-            }
-        });
-			uni.scanCode({
-				scanType: ['qrCode'],
-				onlyFromCamera: true,
-				success: function (res) {
-					// console.log('条码类型：' + res.scanType);
-					// console.log('条码内容：' + res.result);
-					_this.userScan(res.result)
-				},
-				fail(err) {
-					console.log(err)
-					_this.$refs.uToast.show({
-						title: '扫码失败,请稍后重试',
+			}
+			if (this.current == 2) {
+				let maxpage = this.tabs[2].maxpage;
+				let page = this.tabs[2].page;
+				if (maxpage > page) {
+					this.tabs[2].page = page + 1;
+					this.runnerOrderPoolList({
+						'page': page + 1,
+						'status': 2
+					}, function(msg) {
+						_this.concatGoods3(msg, 'loading');
 					})
-				}
-			});
-		},
-		userScan(result) {
-			let _this = this;
-			_this.$store.dispatch('runner/runnerScanode', { 'qrcode_token': result }).then((res) => {
-				if (res.code == 0) {
-					_this.$refs.uToast.show({
-						title: res.message,
-					})
-					uni.startPullDownRefresh();
 				} else {
 					_this.$refs.uToast.show({
-						title: res.message,
+						title: "没有更多了",
 					})
 				}
-			});
+			}
 		},
-		longscan() {
-			uni.navigateTo({
-				url: '/pages/sub/runner/longscan'
-			})
-		},
-		zhuandan(order_token) {
-			let _this = this;
-			_this.$store.dispatch('runner/runnerZdQrcode', { 'order_token': order_token }).then((res) => {
-				if (res.code == 0) {
-					_this.ZdQrcodeShow = true
-					_this.ZdQrcode = res.message
+		methods: {
+			handleRefresh() {
+				uni.startPullDownRefresh();
+			},
+			sectionChange(index) {
+				let _this = this;
+				this.current = index;
+
+				if (index == 0) {
+					_this.init_list({
+						'page': 1,
+						'status': this.current
+					});
+				}
+				if (index == 1) {
+					_this.init_list2({
+						'page': 1,
+						'status': this.current
+					});
+				}
+				if (index == 2) {
+					let data = {
+						'page': 1,
+						'status': this.current
+					};
+					_this.init_list3({
+						'page': 1,
+						'status': this.current
+					});
+				}
+
+			},
+			init_list: function(data, callback = () => {}) {
+				let _this = this;
+
+				this.runnerOrderPoolList(data, function(msg) {
+					_this.concatGoods(msg);
+
+				});
+			},
+			init_list2: function(data, callback = () => {}) {
+				let _this = this;
+
+				this.runnerOrderPoolList(data, function(msg) {
+					_this.concatGoods2(msg);
+				});
+			},
+			init_list3: function(data, callback = () => {}) {
+				let _this = this;
+
+				this.runnerOrderPoolList(data, function(msg) {
+					_this.concatGoods3(msg);
+				});
+			},
+			concatGoods(msg, status) {
+				let _this = this;
+				let curTab = this.tabs[0];
+				let newGoodsData = msg.orderlist;
+				curTab.maxpage = msg.maxpage;
+				if (status === 'loading') {
+					curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
 				} else {
-					// _this.ZdQrcodeShow = false
-					_this.$refs.uToast.show({
-						title: res.message,
-					})
+					curTab.goods = newGoodsData
 				}
-			});
 
-		},
-
-		openMapApp(address) {
-			let _this = this;
-			uni.request({
-				url: 'https://apis.map.qq.com/ws/geocoder/v1/?address=' + address + '&key=NN4BZ-4HAKT-NP4XL-VFOQJ-6SY67-JEBWR',
-				data: {},
-				success: (res) => {
-
-					let location = res.data.result.location;
-					let MapContext = wx.createMapContext('map');
-					MapContext.openMapApp({
-						longitude: location.lng,
-						latitude: location.lat,
-						destination: address,
-						success() {
-
-						},
-						fail(err) {
-							console.log(err)
-						}
-					})
-				},
-				fail() {
-					_this.$refs.uToast.show({
-						title: '导航失败，请联系管理员'
-					})
+			},
+			concatGoods2(msg, status) {
+				let _this = this;
+				let curTab = this.tabs[1];
+				let newGoodsData = msg.orderlist;
+				curTab.maxpage = msg.maxpage;
+				if (status === 'loading') {
+					curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+				} else {
+					curTab.goods = newGoodsData
 				}
-			});
+
+			},
+			concatGoods3(msg) {
+				let _this = this;
+				let curTab = this.tabs[2];
+				let newGoodsData = msg.orderlist;
+				curTab.maxpage = msg.maxpage;
+				if (status === 'loading') {
+					curTab.goods = curTab.goods.concat(newGoodsData); //追加新数据
+				} else {
+					curTab.goods = newGoodsData
+				}
+			},
+			runnerOrderPoolList(data, callback = (company_list) => {}) {
+				let _this = this;
+				_this.$store.dispatch('runner/runnerOrderPool', data).then((res) => {
+					if (res.code == 0) {
+						callback(res.message);
+					} else {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+					}
+					uni.stopPullDownRefresh();
+				});
+			},
+			// 抢单
+			seizeOrder(order_token) {
+				let _this = this;
+				_this.$store.dispatch('runner/runnerReceiveOrder', {
+					'order_token': order_token
+				}).then((res) => {
+					if (res.code == 0) {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+						_this.sectionChange(1)
+
+					} else {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+					}
+
+				});
+			},
+			// 扫码取货
+			signfor() {
+				let _this = this;
+				// 只允许通过相机扫码
+				uni.vibrateLong({
+					success: function() {
+						console.log('success');
+					}
+				});
+				uni.scanCode({
+					scanType: ['qrCode'],
+					onlyFromCamera: true,
+					success: function(res) {
+						// console.log('条码类型：' + res.scanType);
+						// console.log('条码内容：' + res.result);
+						_this.userScan(res.result)
+					},
+					fail(err) {
+						console.log(err)
+						_this.$refs.uToast.show({
+							title: '扫码失败,请稍后重试',
+						})
+					}
+				});
+			},
+			userScan(result) {
+				let _this = this;
+				_this.$store.dispatch('runner/runnerScanode', {
+					'qrcode_token': result
+				}).then((res) => {
+					if (res.code == 0) {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+						uni.startPullDownRefresh();
+					} else {
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+					}
+				});
+			},
+			longscan() {
+				uni.navigateTo({
+					url: '/pages/sub/runner/longscan'
+				})
+			},
+			zhuandan(order_token) {
+				let _this = this;
+				_this.$store.dispatch('runner/runnerZdQrcode', {
+					'order_token': order_token
+				}).then((res) => {
+					if (res.code == 0) {
+						_this.ZdQrcodeShow = true
+						_this.ZdQrcode = res.message
+					} else {
+						// _this.ZdQrcodeShow = false
+						_this.$refs.uToast.show({
+							title: res.message,
+						})
+					}
+				});
+
+			},
+
+			openMapApp(address) {
+				let _this = this;
+				uni.request({
+					url: 'https://apis.map.qq.com/ws/geocoder/v1/?address=' + address +
+						'&key=NN4BZ-4HAKT-NP4XL-VFOQJ-6SY67-JEBWR',
+					data: {},
+					success: (res) => {
+
+						let location = res.data.result.location;
+						let MapContext = wx.createMapContext('map');
+						MapContext.openMapApp({
+							longitude: location.lng,
+							latitude: location.lat,
+							destination: address,
+							success() {
+
+							},
+							fail(err) {
+								console.log(err)
+							}
+						})
+					},
+					fail() {
+						_this.$refs.uToast.show({
+							title: '导航失败，请联系管理员'
+						})
+					}
+				});
 
 
-		},
-	}
-};
+			},
+		}
+	};
 </script>
 
 <style>
-page {
-	background-color: #efefef;
-}
+	page {
+		background-color: #efefef;
+	}
 
-#tabInList {
-	background-color: #FFFFFF;
-	padding: 20rpx 0 0;
-}
+	#tabInList {
+		background-color: #FFFFFF;
+		padding: 20rpx 0 0;
+	}
 
-.u-mode-center-box {
-	border-radius: 20rpx !important;
-}
+	.u-mode-center-box {
+		border-radius: 20rpx !important;
+	}
 
-.product {
-	/* width: 100%; */
-	margin-bottom: 20rpx;
-}
+	.product {
+		/* width: 100%; */
+		margin-bottom: 20rpx;
+	}
 
-.product.shopproduct {
-	width: 100%;
-}
+	.product.shopproduct {
+		width: 100%;
+	}
 </style>
 <style lang="scss" scoped>
-.indexContent {
-	position: relative;
-}
-
-.u-subsection .u-item-bg {
-	background-color: #FFFFFF;
-	color: #ff9900;
-}
-
-.authorBtn {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: 1000;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	opacity: 0;
-}
-
-/*吸顶悬浮，上拉加载，下拉刷新组件*/
-.demo-tip {
-	padding: 18rpx;
-	font-size: 24rpx;
-	text-align: center;
-}
-
-/*吸顶悬浮，上拉加载，下拉刷新组件end*/
-.box-group {
-	background: #ededed;
-	margin: 20rpx 20rpx;
-	display: flex;
-	border-radius: 20rpx;
-
-	.single-box {
-		flex: 1;
-		padding: 20rpx;
-		text-align: center;
-
-		.b-image {
-			position: relative;
-			width: 100rpx;
-			height: 100rpx;
-			border-radius: 50%;
-			overflow: hidden;
-			text-align: center;
-			margin: 0 auto;
-			background-color: #dddddd;
-		}
-
-		.title {
-			margin-top: 10rpx;
-			font-size: 25rpx;
-			font-weight: 500;
-		}
-	}
-}
-
-// 商品card
-.product-list {
-
-	padding: 24rpx 24rpx 3vw 24rpx;
-	// display: flex;
-	// justify-content: space-between;
-	// flex-wrap: wrap;
-
-	.goodsproduct {
-		width: 100%;
-		padding: 30rpx;
-		border-radius: 15upx;
-		background-color: #fff;
-		margin: 0 0 25upx 0;
-		box-shadow: 0upx 5upx 25upx rgba(0, 0, 0, 0.1);
-
-		image {
-			width: 100%;
-			height: 300rpx;
-			border-radius: 15upx 15upx 0 0;
-		}
-
-		.name {
-			width: 100%;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 2;
-			text-align: justify;
-			overflow: hidden;
-			font-size: 30upx;
-		}
-
-		.info {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-end;
-			width: 100%;
-			padding: 10upx 0 10upx;
-
-			.price {
-				color: red;
-				font-size: 30upx;
-				font-weight: 600;
-			}
-
-		}
-
-		.slogan {
-			padding: 0 4% 10upx;
-			color: #807c87;
-			font-size: 24upx;
-		}
-	}
-}
-
-.popup-content {
-	border-radius: 20rpx;
-	padding: 40rpx 20rpx;
-	font-family: 'Microsoft YaHei UI';
-
-	.loginTip {
-		font-size: 40rpx;
-		text-align: center;
-	}
-
-	.loginBtn {
+	.indexContent {
 		position: relative;
+	}
+
+	.u-subsection .u-item-bg {
+		background-color: #FFFFFF;
+		color: #ff9900;
+	}
+
+	.authorBtn {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		opacity: 0;
+	}
+
+	/*吸顶悬浮，上拉加载，下拉刷新组件*/
+	.demo-tip {
+		padding: 18rpx;
+		font-size: 24rpx;
+		text-align: center;
+	}
+
+	/*吸顶悬浮，上拉加载，下拉刷新组件end*/
+	.box-group {
+		background: #ededed;
+		margin: 20rpx 20rpx;
 		display: flex;
-		width: 90%;
-		height: 100rpx;
-		margin: 60rpx auto;
 		border-radius: 20rpx;
-		background-color: #c69c6c;
-		justify-content: center;
-		align-items: center;
-		font-size: 35rpx;
-		color: #ffffff;
 
-		.item {
-			flex: auto;
+		.single-box {
+			flex: 1;
+			padding: 20rpx;
+			text-align: center;
 
-			&:nth-child(2) {
-				padding-right: 10rpx;
+			.b-image {
+				position: relative;
+				width: 100rpx;
+				height: 100rpx;
+				border-radius: 50%;
+				overflow: hidden;
+				text-align: center;
+				margin: 0 auto;
+				background-color: #dddddd;
+			}
+
+			.title {
+				margin-top: 10rpx;
+				font-size: 25rpx;
+				font-weight: 500;
 			}
 		}
 	}
-}
+
+	// 商品card
+	.product-list {
+
+		padding: 24rpx 24rpx 3vw 24rpx;
+		// display: flex;
+		// justify-content: space-between;
+		// flex-wrap: wrap;
+
+		.goodsproduct {
+			width: 100%;
+			padding: 30rpx;
+			border-radius: 15upx;
+			background-color: #fff;
+			margin: 0 0 25upx 0;
+			box-shadow: 0upx 5upx 25upx rgba(0, 0, 0, 0.1);
+
+			image {
+				width: 100%;
+				height: 300rpx;
+				border-radius: 15upx 15upx 0 0;
+			}
+
+			.name {
+				width: 100%;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				text-align: justify;
+				overflow: hidden;
+				font-size: 30upx;
+			}
+
+			.info {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				width: 100%;
+				padding: 10upx 0 10upx;
+
+				.price {
+					color: red;
+					font-size: 30upx;
+					font-weight: 600;
+				}
+
+			}
+
+			.slogan {
+				padding: 0 4% 10upx;
+				color: #807c87;
+				font-size: 24upx;
+			}
+		}
+	}
+
+	.popup-content {
+		border-radius: 20rpx;
+		padding: 40rpx 20rpx;
+		font-family: 'Microsoft YaHei UI';
+
+		.loginTip {
+			font-size: 40rpx;
+			text-align: center;
+		}
+
+		.loginBtn {
+			position: relative;
+			display: flex;
+			width: 90%;
+			height: 100rpx;
+			margin: 60rpx auto;
+			border-radius: 20rpx;
+			background-color: #c69c6c;
+			justify-content: center;
+			align-items: center;
+			font-size: 35rpx;
+			color: #ffffff;
+
+			.item {
+				flex: auto;
+
+				&:nth-child(2) {
+					padding-right: 10rpx;
+				}
+			}
+		}
+	}
 </style>

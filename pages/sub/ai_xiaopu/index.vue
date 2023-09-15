@@ -377,10 +377,6 @@ export default {
 				uni.navigateTo({
 					url: '/pages/sub/ai_xiaopu/shop_index?goods_id='+it.id+'&cateid='+it.cateid+'&companyid='+it.companyid
 				});
-				
-				// uni.navigateTo({
-				// 	url: '/pages/sub/ai_xiaopu/goods_detail?goods_id='+id
-				// });
 			} else if(type == 1){
 				uni.navigateTo({
 					url: '/pages/sub/ai_xiaopu/shop_index?companyid='+it.id

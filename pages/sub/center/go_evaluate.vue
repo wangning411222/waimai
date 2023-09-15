@@ -44,7 +44,7 @@ import myIssue from '@/pages/sub/center/components/myIssue.vue';
 						})
 						setTimeout(()=>{
 							uni.navigateTo({
-								url:"/pages/sub/center/my_order"
+								url:"/pages/may_order/may_order"
 							})
 						},10)
 					} else {

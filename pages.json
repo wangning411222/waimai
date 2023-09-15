@@ -1,448 +1,392 @@
 {
-  "easycom": {
-    "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-  },
-  "pages": [
-    {
-      "path": "pages/ai_yujian/index",
-      "style": {
-        "navigationBarTitleText": "迈校圈",
-        "enablePullDownRefresh": true
-      }
-    },
-    {
-      "path": "pages/center/index",
-      "style": {
-        "navigationBarTitleText": "个人中心"
-      }
-    },
-    {
-      "path": "pages/sub/cateShopList/cateShopList",
-      "style": {
-        "navigationBarTitleText": "商品分类",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/comment/comment",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-    }
-      ,{
-            "path" : "pages/may_order/may_order",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
-  "subPackages": [
-    {
-      "root": "pages/sub/xieyi",
-      "pages": [
-        {
-          "path": "xieyi",
-          "style": {
-            "navigationBarTitleText": "用户协议"
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/location",
-      "pages": [
-        {
-          "path": "location",
-          "style": {
-            "navigationBarTitleText": "选择学校"
-          }
-        },
-        {
-          "path": "school_location",
-          "style": {
-            "navigationBarTitleText": "定位"
-          }
-        },
-        {
-          "path": "address_location",
-          "style": {
-            "navigationBarTitleText": "选择学校"
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/ai_xiaopu",
-      "pages": [
-        {
-          "path": "index",
-          "style": {
-            "navigationBarTitleText": "Ai小铺",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "comment_detail",
-          "style": {
-            "navigationBarTitleText": ""
-          }
-        },
-        {
-          "path": "comment_list",
-          "style": {
-            "navigationBarTitleText": "评价"
-          }
-        },
-        {
-          "path": "add_order",
-          "style": {
-            "navigationBarTitleText": "商品订单"
-          }
-        },
-        {
-          "path": "address/index",
-          "style": {
-            "navigationBarTitleText": "地址",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "address/addSite",
-          "style": {
-            "navigationBarTitleText": "新建地址"
-          }
-        },
-        {
-          "path": "shop_index",
-          "style": {
-            "navigationBarTitleText": "门店"
-          }
-        },
-        {
-          "path": "pay",
-          "style": {
-            "navigationBarTitleText": "确认订单"
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/ai_news",
-      "pages": [
-        {
-          "path": "index",
-          "style": {
-            "navigationBarTitleText": "消息"
-          }
-        },
-        {
-          "path": "details",
-          "style": {
-            "navigationBarTitleText": "消息详情",
-            "enablePullDownRefresh": true
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/ai_yujian",
-      "pages": [
-        {
-          "path": "yujian_comment",
-          "style": {
-            "navigationBarTitleText": "Ai评论"
-          }
-        },
-        {
-          "path": "send",
-          "style": {
-            "navigationBarTitleText": "发布"
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/ai_user",
-      "pages": [
-        {
-          "path": "index",
-          "style": {
-            "navigationBarTitleText": "个人主页"
-          }
-        }
-      ]
-    },
-    {
-      "root": "pages/sub/center",
-      "pages": [
-        {
-          "path": "userinfo",
-          "style": {
-            "navigationBarTitleText": "个人信息"
-          }
-        },
-        {
-          "path": "userinfo_edit",
-          "style": {
-            "navigationBarTitleText": "提交信息"
-          }
-        },
-        {
-          "path": "userinfo_add",
-          "style": {
-            "navigationBarTitleText": "提交信息"
-          }
-        },
-        {
-          "path": "changePhone",
-          "style": {
-            "navigationBarTitleText": "修改手机"
-          }
-        },
-        {
-          "path": "my_comment",
-          "style": {
-            "navigationBarTitleText": "我的评论"
-          }
-        },
-        {
-          "path": "my_coupons",
-          "style": {
-            "navigationBarTitleText": "我的优惠券"
-          }
-        },
-        {
-          "path": "go_evaluate",
-          "style": {
-            "navigationBarTitleText": "评价"
-          }
-        },
-        {
-          "path": "order_detail",
-          "style": {
-            "navigationBarTitleText": "订单详情"
-          }
-        },
-        {
-          "path": "company_settled",
-          "style": {
-            "navigationBarTitleText": "商家认证"
-          }
-        },
-        {
-          "path": "company_settled_edit",
-          "style": {
-            "navigationBarTitleText": "编辑信息"
-          }
-        },
-        {
-          "path": "coupon/couponlist",
-          "style": {
-            "navigationBarTitleText": "优惠券",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "coupon/coupon",
-          "style": {
-            "navigationBarTitleText": "创建优惠券"
-          }
-        },
-        {
-          "path": "my_wallet",
-          "style": {
-            "navigationBarTitleText": "我的钱包"
-          }
-        },
-        {
-          "path": "withdraw",
-          "style": {
-            "navigationBarTitleText": "提现"
-          }
-        },
-        {
-          "path": "my_company",
-          "style": {
-            "navigationBarTitleText": "我的店铺"
-          }
-        },
-        {
-          "path": "goods_class/goods_class",
-          "style": {
-            "navigationBarTitleText": "分类管理"
-          }
-        },
-        {
-          "path": "goods_class/product_list",
-          "style": {
-            "navigationBarTitleText": "商品列表",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "goods_class/add_goods",
-          "style": {
-            "navigationBarTitleText": "添加商品"
-          }
-        },
-        {
-          "path": "goods_class/edit_goods",
-          "style": {
-            "navigationBarTitleText": "编辑商品"
-          }
-        },
-        {
-          "path": "company_order_list",
-          "style": {
-            "navigationBarTitleText": "商铺订单",
-            "enablePullDownRefresh": false
-          }
-        },
-        {
-          "path": "company_order_detail",
-          "style": {
-            "navigationBarTitleText": "订单详情"
-          }
-        },
-        {
-          "path": "areaAdministratorApply",
-          "style": {
-            "navigationBarTitleText": "分部管理认证"
-          }
-        },
-        {
-          "path": "runnerApply",
-          "style": {
-            "navigationBarTitleText": "跑腿认证"
-          }
-        },
-        {
-          "path": "areaAdministrator/shopList",
-          "style": {
-            "navigationBarTitleText": "店铺管理",
-            "enablePullDownRefresh": false
-          }
-        },
-        {
-          "path": "areaAdministrator/banner",
-          "style": {
-            "navigationBarTitleText": "分部设置",
-            "enablePullDownRefresh": false
-          }
-        },
-        {
-          "path": "areaAdministrator/addShop",
-          "style": {
-            "navigationBarTitleText": "添加店铺",
-            "enablePullDownRefresh": false,
-            "navigationBarBackgroundColor": "#ffffff"
-          }
-        }
-            ]
-    },
-    {
-      "root": "pages/sub/runner",
-      "pages": [
-        {
-          "path": "index",
-          "style": {
-            "navigationBarTitleText": "接单池",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "longscan",
-          "style": {
-            "navigationBarTitleText": "接单"
-          }
-        },
-        {
-          "path": "delivery",
-          "style": {
-            "navigationBarTitleText": "配送中",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "completeOrder",
-          "style": {
-            "navigationBarTitleText": "完成订单",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "revenue",
-          "style": {
-            "navigationBarTitleText": "收益明细",
-            "enablePullDownRefresh": true
-          }
-        },
-        {
-          "path": "statistics",
-          "style": {
-            "navigationBarTitleText": "收益统计"
-          }
-        },
-        {
-          "path": "settlement",
-          "style": {
-            "navigationBarTitleText": "结算清单",
-            "enablePullDownRefresh": true
-          }
-        }
-      ]
-    }
-  ],
-  "preloadRule": {
-    "pages/ai_yujian/index": {
-      "network": "all",
-      "packages": [
-        "pages/sub/location",
-        "pages/sub/ai_news",
-        "pages/sub/ai_yujian",
-        "pages/sub/ai_xiaopu"
-      ]
-    },
-    "pages/center/index": {
-      "network": "all",
-      "packages": [
-        "pages/sub/center"
-      ]
-    }
-  },
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "#eeeeee",
-    "backgroundColor": "#eeeeee"
-  },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#ff9900",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/ai_yujian/index",
-        "iconPath": "static/tab/yujian.png",
-        "selectedIconPath": "static/tab/yujian-select.png",
-        "text": "迈校圈"
-      },
-      {
-        "pagePath": "pages/may_order/may_order",
-        "iconPath": "static/tab/ding.png",
-        "selectedIconPath": "static/tab/ding-select.png",
-        "text": "订单"
-      },
-      {
-        "pagePath": "pages/center/index",
-        "iconPath": "static/tab/center.png",
-        "selectedIconPath": "static/tab/center-select.png",
-        "text": "我的"
-      }
-    ]
-  }
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+			"path": "pages/ai_yujian/index",
+			"style": {
+				"navigationBarTitleText": "迈校圈",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/center/index",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/sub/cateShopList/cateShopList",
+			"style": {
+				"navigationBarTitleText": "商品分类",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/comment/comment",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/may_order/may_order",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
+	"subPackages": [{
+			"root": "pages/sub/xieyi",
+			"pages": [{
+				"path": "xieyi",
+				"style": {
+					"navigationBarTitleText": "用户协议"
+				}
+			}]
+		},
+		{
+			"root": "pages/sub/location",
+			"pages": [{
+					"path": "location",
+					"style": {
+						"navigationBarTitleText": "选择学校"
+					}
+				},
+				{
+					"path": "school_location",
+					"style": {
+						"navigationBarTitleText": "定位"
+					}
+				},
+				{
+					"path": "address_location",
+					"style": {
+						"navigationBarTitleText": "选择学校"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/sub/ai_xiaopu",
+			"pages": [{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "Ai小铺",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "comment_detail",
+					"style": {
+						"navigationBarTitleText": ""
+					}
+				},
+				{
+					"path": "comment_list",
+					"style": {
+						"navigationBarTitleText": "评价"
+					}
+				},
+				{
+					"path": "address/index",
+					"style": {
+						"navigationBarTitleText": "地址",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "address/addSite",
+					"style": {
+						"navigationBarTitleText": "新建地址"
+					}
+				},
+				{
+					"path": "shop_index",
+					"style": {
+						"navigationBarTitleText": "门店"
+					}
+				},
+				{
+					"path": "pay",
+					"style": {
+						"navigationBarTitleText": "确认订单"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/sub/ai_user",
+			"pages": [{
+				"path": "index",
+				"style": {
+					"navigationBarTitleText": "个人主页"
+				}
+			}]
+		},
+		{
+			"root": "pages/sub/center",
+			"pages": [{
+					"path": "userinfo",
+					"style": {
+						"navigationBarTitleText": "个人信息"
+					}
+				},
+				{
+					"path": "userinfo_edit",
+					"style": {
+						"navigationBarTitleText": "提交信息"
+					}
+				},
+				{
+					"path": "userinfo_add",
+					"style": {
+						"navigationBarTitleText": "提交信息"
+					}
+				},
+				{
+					"path": "changePhone",
+					"style": {
+						"navigationBarTitleText": "修改手机"
+					}
+				},
+				{
+					"path": "my_comment",
+					"style": {
+						"navigationBarTitleText": "我的评论"
+					}
+				},
+				{
+					"path": "my_coupons",
+					"style": {
+						"navigationBarTitleText": "我的优惠券"
+					}
+				},
+				{
+					"path": "go_evaluate",
+					"style": {
+						"navigationBarTitleText": "评价"
+					}
+				},
+				{
+					"path": "order_detail",
+					"style": {
+						"navigationBarTitleText": "订单详情"
+					}
+				},
+				{
+					"path": "company_settled",
+					"style": {
+						"navigationBarTitleText": "商家认证"
+					}
+				},
+				{
+					"path": "company_settled_edit",
+					"style": {
+						"navigationBarTitleText": "编辑信息"
+					}
+				},
+				{
+					"path": "coupon/couponlist",
+					"style": {
+						"navigationBarTitleText": "优惠券",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "coupon/coupon",
+					"style": {
+						"navigationBarTitleText": "创建优惠券"
+					}
+				},
+				{
+					"path": "my_wallet",
+					"style": {
+						"navigationBarTitleText": "我的钱包"
+					}
+				},
+				{
+					"path": "withdraw",
+					"style": {
+						"navigationBarTitleText": "提现"
+					}
+				},
+				{
+					"path": "my_company",
+					"style": {
+						"navigationBarTitleText": "我的店铺"
+					}
+				},
+				{
+					"path": "goods_class/goods_class",
+					"style": {
+						"navigationBarTitleText": "分类管理"
+					}
+				},
+				{
+					"path": "goods_class/product_list",
+					"style": {
+						"navigationBarTitleText": "商品列表",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "goods_class/add_goods",
+					"style": {
+						"navigationBarTitleText": "添加商品"
+					}
+				},
+				{
+					"path": "goods_class/edit_goods",
+					"style": {
+						"navigationBarTitleText": "编辑商品"
+					}
+				},
+				{
+					"path": "company_order_list",
+					"style": {
+						"navigationBarTitleText": "商铺订单",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "company_order_detail",
+					"style": {
+						"navigationBarTitleText": "订单详情"
+					}
+				},
+				{
+					"path": "areaAdministratorApply",
+					"style": {
+						"navigationBarTitleText": "分部管理认证"
+					}
+				},
+				{
+					"path": "runnerApply",
+					"style": {
+						"navigationBarTitleText": "跑腿认证"
+					}
+				},
+				{
+					"path": "areaAdministrator/shopList",
+					"style": {
+						"navigationBarTitleText": "店铺管理",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "areaAdministrator/banner",
+					"style": {
+						"navigationBarTitleText": "分部设置",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "areaAdministrator/addShop",
+					"style": {
+						"navigationBarTitleText": "添加店铺",
+						"enablePullDownRefresh": false,
+						"navigationBarBackgroundColor": "#ffffff"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/sub/runner",
+			"pages": [{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "接单池",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "longscan",
+					"style": {
+						"navigationBarTitleText": "接单"
+					}
+				},
+				{
+					"path": "delivery",
+					"style": {
+						"navigationBarTitleText": "配送中",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "completeOrder",
+					"style": {
+						"navigationBarTitleText": "完成订单",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "revenue",
+					"style": {
+						"navigationBarTitleText": "收益明细",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "statistics",
+					"style": {
+						"navigationBarTitleText": "收益统计"
+					}
+				},
+				{
+					"path": "settlement",
+					"style": {
+						"navigationBarTitleText": "结算清单",
+						"enablePullDownRefresh": true
+					}
+				}
+			]
+		}
+	],
+	"preloadRule": {
+		"pages/ai_yujian/index": {
+			"network": "all",
+			"packages": [
+				"pages/sub/location",
+				"pages/sub/ai_xiaopu"
+			]
+		},
+		"pages/center/index": {
+			"network": "all",
+			"packages": [
+				"pages/sub/center"
+			]
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#eeeeee",
+		"backgroundColor": "#eeeeee"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#ff9900",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/ai_yujian/index",
+				"iconPath": "static/tab/yujian.png",
+				"selectedIconPath": "static/tab/yujian-select.png",
+				"text": "迈校圈"
+			},
+			{
+				"pagePath": "pages/may_order/may_order",
+				"iconPath": "static/tab/ding.png",
+				"selectedIconPath": "static/tab/ding-select.png",
+				"text": "订单"
+			},
+			{
+				"pagePath": "pages/center/index",
+				"iconPath": "static/tab/center.png",
+				"selectedIconPath": "static/tab/center-select.png",
+				"text": "我的"
+			}
+		]
+	}
 }
