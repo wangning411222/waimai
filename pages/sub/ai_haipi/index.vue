@@ -1,7 +1,7 @@
 <template>
 	<view class="indexContent">
 		<view>
-			<u-tabs :list="tabs" name="title" :current="current" active-color="#6ee4c1" @change="sectionChange"></u-tabs>
+			<u-tabs :list="tabs" name="title" :current="current" active-color="#ff9900" @change="sectionChange"></u-tabs>
 		</view>
 		<view class="product-list" v-if="tabs[current]['goods'] && tabs[current]['goods'].length > 0">
 			<view v-for="(item, index) in tabs[current]['goods']" :key="index" class="shopproduct product" @click.stop="toGoodsPage(item.id)">

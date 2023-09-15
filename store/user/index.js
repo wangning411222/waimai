@@ -39,6 +39,20 @@ const actions = {
 			})
 		})
 	},
+  goodsRank({commit}, data){
+		return new Promise((resolve, reject) => {
+			post('goods/rank',data,false).then((res)=> {
+				console.log(res);
+				if(res.code==0) {
+					//wechat
+					resolve(res)
+				} else {
+					resolve(res)
+				}
+			})
+		})
+	},
+  
 	getUserInfo ({commit}, data) {
 		data = data || '';
 		let userInfo = uni.getStorageSync('userInfo');

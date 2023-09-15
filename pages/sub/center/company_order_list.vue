@@ -2,7 +2,7 @@
 	<view>
 		<view class="wrap">
 			<view class="u-tabs-box">
-				<u-tabs-swiper activeColor="#6ee4c1" ref="tabs" :list="list" :current="current" @change="change" :is-scroll="false" swiperWidth="750"></u-tabs-swiper>
+				<u-tabs-swiper activeColor="#ff9900" ref="tabs" :list="list" :current="current" @change="change" :is-scroll="false" swiperWidth="750"></u-tabs-swiper>
 			</view>
 			<swiper class="swiper-box" :current="swiperCurrent" @transition="transition" @animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
@@ -538,7 +538,7 @@ page {
 			}
 		}
 		.right {
-			color: #6ee4c1;
+			color: #ff9900;
 		}
 	}
 	.item {
@@ -605,8 +605,8 @@ page {
 			color: $u-type-info-dark;
 		}
 		.evaluate {
-			color: #6ee4c1;
-			border-color: #6ee4c1;
+			color: #ff9900;
+			border-color: #ff9900;
 		}
 	}
 }

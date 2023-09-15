@@ -102,7 +102,7 @@
                 name="qiye"
                 custom-prefix="custom-icon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
               ></u-icon>
             </view>
             <view class="grid-text">我的店铺</view>
@@ -113,7 +113,7 @@
                 name="xufei"
                 custom-prefix="custom-icon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
               ></u-icon>
             </view>
             <view class="grid-text">商家钱包</view>
@@ -123,7 +123,7 @@
               <u-icon
                 name="chat-fill"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
                 style="vertical-align: middle"
               ></u-icon>
               <view v-if="userInfo.system_pms - 0 > 0" class="dot"></view>
@@ -152,7 +152,7 @@
                 name="qiye"
                 custom-prefix="custom-icon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
               ></u-icon>
             </view>
             <view class="grid-text">店铺管理</view>
@@ -163,7 +163,7 @@
               @click="areaAd('banner')"
               style="display: flex; justify-content: center"
             >
-              <u-icon name="setting-fill" size="60" color="#6ee4c1"></u-icon>
+              <u-icon name="setting-fill" size="60" color="#ff9900"></u-icon>
             </view>
             <view class="grid-text">设置</view>
           </u-grid-item>
@@ -197,7 +197,7 @@
               @click="receivingOrders()"
               style="display: flex; justify-content: center"
             >
-              <u-icon name="list-dot" size="60" color="#6ee4c1"></u-icon>
+              <u-icon name="list-dot" size="60" color="#ff9900"></u-icon>
             </view>
             <view class="grid-text">接单池</view>
           </u-grid-item>
@@ -208,7 +208,7 @@
               @click="deliveryOrders()"
               style="display: flex; justify-content: center"
             >
-              <u-icon name="car" size="60" color="#6ee4c1"></u-icon>
+              <u-icon name="car" size="60" color="#ff9900"></u-icon>
             </view>
             <view class="grid-text">配送中</view>
           </u-grid-item>
@@ -218,7 +218,7 @@
                 name="xufei"
                 custom-prefix="custom-icon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
               ></u-icon>
             </view>
             <view class="grid-text">收益明细</view>
@@ -229,7 +229,7 @@
               @click="settlement()"
               style="display: flex; justify-content: center"
             >
-              <u-icon name="order" size="60" color="#6ee4c1"></u-icon>
+              <u-icon name="order" size="60" color="#ff9900"></u-icon>
             </view>
             <view class="grid-text">结算清单</view>
           </u-grid-item>
@@ -246,22 +246,11 @@
         >
         <u-grid :col="4" :border="false">
           <u-grid-item>
-            <view class="item-menu-image" @click="my_order()">
-              <u-icon
-                name="order"
-                size="60"
-                color="#6ee4c1"
-                style="vertical-align: middle"
-              ></u-icon>
-            </view>
-            <view class="grid-text">我的订单</view>
-          </u-grid-item>
-          <u-grid-item>
             <view class="item-menu-image" @click="my_comment()">
               <u-icon
                 name="chat-fill"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
                 style="vertical-align: middle"
               ></u-icon>
             </view>
@@ -273,7 +262,7 @@
                 name="woshenqingdeicon"
                 custom-prefix="custom-icon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
               ></u-icon>
             </view>
             <view class="grid-text">我的地址</view>
@@ -283,7 +272,7 @@
               <u-icon
                 name="coupon"
                 size="60"
-                color="#6ee4c1"
+                color="#ff9900"
                 style="vertical-align: middle"
               ></u-icon>
             </view>
@@ -343,7 +332,7 @@
       show-cancel-button="true"
       content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？"
       @confirm="confirm"
-      confirm-color="#6ee4c1"
+      confirm-color="#ff9900"
     ></u-modal>
 
     <wx-user-info-modal
@@ -398,7 +387,7 @@ export default {
 
     uni.setNavigationBarColor({
       frontColor: "#ffffff",
-      backgroundColor: "#6ee4c1",
+      backgroundColor: "#ff9900",
       animation: {
         duration: 200,
         timingFunc: "easeIn",
@@ -497,11 +486,6 @@ export default {
     my_address() {
       uni.navigateTo({
         url: "/pages/sub/ai_xiaopu/address/index?type=0",
-      });
-    },
-    my_order() {
-      uni.navigateTo({
-        url: "/pages/sub/center/my_order",
       });
     },
     my_coupon() {
@@ -845,7 +829,7 @@ page {
   padding: 5rpx 15rpx;
   font-size: 24rpx;
   color: #ffffff;
-  background-color: #6ee4c1;
+  background-color: #ff9900;
 }
 
 .item-menu-image {
@@ -853,7 +837,7 @@ page {
   height: 100rpx;
   line-height: 100rpx;
   border-radius: 100%;
-  background-color: #eaf9f9;
+  background-color: #f5e3c761;
   text-align: center;
 }
 
@@ -863,7 +847,7 @@ page {
 }
 
 .user-box {
-  background-color: #6ee4c1;
+  background-color: #ff9900;
 }
 
 .d-flex {

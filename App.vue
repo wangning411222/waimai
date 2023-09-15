@@ -23,10 +23,10 @@
 	@import "./static/iconfont1.css";
 	/*每个页面公共css */
 	.bg_theme {
-		background-color: #6ee4c1;
+		background-color: #ff9900;
 	}
 	.color_theme {
-		color: #6ee4c1;
+		color: #ff9900;
 	}
 	.text-center {
 		text-align: center;

@@ -29,7 +29,7 @@
 		</view>
 		<view style="padding: 30rpx 30rpx;">
 			<button @tap="submit()"
-				style="line-height: 80rpx;height: 80rpx;font-size: 30rpx;color: #ffffff;border-color: #2979ff;background-color: #2979ff;">提交申请</button>
+				style="line-height: 80rpx;height: 80rpx;font-size: 30rpx;color: #ffffff;border-color: #ff9900;background-color: #ff9900;">提交申请</button>
 		</view>
 		<u-toast ref="uToast" />
 	</view>

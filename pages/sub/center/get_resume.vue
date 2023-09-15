@@ -18,7 +18,7 @@
 						
 					</view>
 					
-					<view style="padding-top: 20rpx; display: flex; border-top: 1rpx solid #f4f4f4; text-align: center; color: #6ee4c1;">
+					<view style="padding-top: 20rpx; display: flex; border-top: 1rpx solid #f4f4f4; text-align: center; color: #ff9900;">
 						<!-- <view style="flex: 1;" @click="pool_detail(item.resumeid)">查看简历</view> -->
 						<view v-if="item.status == 0" style="flex: 1;" @click="UserDeliveryStatus(item.did,1,index)">拒绝合作</view>
 						<view v-if="item.status == 0" style="flex: 1;" @click="UserDeliveryStatus(item.did,2,index)">确认合作</view>

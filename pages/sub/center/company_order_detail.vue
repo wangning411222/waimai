@@ -116,7 +116,7 @@
         >校外跑腿姓名：{{ order.outer_runner_info.real_name }}</view
       >
       <view class="order_pt" @click="call(order.outer_runner_info.phone)"
-        >联系校外跑腿：<u-icon name="phone" color="#6ee4c1" size="42"></u-icon
+        >联系校外跑腿：<u-icon name="phone" color="#ff9900" size="42"></u-icon
         >{{ order.outer_runner_info.phone }}</view
       >
       <view class="order_pt"
@@ -126,7 +126,7 @@
         >校内跑腿姓名：{{ order.inner_runner_info.real_name }}</view
       >
       <view class="order_pt" @click="call(order.inner_runner_info.phone)"
-        >联系校内跑腿：<u-icon name="phone" color="#6ee4c1" size="42"></u-icon
+        >联系校内跑腿：<u-icon name="phone" color="#ff9900" size="42"></u-icon
         >{{ order.inner_runner_info.phone }}</view
       >
       <view class="order_pt"
@@ -381,7 +381,7 @@ page {
     }
 
     .right {
-      color: #6ee4c1;
+      color: #ff9900;
     }
   }
 
@@ -462,8 +462,8 @@ page {
     }
 
     .evaluate {
-      color: #6ee4c1;
-      border-color: #6ee4c1;
+      color: #ff9900;
+      border-color: #ff9900;
     }
   }
   .order-explain {

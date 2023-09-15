@@ -59,7 +59,7 @@
 			<view class="goodsClass btn u-line-1" @click="cancel_sort()">取消</view>
 		</view>
 		<u-toast ref="uToast" />
-		<u-modal v-model="dele_show" content="确定删除？" show-cancel-button="true" @confirm="dele_true" confirm-color="#6ee4c1"></u-modal>
+		<u-modal v-model="dele_show" content="确定删除？" show-cancel-button="true" @confirm="dele_true" confirm-color="#ff9900"></u-modal>
 	</view>
 </template>
 
@@ -311,7 +311,7 @@
 			color: #333333;
 			font-size: 28rpx;
 			flex: 1;
-			// background-color: #6ee4c1;
+			// background-color: #ff9900;
 			text-align: center;
 			border-right: 1rpx solid #bbbbbb;
 		}
@@ -320,7 +320,7 @@
 			color: #333333;
 			font-size: 28rpx;
 			flex: 1;
-			// background-color: #6ee4c1;
+			// background-color: #ff9900;
 			text-align: center;
 		}
 	}

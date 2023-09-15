@@ -110,7 +110,7 @@ view{font-size:28upx;}
 	top: 0;
 	left: 50%;
 	margin-left: -25rpx;
-	border: 1rpx solid #2979FF; color: #FFFFFF;border-radius: 100%;width: 50rpx; height: 50rpx;line-height: 50rpx; display: inline-block;text-align: center;background-color: #2979FF;}
+	border: 1rpx solid #ff9900; color: #FFFFFF;border-radius: 100%;width: 50rpx; height: 50rpx;line-height: 50rpx; display: inline-block;text-align: center;background-color: #ff9900;}
 .top_popup_box {
 		display: flex;
 		flex-wrap: wrap;

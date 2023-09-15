@@ -76,11 +76,11 @@
 		<view class="empty_box" v-if="thread_list.length == 0">
 			<u-empty text="暂无数据"  src="../../../static/imgs/empty.png" icon-size="300"></u-empty>
 		</view>
-		<view @click="send_page" style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #6ee4c1; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 999;">
+		<view @click="send_page" style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #ff9900; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 999;">
 			<u-icon name="plus" color="#ffffff" size="64" style="vertical-align: middle;"></u-icon>
 		</view>
 		<u-toast ref="uToast" />
-		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#6ee4c1"></u-modal>
+		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#ff9900"></u-modal>
 	</view>
 </template>
 

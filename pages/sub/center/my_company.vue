@@ -23,7 +23,7 @@
 
 			</view>
 			<view style="background-color: #FFFFFF;">
-				<u-tabs :list="tablist" :is-scroll="false" active-color="#6ee4c1" :current="current"
+				<u-tabs :list="tablist" :is-scroll="false" active-color="#ff9900" :current="current"
 					@change="change"></u-tabs>
 			</view>
 			<view v-show="current == 0" style="padding:20rpx;">
@@ -32,34 +32,34 @@
 						<u-grid-item>
 							<view class="item-menu-image" @click="shops_manage()"
 								style="display: flex;justify-content: center;">
-								<u-icon name="order" size="60" color="#6ee4c1"></u-icon>
+								<u-icon name="order" size="60" color="#ff9900"></u-icon>
 							</view>
 							<view class="grid-text">订单管理</view>
 						</u-grid-item>
 						<u-grid-item>
 							<view class="item-menu-image" @click="goods_manage()"
 								style="display: flex;justify-content: center;">
-								<u-icon name="grid" size="60" color="#6ee4c1"></u-icon>
+								<u-icon name="grid" size="60" color="#ff9900"></u-icon>
 							</view>
 							<view class="grid-text">分类管理</view>
 						</u-grid-item>
 						<u-grid-item>
 							<view class="item-menu-image" @click="goods_list()"
 								style="display: flex;justify-content: center;">
-								<u-icon name="list-dot" size="60" color="#6ee4c1"></u-icon>
+								<u-icon name="list-dot" size="60" color="#ff9900"></u-icon>
 							</view>
 							<view class="grid-text">商品管理</view>
 						</u-grid-item>
 						<u-grid-item>
 							<view class="item-menu-image" @click="coupon_list()"
 								style="display: flex;justify-content: center;">
-								<u-icon name="coupon" size="60" color="#6ee4c1"></u-icon>
+								<u-icon name="coupon" size="60" color="#ff9900"></u-icon>
 							</view>
 							<view class="grid-text">优惠券管理</view>
 						</u-grid-item>
 						<u-grid-item>
 							<view class="item-menu-image" @click="edit_detail()">
-								<u-icon name="qiye" custom-prefix="custom-icon" size="60" color="#6ee4c1"></u-icon>
+								<u-icon name="qiye" custom-prefix="custom-icon" size="60" color="#ff9900"></u-icon>
 							</view>
 							<view class="grid-text">信息编辑</view>
 						</u-grid-item>
@@ -261,7 +261,7 @@ export default {
 		},
 		goods_list() {
 			uni.navigateTo({
-				url: '/pages/sub/center/goods_class/product_list?cateid=0'
+				url: '/pages/sub/center/goods_class/product_list'
 			});
 		},
 		coupon_list() {
@@ -392,7 +392,7 @@ page {
 		color: #333333;
 		font-size: 28rpx;
 		flex: 1;
-		// background-color: #6ee4c1;
+		// background-color: #ff9900;
 		text-align: center;
 
 	}
@@ -402,7 +402,7 @@ page {
 		color: #333333;
 		font-size: 28rpx;
 		flex: 1;
-		// background-color: #6ee4c1;
+		// background-color: #ff9900;
 		text-align: center;
 		border-left: 1rpx solid #bbbbbb;
 	}

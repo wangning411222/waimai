@@ -38,7 +38,7 @@
 			</view>
 		</view>
 
-		<u-modal v-model="showModal" title="提现确认" :title-style="{'padding-bottom':'40rpx'}" show-cancel-button="true" @confirm="getMoney" confirm-color="#6ee4c1">
+		<u-modal v-model="showModal" title="提现确认" :title-style="{'padding-bottom':'40rpx'}" show-cancel-button="true" @confirm="getMoney" confirm-color="#ff9900">
 			<view class="slot-content">
 				<view style="text-align: left; padding: 30rpx 35rpx; background-color: #f4f4f4;">
 					<view>

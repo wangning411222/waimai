@@ -479,7 +479,7 @@ export default {
   padding-left: 20rpx;
 
   text {
-    color: #6ee4c1;
+    color: #ff9900;
     margin-top: 20rpx;
     font-size: 32rpx;
   }

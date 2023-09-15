@@ -21,33 +21,9 @@
 				<u-notice-bar mode="horizontal" :list="[config.notice]"></u-notice-bar>
 			</view>
 			<view v-if="config.isshow == 1" class="dnwmBox">
-				<!-- <view
-          class="dnwmItem d-flex"
-          @tap="handleDNWM(1)"
-          style="border-right: 1rpx solid #efefef"
-        >
-          <view>
-            <view class="title">校园外卖</view>
-            <view class="brief">轻松下单，直达宿舍</view>
-          </view>
-          <view class="flex-1" style="text-align: right">
-            <image
-              src="../../static/imgs/waimai.png"
-              mode="widthFix"
-              style="width: 200rpx"
-            ></image>
-          </view>
-        </view> -->
-				<!-- <view class="dnwmItem" @tap="handleDNWM(2)">
-					<view class="title">代取代拿</view>
-					<view class="brief">轻松下单，代取代拿</view>
-					<view style="text-align: right;">
-						<image src="../../static/imgs/daiqu.png" mode="widthFix" style="width: 200rpx;"></image>
-					</view>
-				</view> -->
 				<view class="shop-box">
 					<u-search placeholder="请输入商家名称" v-model="keywordShopName" :action-style="actionStyle"
-						action-text="搜索" border-color="#6ee4c1" search-icon-color="#6ee4c1" bg-color="#fff"
+						action-text="搜索" border-color="#ff9900" search-icon-color="#ff9900" bg-color="#fff"
 						@custom="companySearch" @search='companySearch' @clear="clear()"></u-search>
 					<view class="shop-tabs">
 						<view class="shop-tabs-item" v-for="(item, index) in config.shop_catelist" :key="index"
@@ -58,7 +34,7 @@
 						</view>
 					</view>
 					<view class="shop-content">
-						<text class="shop-content-title">附近商家</text>
+						<!-- <text class="shop-content-title">附近商家</text> -->
 						<view class="select-box">
 							<u-button v-for="(item, index) in selectArr" :key="index" :custom-style="customStyle" plain
 								:type="selectIndex == index ? 'warning' : 'default'" @click="selecthandle(index)">{{ item.name
@@ -74,11 +50,6 @@
 									<view class="item-top-right">
 										<view class="item-top-right-name">{{ item.name }}</view>
 										<view class="item-top-right-rate">
-											<!-- <u-icon
-                        name="star-fill"
-                        color="rgb(247, 186, 42)"
-                        size="28"
-                      ></u-icon> -->
 											<u-rate :count="count" :value="item.stars - 0"
 												active-color="rgb(247, 186, 42)" :disabled="true"></u-rate>
 											<text class="yello-font-20">{{ item.stars }}</text>
@@ -115,8 +86,9 @@
 									</view>
 								</scroll-view>
 							</view>
+              <u-divider  textColor="#000" v-if="shopPage>shopMaxpage" text="暂无更多">暂无更多</u-divider>
 						</view>
-						<u-empty v-else text="暂无数据" mode="data" style='margin-top:80rpx;'></u-empty>
+						<u-empty  v-else text="暂无数据" mode="data" style='margin-top:80rpx;'></u-empty>
 					</view>
 				</view>
 			</view>
@@ -267,9 +239,9 @@
 		</view>
 		<u-toast ref="uToast" />
 		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？"
-			@confirm="confirm" confirm-color="#6ee4c1"></u-modal>
+			@confirm="confirm" confirm-color="#ff9900"></u-modal>
 		<u-modal v-model="dele_modal_show" show-cancel-button="true" content="确定删除？" @confirm="delete_post"
-			confirm-color="#6ee4c1"></u-modal>
+			confirm-color="#ff9900"></u-modal>
 		<u-popup v-model="infoSHow" mode="center" border-radius="14" width="80%" height="65%" :closeable="true">
 			<view class="info-image">
 				<image :src="config.tips_img" mode="scaleToFill" />
@@ -374,7 +346,7 @@
 				getWechatUid: 0, // 要获取微信的用户的uid
 				keywordShopName: "", //搜索关键字
 				actionStyle: {
-					color: "#6ee4c1",
+					color: "#ff9900",
 					padding: "40px ,40px",
 					height: "100%",
 					"border-radius": "6px",
@@ -404,7 +376,7 @@
 				shopMaxpage: 0,
 				shopPage: 1,
 				shopStatus: 'loadmore',
-				infoSHow: true
+				infoSHow: false
 			};
 		},
 		computed: {
@@ -520,13 +492,20 @@
 					_this.location = res.data.schoolname;
 				},
 			});
-			this.infoSHow = true
+      
+			
 			// 监听位置变化
 			uni.$on("getLocation", (e) => {
 				_this.SchoolLocation = e;
 				_this.location = e.location_name;
 				this.getThreadList(this.active_nav, this.area, 0, 1);
 			});
+      setTimeout(()=>{
+        console.log(this.config,this.config.tips_img,'config.tips_imgconfig.tips_img')
+        if(this.config.tips_img){
+          this.infoSHow = true
+        }
+      },100)
 		},
 		onUnload() {
 			uni.$off("shuaxin");
@@ -921,7 +900,6 @@
 		onShareTimeline() {},
 	};
 </script>
-
 <style lang="scss">
 	@charset "UTF-8";
 

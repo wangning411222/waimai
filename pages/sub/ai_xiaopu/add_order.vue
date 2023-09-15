@@ -390,7 +390,7 @@
 			.tag{
 				padding: 5rpx 10rpx;
 				border-radius: 10rpx;
-				background-color: #6ee4c1;
+				background-color: #ff9900;
 				display: flex;
 				align-items: center;
 				justify-content: center;

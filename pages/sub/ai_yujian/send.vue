@@ -43,7 +43,7 @@
 		data() {
 			return {
 				customStyle: {
-					backgroundColor: '#6ee4c1', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
+					backgroundColor: '#ff9900', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
 					color: '#fff'
 				},
 				type: 0,

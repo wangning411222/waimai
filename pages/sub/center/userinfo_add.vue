@@ -62,7 +62,7 @@
 		</view>
 		<view style="padding: 30rpx 30rpx;">
 			
-			<button @tap="editinfo_save()" style="line-height: 80rpx;height: 80rpx;font-size: 30rpx;color: #ffffff;border-color: #2979ff;background-color: #2979ff;">保存</button>
+			<button @tap="editinfo_save()" style="line-height: 80rpx;height: 80rpx;font-size: 30rpx;color: #ffffff;border-color: #ff9900;background-color: #ff9900;">保存</button>
 		</view>
 		
 		<u-toast ref="uToast" />

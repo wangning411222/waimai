@@ -2,7 +2,7 @@
   <view>
     <view class="shop-box">
       <u-search placeholder="请输入商家名称" v-model="keywordShopName" :action-style="actionStyle" action-text="搜索"
-        border-color="#6ee4c1" search-icon-color="#6ee4c1" bg-color="#fff" @custom="companySearch" @search="companySearch"
+        border-color="#ff9900" search-icon-color="#ff9900" bg-color="#fff" @custom="companySearch" @search="companySearch"
         @clear="clear"></u-search>
       <view class="shop-content">
         <text class="shop-content-title">附近商家</text>
@@ -72,7 +72,7 @@ export default {
     return {
       keywordShopName: "", //搜索关键字
       actionStyle: {
-        color: "#6ee4c1",
+        color: "#ff9900",
         padding: "40px ,40px",
         height: "100%",
         "border-radius": "6px",
@@ -342,7 +342,8 @@ export default {
 
             .yello-font-20 {
               color: rgb(247, 186, 42);
-              font-size: 24rpx;
+              font-size: 26rpx;
+			  font-weight:bold;
             }
 
             .margin-left-10 {
@@ -408,7 +409,8 @@ export default {
 
             .yello-font-20 {
               color: rgb(247, 186, 42);
-              font-size: 24rpx;
+              font-size: 26rpx;
+			  font-weight:bold;
             }
           }
         }

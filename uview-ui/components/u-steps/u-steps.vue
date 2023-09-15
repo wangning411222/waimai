@@ -83,7 +83,7 @@ export default {
 		// 激活步骤的颜色
 		activeColor: {
 			type: String,
-			default: '#2979ff'
+			default: '#ff9900'
 		},
 		// 未激活的颜色
 		unActiveColor: {

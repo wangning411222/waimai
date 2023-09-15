@@ -14,7 +14,7 @@
 			<u-empty text="暂无数据" mode="list"></u-empty>
 		</view>
 		<view @click="addShop"
-			style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #6ee4c1; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 1000;">
+			style="width: 100rpx; height: 100rpx; line-height: 96rpx; text-align: center; border-radius: 100%; overflow: hidden; background-color: #ff9900; position: fixed; bottom: 80rpx; right: 30rpx; z-index: 1000;">
 			<u-icon name="plus" color="#ffffff" size="64" style="vertical-align: middle;"></u-icon>
 		</view>
 		
@@ -89,7 +89,7 @@
 			<view style="height: 50rpx;"></view>
 		</u-popup>
 		
-		<kevy-loading v-if="loadingshow" transparent type='pacman-loader' color="#6ee4c1" tip-color="#6ee4c1"
+		<kevy-loading v-if="loadingshow" transparent type='pacman-loader' color="#ff9900" tip-color="#ff9900"
 		            tip="加载中..."></kevy-loading>
 	</view>
 </template>

@@ -15,7 +15,7 @@
 					<image class="uni-card__title-header-image" :src="thumbnail" mode="scaleToFill" />
 				</view>
 				<view class="uni-card__title-content">
-					<view class="uni-card__title-content-title uni-ellipsis">{{ title }}<u-icon :name="sex" :color="[sex=='man'?'#2979ff':'red']" size="28"></u-icon></view>
+					<view class="uni-card__title-content-title uni-ellipsis">{{ title }}<u-icon :name="sex" :color="[sex=='man'?'#ff9900':'red']" size="28"></u-icon></view>
 					<text class="uni-card__title-content-extra uni-ellipsis">{{ subTitle }}</text>
 				</view>
 			</view>

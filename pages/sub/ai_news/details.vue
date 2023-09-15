@@ -50,7 +50,7 @@
 				</view>
 				
 				<view class="reply_right">
-					<!-- <u-icon name="photo" color="#2979ff" size="28" @click="emoji_box()"></u-icon> -->
+					<!-- <u-icon name="photo" color="#ff9900" size="28" @click="emoji_box()"></u-icon> -->
 					<image src="../../../static/icon/xiaolian.png" mode="" style="width: 60rpx;height: 60rpx;vertical-align: middle;" @click="emoji_box()"></image>
 					<text v-if="reply != ''" class="primary"  @click="comment()">发送</text>
 				</view>
@@ -67,7 +67,7 @@
 		</view>
 		<!-- <u-action-sheet :list="report_list" v-model="report_show" @click="click_sheet"></u-action-sheet> -->
 		<u-toast ref="uToast" />
-		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#6ee4c1"></u-modal>
+		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#ff9900"></u-modal>
 		
 	</view>
 </template>

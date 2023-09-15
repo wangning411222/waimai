@@ -17,7 +17,7 @@
         <u-form-item label="证件">
           <u-upload :action="upimgUrl" ref="uUploadLogo" width="160" height="160" multiple="false" upload-text="身份证件"
             max-count="1"></u-upload>
-          <view style="color: #bbb">注：上传可证明身份的相关证件即可，详细可资讯<text style="color: #2979ff">客服</text></view>
+          <view style="color: #bbb">注：上传可证明身份的相关证件即可，详细可资讯<text style="color: #ff9900">客服</text></view>
         </u-form-item>
 
         <u-form-item label="类型">
@@ -42,8 +42,8 @@
           height: 80rpx;
           font-size: 30rpx;
           color: #ffffff;
-          border-color: #2979ff;
-          background-color: #2979ff;
+          border-color: #ff9900;
+          background-color: #ff9900;
         ">
         提交申请
       </button>

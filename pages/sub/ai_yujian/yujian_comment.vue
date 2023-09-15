@@ -231,7 +231,7 @@
 		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？"
 			@confirm="confirm"></u-modal>
 		<u-modal v-model="dele_modal_show" show-cancel-button="true" content="确定删除？" @confirm="delete_post"
-			confirm-color="#6ee4c1"></u-modal>
+			confirm-color="#ff9900"></u-modal>
 	</view>
 </template>
 
@@ -704,7 +704,7 @@
 	.bottom_btn .primary text {
 		padding: 10rpx 20rpx;
 		border-radius: 5rpx;
-		background-color: #6ee4c1;
+		background-color: #ff9900;
 	}
 	.uni-card__title-header {
 		width: 35px;

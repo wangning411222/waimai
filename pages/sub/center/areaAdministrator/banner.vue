@@ -153,8 +153,8 @@ page {
 }
 .u-btn--warning {
     color: #ffffff;
-    border-color: #6ee4c1 !important;
-    background-color: #6ee4c1 !important;
+    border-color: #ff9900 !important;
+    background-color: #ff9900 !important;
 }
 .content_box {
 	padding: 0 20rpx 25rpx;

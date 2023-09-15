@@ -242,8 +242,8 @@
 			
 			&--checked {
 				color: #fff;
-				background-color: #2979ff;
-				border-color: #2979ff;
+				background-color: #ff9900;
+				border-color: #ff9900;
 			}
 			
 			&--disabled {

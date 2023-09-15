@@ -124,7 +124,7 @@ page {
 
 .user-box {
 	color: #ffffff;
-	background: #6ee4c1;
+	background: #ff9900;
 }
 
 .comment-list {

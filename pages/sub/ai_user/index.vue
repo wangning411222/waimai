@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view v-if="JSON.stringify(center_detail) != '{}'" style="padding-bottom: 130rpx; background-color: #FFFFFF;">
-			<view style="background-color: #6ee4c1; color: #FFFFFF;">
+			<view style="background-color: #ff9900; color: #FFFFFF;">
 				<view style="display: flex; padding-top: 40rpx; padding-bottom: 40rpx; padding-left: 50rpx;">
 					<view>
 						<u-avatar :src="center_detail.avatar_url_fmt" size="170" bg-color="#FFFFFF" mode="square"></u-avatar>
@@ -12,7 +12,7 @@
 						</view>
 						
 						<view v-if="center_detail.is_cert == 1" style="margin: 15rpx 0 0;font-size: 0;">
-							<text v-if="center_detail.is_cert == 1" style="color: #6ee4c1; border-radius: 5rpx; padding: 3rpx 5rpx; font-size: 20rpx; background-color: #FFFFFF; vertical-align: middle;">{{ center_detail.is_cert_fmt }}</text>
+							<text v-if="center_detail.is_cert == 1" style="color: #ff9900; border-radius: 5rpx; padding: 3rpx 5rpx; font-size: 20rpx; background-color: #FFFFFF; vertical-align: middle;">{{ center_detail.is_cert_fmt }}</text>
 						</view>
 						<view class="area">
 							<text class="job_tag">{{ center_detail.school }}</text>
@@ -35,7 +35,7 @@
 				</view>
 			</view>
 			<view style="text-align: center;">
-				<u-tabs :list="tabslist" :current="current" @change="change" font-size="36" active-color="#6ee4c1" bar-width="100" bar-height="4"></u-tabs>
+				<u-tabs :list="tabslist" :current="current" @change="change" font-size="36" active-color="#ff9900" bar-width="100" bar-height="4"></u-tabs>
 			</view>
 			<view>
 				<view v-if="center_detail.thread_list.length > 0">
@@ -72,7 +72,7 @@
 			<view class="tell btn u-line-1" @click="getWechat(center_detail.uid,center_detail.nick_name,center_detail.avatar_url_fmt)">查看微信号</view>
 		</view>
 		<u-toast ref="uToast" />
-		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#6ee4c1"></u-modal>
+		<u-modal v-model="user_show" show-cancel-button="true" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"  confirm-color="#ff9900"></u-modal>
 		
 	</view>
 	
@@ -297,7 +297,7 @@
 		bottom: 0;
 		
 		display: flex;
-		border: solid 2rpx #6ee4c1;
+		border: solid 2rpx #ff9900;
 		background-color: #ffffff;
 		
 		
@@ -306,7 +306,7 @@
 			color: #FFFFFF;
 			font-size: 28rpx;
 			flex: 1;
-			background-color: #6ee4c1;
+			background-color: #ff9900;
 			text-align: center;
 		}
 	}

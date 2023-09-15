@@ -151,7 +151,7 @@ page {
 			}
 		}
 		.right {
-			color: #6ee4c1;
+			color: #ff9900;
 		}
 	}
 	.item {
@@ -218,8 +218,8 @@ page {
 			color: $u-type-info-dark;
 		}
 		.evaluate {
-			color: #6ee4c1;
-			border-color: #6ee4c1;
+			color: #ff9900;
+			border-color: #ff9900;
 		}
 	}
 }

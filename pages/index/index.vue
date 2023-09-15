@@ -43,7 +43,7 @@
 								</view>
 								<view class="kuaibao_brief">{{ item.brief }}</view>
 								<view>
-									<u-icon v-for="(it,i) in Number(item.star_nums)" name="star-fill" color="#6ee4c1" size="28" :key="i"></u-icon>
+									<u-icon v-for="(it,i) in Number(item.star_nums)" name="star-fill" color="#ff9900" size="28" :key="i"></u-icon>
 								</view>
 							</view>
 							<view class="kuaibao_time" style="font-size: 24rpx;">
@@ -263,7 +263,7 @@
 		</view>
 		
 		
-		<u-modal v-model="cert_show" :show-title="false" @confirm="toSetUserInformation" confirm-color="#6ee4c1">
+		<u-modal v-model="cert_show" :show-title="false" @confirm="toSetUserInformation" confirm-color="#ff9900">
 			<view class="slot-content">
 				<view style="padding: 30rpx 30rpx;">
 					<view style="text-align: center; font-size: 38rpx; font-weight: bold;">请完善个人信息</view>
@@ -273,7 +273,7 @@
 				
 			</view>
 		</u-modal>
-		<u-modal v-model="user_show" show-cancel-button="true" confirm-color="#6ee4c1" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"></u-modal>
+		<u-modal v-model="user_show" show-cancel-button="true" confirm-color="#ff9900" content="请先完善个人资料,否则将影响您的点赞/评论/购物等操作权限,确定？" @confirm="confirm"></u-modal>
 		<u-toast ref="uToast" />
 	</view>
 </template>
@@ -411,7 +411,7 @@
 			
 			uni.setNavigationBarColor({
 			    frontColor: '#ffffff',
-			    backgroundColor: '#6ee4c1',
+			    backgroundColor: '#ff9900',
 			    animation: {
 			        duration: 200,
 			        timingFunc: 'easeIn'
