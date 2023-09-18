@@ -63,7 +63,10 @@
 						<view class="page-box">
 							<view v-if="orderList[1].length != 0" class="order" v-for="(res, index) in orderList[1]" :key="res.orderid">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>
@@ -91,7 +94,7 @@
 								</view>
 								<view class="bottom" >
 									<view style="flex: 1; text-align: right;">
-										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(item.order_token)">打印小票</text>
+										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(res.order_token)">打印小票</text>
 									</view>
 								</view>
 							</view>
@@ -110,7 +113,10 @@
 						<view class="page-box">
 							<view v-if="orderList[2].length != 0" class="order" v-for="(res, index) in orderList[2]" :key="res.orderid">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>
@@ -138,7 +144,7 @@
 								</view>
 								<view class="bottom">
 									<view style="flex: 1; text-align: right;">
-										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(item.order_token)">打印小票</text>
+										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(res.order_token)">打印小票</text>
 									</view>
 								</view>
 							</view>
@@ -157,7 +163,10 @@
 						<view class="page-box">
 							<view v-if="orderList[3].length != 0" class="order" v-for="(res, index) in orderList[3]" :key="res.orderid">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>
@@ -185,7 +194,7 @@
 								</view>
 								<view class="bottom">
 									<view style="flex: 1; text-align: right;">
-										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(item.order_token)">打印小票</text>
+										<text class="btn evaluate" style="padding: 10rpx 25rpx;" @tap="print(res.order_token)">打印小票</text>
 									</view>
 								</view>
 							</view>
@@ -204,7 +213,10 @@
 						<view class="page-box">
 							<view v-if="orderList[4].length != 0" class="order" v-for="(res, index) in orderList[4]" :key="res.orderid">
 								<view class="top">
-									<view class="left">
+									<view class="left" v-if="res.lastnum-0>0">
+										<view class="store">餐号:M{{ res.lastnum }}</view>
+									</view>
+                  <view v-else class="left" >
 										<view class="store">订单：{{ res.orderid }}</view>
 									</view>
 									<view class="right">{{ res.status_fmt }}</view>
@@ -249,7 +261,7 @@
 				
 			</swiper>
 		</view>
-		<view @tap="handleRefresh" style="position: fixed; right: 30rpx; bottom: 10%; width: 100rpx;height: 100rpx;border-radius: 100rpx; background: #44c8a1;display: flex;justify-content: center;">
+		<view @tap="handleRefresh" style="position: fixed; right: 30rpx; bottom: 10%; width: 100rpx;height: 100rpx;border-radius: 100rpx; background: #ff9900;display: flex;justify-content: center;">
 			<u-icon name="reload" color="#fff" size="45" style="align-self: center;"></u-icon>
 		</view>
 		<u-toast ref="uToast" />
@@ -461,6 +473,7 @@ export default {
 			
 		},
 		print(order_token){
+    console.log(order_token,'order_tokenorder_tokenorder_token')
 			let _this = this;
 			_this.$store.dispatch('user/printQrcode',{'order_token':order_token}).then((res) => {
 				if(res.code == 0) {

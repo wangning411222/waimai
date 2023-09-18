@@ -5,8 +5,7 @@
 				@change="sectionChange"></u-tabs>
 		</view>
 		<view v-if="current == 0" class="product-list">
-			<view v-for="(item, index) in goods" :key="index" class="goodsproduct product"
-				@click.stop="toGoodsPage(0, item)">
+			<view v-for="(item, index) in goods" :key="index" class="goodsproduct product">
 				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
 					<view class="flex-1">
 						餐号:M{{ item.lastnum }}
@@ -349,7 +348,7 @@
 				}
 
 			},
-			concatGoods3(msg) {
+			concatGoods3(msg,status) {
 				let _this = this;
 				let curTab = this.tabs[2];
 				let newGoodsData = msg.orderlist;

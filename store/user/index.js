@@ -26,6 +26,16 @@ const mutations = {
     
 }
 const actions = {
+  // 部分退款
+  partRefund({
+		state
+	}, data) {
+		return new Promise((resolve) => {
+			post('company/part_refund', data).then((res) => {
+				resolve(res);
+			})
+		})
+	},
 	getWechat({commit}, data){
 		return new Promise((resolve, reject) => {
 			post('user/get_wechat',data,false).then((res)=> {
@@ -42,6 +52,19 @@ const actions = {
   goodsRank({commit}, data){
 		return new Promise((resolve, reject) => {
 			post('goods/rank',data,false).then((res)=> {
+				console.log(res);
+				if(res.code==0) {
+					//wechat
+					resolve(res)
+				} else {
+					resolve(res)
+				}
+			})
+		})
+	},
+  goodsStock({commit}, data){
+		return new Promise((resolve, reject) => {
+			post('goods/stock',data,false).then((res)=> {
 				console.log(res);
 				if(res.code==0) {
 					//wechat

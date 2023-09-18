@@ -75,7 +75,7 @@
 							<u-icon name="chat-fill" size="60" color="#ff9900" style="vertical-align: middle"></u-icon>
 							<view v-if="userInfo.system_pms - 0 > 0" class="dot"></view>
 						</view>
-						<view class="grid-text">用户评价</view>
+						<view class="grid-text">评价管理</view>
 					</u-grid-item>
 				</u-grid>
 			</view>
@@ -321,7 +321,7 @@
 			// 去用户评论页面
 			toUserComment() {
 				uni.navigateTo({
-					url: `/pages/sub/ai_xiaopu/shop_index?type=2&companyid=${this.userInfo.companyid}`,
+					url: `/pages/sub/center/usercomment/usercomment?companyid=${this.userInfo.companyid}`,
 				});
 			},
 			...mapMutations(["user/setUserInfo", "user/setAuthorized"]),

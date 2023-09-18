@@ -50,6 +50,27 @@ const actions = {
 			})
 		})
 	},
+  // 评价列表(商家)
+  postListByCompany({
+		state
+	}, data) {
+		return new Promise((resolve) => {
+			post('post/list_by_company', data).then((res) => {
+				resolve(res);
+			})
+		})
+	},
+  // 屏蔽用户评价
+  postStatus({
+		state
+	}, data) {
+		return new Promise((resolve) => {
+			post('post/status', data).then((res) => {
+				resolve(res);
+			})
+		})
+	},
+ 
 	// 删除评论
 	postDelete({
 		state

@@ -36,7 +36,7 @@
 			}
 
 		}
-	],
+    ],
 	"subPackages": [{
 			"root": "pages/sub/xieyi",
 			"pages": [{
@@ -157,6 +157,7 @@
 						"navigationBarTitleText": "我的评论"
 					}
 				},
+       
 				{
 					"path": "my_coupons",
 					"style": {
@@ -290,7 +291,16 @@
 						"navigationBarBackgroundColor": "#ffffff"
 					}
 				}
-			]
+			    ,{
+                    "path" : "usercomment/usercomment",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		},
 		{
 			"root": "pages/sub/runner",

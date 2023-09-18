@@ -45,8 +45,8 @@
 							<view class="sales-box">
 								<view class="uni-note">销量 {{ item.sales }}</view>
 								<view v-if="item.stock == 0" class="sales-end">已售完</view>
-								<view class="text-center rank-box uni-note" style="color: #aaa">
-									库存:{{item.stock==-1?'无限':item.stock}}</view>
+								<view class="text-center rank-box uni-note" style="color: #aaa" @click="setStock(item)">
+									设置库存:{{item.stock==-1?'无限':item.stock}}</view>
 								<view class="text-center rank-box uni-note" @click="setRank(item)" style="color: #aaa">
 									<text>点击排序</text><text>{{item.rank}}</text>
 								</view>
@@ -86,6 +86,11 @@
 				<u-input v-model="rankValue" type="number" :border="true" />
 			</view>
 		</u-modal>
+    <u-modal v-model="StockDialogShow" @confirm="stockconfirm" title='设置库存,-1表示无限库存'>
+			<view style="display:flex;flex-direction:row;padding:10rpx 20rpx;align-item:center;justify-content:center;">
+				<u-input v-model="StockvValue" type="number" :border="true" />
+			</view>
+		</u-modal>
 	</view>
 </template>
 
@@ -107,7 +112,10 @@
 				catid: "",
 				rankDialogShow: false,
 				rankValue: '',
-				rankGoodsId: ''
+				rankGoodsId: '',
+        StockDialogShow:false,
+        StockvValue:"",
+        StockGoodId:""
 			};
 		},
 		onPullDownRefresh() {
@@ -121,6 +129,28 @@
 			this.init_list(this.catid);
 		},
 		methods: {
+      // 库存确认按钮
+      stockconfirm(){
+        let data = {
+					goods_id: this.StockGoodId,
+					stock: this.StockvValue
+				}
+				this.$store.dispatch("user/goodsStock", data).then((res) => {
+					if (res.code == 0) {
+						this.init_list(this.catid)
+					} else {
+						this.$refs.uToast.show({
+							title: res.message,
+						});
+					}
+				});
+      },
+      // 设置库存
+      setStock(item){
+        this.StockDialogShow=true
+        this.StockvValue = item.stock
+				this.StockGoodId = item.goods_id
+      },
 			Rankconfirm() {
 				let data = {
 					goods_id: this.rankGoodsId,

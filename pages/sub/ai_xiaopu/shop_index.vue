@@ -168,7 +168,7 @@
 				</view>
 			</view>
 		</view>
-		<view v-if="tabcurrent == 1" class="width100">
+		<view v-if="tabcurrent == 1" class="width100" style="padding-bottom:150rpx">
 			<view class="d-row width100 padding-top-30 padding-left-30 padding-right-30 borderT">
 				<view class="font-bold font30 gray2 ">营业执照</view>
 				<view class="text-right flex-1 cert-img">
@@ -435,7 +435,7 @@ export default {
 		// let address = address_arr['address'];
 		// title = this.form.name+'-'+address;
 		return {
-			path: '/pages/store/index?companyid=' + this.companyid
+			path: '/pages/sub/ai_xiaopu/shop_index?companyid=' + this.companyid
 		}
 	},
 	onShareTimeline(res) { },

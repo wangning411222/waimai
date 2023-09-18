@@ -20,7 +20,7 @@
       </view>
     </view>
     <view class="card" v-if="order.deliver_way == 1">
-      <view style="margin-bottom: 15rpx">联系人：{{ order.real_name }}</view>
+      <view style="margin-bottom: 15rpx">联系人：{{ order.real_name }}<text style="color:#de2406;margin-left:20rpx;" v-if="order.fugou>1">(已下单{{order.fugou}}次)</text> </view>
       <view style="margin-bottom: 15rpx"
         >联系电话：<text user-select>{{ order.phone }}</text></view
       >
@@ -79,10 +79,16 @@
       <view class="bottom">
         <view style="flex: 1"></view>
         <view
-          v-if="order.status == 1 || order.status == 9"
+         v-if="'1, 2, 3, 4, 5, 6, 9'.indexOf(order.status)>=0 &&order.part_refund==0"
+          class="evaluate btn margin-left-10"
+          @tap="rebates(order.orderid)"
+          >部分退款</view
+        >
+        <view
+          v-if="(order.status == 1 || order.status == 9)&&order.part_refund==0"
           class="evaluate btn margin-left-10"
           @tap="refund(order.orderid)"
-          >退款</view
+          >全额退款</view
         >
         <view
           v-if="
@@ -139,8 +145,11 @@
         <text>￥{{ order.incomermbs }}</text>
       </view>
       <view class="estimated-revenue-bottom">
-        <text>本单顾客实际支出：</text>
+        <text>本单顾客支出：</text>
         <text>￥{{ order.total_rmbs_fmt }}</text>
+      </view>
+      <view class="estimated-revenue-bottom" v-if="order.part_refund-0>0">
+        <text>(实际支出:￥{{((order.total_rmbs_fmt-0)-(order.part_refund_fmt-0)).toFixed(2)}} 退款￥{{order.part_refund_fmt }})</text>
       </view>
     </view>
     <view class="card">
@@ -150,6 +159,11 @@
       <view class="order_msg">支付时间：{{ order.pay_date_fmt }}</view>
     </view>
     <u-toast ref="uToast" />
+    <u-modal v-model="rebatesDialogShow" @confirm="rebatesConfirm" title='请输入退款金额'>
+			<view style="display:flex;flex-direction:row;padding:10rpx 20rpx;align-item:center;justify-content:center;">
+				<u-input v-model="rebatesPrice" type="number" :border="true" />
+			</view>
+		</u-modal>
   </view>
 </template>
 
@@ -158,9 +172,14 @@ export default {
   data() {
     return {
       order: {},
+      rebatesDialogShow:false,
+      rebatesOrderId:"",
+      rebatesPrice:"",
+      orderid:""
     };
   },
   onLoad(option) {
+  this.orderid=option.orderid
     this.getOrderList(option.orderid);
   },
   computed: {
@@ -180,6 +199,31 @@ export default {
     },
   },
   methods: {
+    // 部分退款确认按钮
+    rebatesConfirm(){
+    if(this.rebatesPrice){
+      let data={
+        'orderid':this.rebatesOrderId,
+        'refund_rmbs':this.rebatesPrice
+      }
+      this.$store
+        .dispatch('user/partRefund',data).then((res)=>{
+          this.$refs.uToast.show({
+            title: res.message,
+          });
+          
+          this.rebatesDialogShow=false
+          this.rebatesPrice=''
+           this.getOrderList(this.orderid);
+      
+      })
+    }
+    },
+    // 部分退款
+    rebates(orderid){
+      this.rebatesDialogShow=true
+      this.rebatesOrderId=orderid
+    },
     call(phone) {
       wx.makePhoneCall({
         phoneNumber: phone,
