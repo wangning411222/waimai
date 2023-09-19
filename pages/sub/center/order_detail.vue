@@ -20,7 +20,7 @@
           >
         </view>
       </view>
-      <view class="card-right" @click="call">
+      <view class="card-right" @click="call(order.company_mobile)">
         <u-icon name="phone" color="#ff9900" size="42"></u-icon>
         <text>联系商家</text>
       </view>
@@ -103,7 +103,7 @@
         {{ order.remark }}
       </view>
     </view>
-  <view class="card" v-if="order.outer_runner_info.length">
+  <view class="card" v-if="order.outer_runner_info">
       <view>跑腿信息</view>
       <view class="order_pt"
         >校外跑腿姓名：{{ order.outer_runner_info.real_name }}</view
@@ -123,27 +123,6 @@
         >{{ order.inner_runner_info.phone }}</view
       >
       <view class="order_pt"
-        >校内接单时间：{{ order.inner_runner_info.date_time }}</view
-      >
-    </view>
-    <view class="card" v-if="order.outer_runner_info.length">
-      <view>跑腿信息</view>
-      <view class="order_msg"
-        >校外跑腿姓名：{{ order.outer_runner_info.real_name }}</view
-      >
-      <view class="order_msg"
-        >校外跑腿手机：{{ order.outer_runner_info.phone }}</view
-      >
-      <view class="order_msg"
-        >校外接单时间：{{ order.outer_runner_info.date_time }}</view
-      >
-      <view class="order_msg"
-        >校内跑腿姓名：{{ order.inner_runner_info.real_name }}</view
-      >
-      <view class="order_msg"
-        >校内跑腿手机：{{ order.inner_runner_info.phone }}</view
-      >
-      <view class="order_msg"
         >校内接单时间：{{ order.inner_runner_info.date_time }}</view
       >
     </view>
@@ -186,15 +165,9 @@ export default {
   methods: {
     // 联系商家
     call(phone) {
-      if (phone) {
         wx.makePhoneCall({
           phoneNumber: phone,
         });
-      } else {
-        wx.makePhoneCall({
-          phoneNumber: this.order.company_mobile,
-        });
-      }
     },
     getOrderList(orderid) {
       let _this = this;

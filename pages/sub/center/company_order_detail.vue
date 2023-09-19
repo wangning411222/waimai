@@ -85,7 +85,7 @@
           >部分退款</view
         >
         <view
-          v-if="(order.status == 1 || order.status == 9)&&order.part_refund==0"
+         v-if="'1, 2, 3, 4, 5, 6, 9'.indexOf(order.status)>=0&&order.part_refund==0"
           class="evaluate btn margin-left-10"
           @tap="refund(order.orderid)"
           >全额退款</view
@@ -116,7 +116,7 @@
         {{ order.remark }}
       </view>
     </view>
-    <view class="card" v-if="order.outer_runner_info.length">
+    <view class="card" v-if="order.outer_runner_info">
       <view>跑腿信息</view>
       <view class="order_pt"
         >校外跑腿姓名：{{ order.outer_runner_info.real_name }}</view
