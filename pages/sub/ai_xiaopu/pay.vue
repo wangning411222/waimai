@@ -317,7 +317,7 @@
 				this.calculatePrice()
 			},
 			mycoupon() {
-
+				console.log(this.companyid, 'this.companyidthis.companyid')
 				let _this = this;
 				this.$store.dispatch('ai_xiaopu/mycoupon', {
 					'companyid': this.companyid

@@ -50,8 +50,8 @@ const actions = {
 			})
 		})
 	},
-  // 评价列表(商家)
-  postListByCompany({
+	// 评价列表(商家)
+	postListByCompany({
 		state
 	}, data) {
 		return new Promise((resolve) => {
@@ -60,8 +60,8 @@ const actions = {
 			})
 		})
 	},
-  // 屏蔽用户评价
-  postStatus({
+	// 屏蔽用户评价
+	postStatus({
 		state
 	}, data) {
 		return new Promise((resolve) => {
@@ -70,7 +70,7 @@ const actions = {
 			})
 		})
 	},
- 
+
 	// 删除评论
 	postDelete({
 		state
@@ -96,7 +96,7 @@ const actions = {
 		state
 	}, data) {
 		return new Promise((resolve, reject) => {
-			get('user/mycoupon', data).then((res) => {
+			post('user/mycoupon', data).then((res) => {
 				resolve(res)
 			})
 		})

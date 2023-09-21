@@ -53,7 +53,7 @@
 											<u-rate :count="count" :value="item.stars - 0"
 												active-color="rgb(247, 186, 42)" :disabled="true"></u-rate>
 											<text class="yello-font-20">{{ item.stars }}</text>
-											<text class="gray-font-20 margin-left-10">已售:{{ item.sales }}</text>
+											<text class="gray-font-20 margin-left-10">月售:{{ item.sales }}</text>
 										</view>
 										<view class="item-top-right-time">
 											<view>
