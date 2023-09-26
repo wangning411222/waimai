@@ -111,13 +111,13 @@
 		<view class="card">
 			<view>订单信息</view>
 			<view class="order_msg">订单编号：{{ order.orderid }}</view>
-			<view class="order_msg">创建时间：{{ order.create_time }}</view>
+			<!-- <view class="order_msg">创建时间：{{ order.create_time }}</view> -->
 			<view class="order_msg">支付时间：{{ order.pay_date_fmt }}</view>
 		</view>
 		<u-toast ref="uToast" />
 		<u-modal v-model="rebatesDialogShow" @confirm="rebatesConfirm" title='请输入退款金额'>
 			<view style="display:flex;flex-direction:row;padding:10rpx 20rpx;align-item:center;justify-content:center;">
-				<u-input v-model="rebatesPrice" type="number" :border="true" />
+				<u-input v-model="rebatesPrice" type="digit" :border="true" />
 			</view>
 		</u-modal>
 	</view>

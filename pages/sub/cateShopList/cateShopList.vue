@@ -1,9 +1,9 @@
 <template>
   <view>
     <view class="shop-box">
-      <u-search placeholder="请输入商家名称" v-model="keywordShopName" :action-style="actionStyle" action-text="搜索"
-        border-color="#ff9900" search-icon-color="#ff9900" bg-color="#fff" @custom="companySearch" @search="companySearch"
-        @clear="clear"></u-search>
+      <u-search placeholder="请输入商家名称" :disabled="true" v-model="keywordShopName" :action-style="actionStyle"
+			@click="companySearch" action-text="搜索" border-color="#ff9900" search-icon-color="#ff9900" bg-color="#fff"
+			@custom="companySearch" @search='companySearch' @clear="clear()"></u-search>
       <view class="shop-content">
         <text class="shop-content-title">附近商家</text>
         <view class="select-box">
@@ -144,16 +144,9 @@ export default {
     },
     // 搜索
     companySearch() {
-      let _this = this;
-      let data = {
-        keyword: this.keywordShopName,
-      };
-      this.$store.dispatch("ai_yujian/companySearch", data).then((res) => {
-        if (res.code == 0) {
-          _this.compayList = res.message.company_list;
-          console.log(_this.compayList, " _this.compayList _this.compayList");
-        }
-      });
+      uni.navigateTo({
+				url: "/pages/searchpage/searchpage"
+			})
     },
     // 切换店铺筛选
     selecthandle(index) {

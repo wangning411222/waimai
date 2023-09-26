@@ -36,6 +36,15 @@
 			}
 
 		}
+        ,{
+            "path" : "pages/searchpage/searchpage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"subPackages": [{
 			"root": "pages/sub/xieyi",

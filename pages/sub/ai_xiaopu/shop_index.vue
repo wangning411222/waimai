@@ -93,16 +93,17 @@
 														¥{{ item1.market_price }}</view>
 												</view>
 
-												<view v-if="item1.sku_fmt.length <= 0 && (!item1.other_sku_fmt ||item1.other_sku_fmt.length<=0)">
+												<view
+													v-if="item1.sku_fmt.length <= 0 && (!item1.other_sku_fmt || item1.other_sku_fmt.length <= 0)">
 													<view class="d-row" v-if="Number(item1.stock) != 0">
 														<view v-show="goodCartNum(item1, -1)"
 															@tap="reducShopClick(item1, -1)" class="reduc">
 															<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 														</view>
-														<view v-show="goodCartNum(item1,-1)" class="number">
-															{{goodCartNum(item1,-1) }}
+														<view v-show="goodCartNum(item1, -1)" class="number">
+															{{ goodCartNum(item1, -1) }}
 														</view>
-														<view @tap="addShopClick(item1, 1,-1)" class="add">
+														<view @tap="addShopClick(item1, 1, -1)" class="add">
 															<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)"
 																size="60"></u-icon>
 														</view>
@@ -219,125 +220,134 @@
 				<view>
 					<image :src="goodsDetail.goods_pic" mode="aspectFill" style="height: 480rpx; width: 100%"></image>
 				</view>
-       
+
 				<view class="padding-left-30 padding-top-20 padding-bottom-10">
-          <text class="font-bold font36">{{goodsDetail.goods_name }}</text>
-        </view>
+					<text class="font-bold font36">{{ goodsDetail.goods_name }}</text>
+				</view>
 				<view class="padding-left-30">
-          <text class="gray3 font22">月销{{ goodsDetail.sales }}份</text>
-        </view>
-        <!-- 有价sku 无其他sku -->
-        <view v-if="JSON.stringify(goodsDetail) !== '{}' &&goodsDetail.sku_fmt.length &&!goodsDetail.other_sku_fmt.length">
-          <scroll-view :scroll-top="scrollTop" scroll-y="true" class="padding-left-30 padding-right-30 padding-top-30"
-					style="flex: 1;height: 100%;overflow: auto;">
-					<view style="font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;">规格</view>
-					<view v-for="(item, index) in goodsDetail.sku_fmt" :key="index" @tap="chooseSku(index, goodsDetail)"
-						:class="{ 'skuActive': goodsDetail.skuActive == index }"
-						class="padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-						style="display: inline-block;border: 1rpx solid #efefef;">
-						{{ item.sku_name }}
+					<text class="gray3 font22">月销{{ goodsDetail.sales }}份</text>
+				</view>
+				<!-- 有价sku 无其他sku -->
+				<view
+					v-if="JSON.stringify(goodsDetail) !== '{}' && goodsDetail.sku_fmt.length && !goodsDetail.other_sku_fmt.length">
+					<scroll-view :scroll-top="scrollTop" scroll-y="true"
+						class="padding-left-30 padding-right-30 padding-top-30"
+						style="flex: 1;height: 100%;overflow: auto;">
+						<view style="font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;">规格</view>
+						<view v-for="(item, index) in goodsDetail.sku_fmt" :key="index" @tap="chooseSku(index, goodsDetail)"
+							:class="{ 'skuActive': goodsDetail.skuActive == index }"
+							class="padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
+							style="display: inline-block;border: 1rpx solid #efefef;">
+							{{ item.sku_name }}
+						</view>
+					</scroll-view>
+					<view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
+						<view class="color-orange flex-1 font34 font-bold">¥
+							{{ goodsDetail.sku_fmt[goodsDetail.skuActive].sku_price }}
+						</view>
+						<view v-if="goodsDetail.stock != 0">
+							<view class="d-row" v-for="(item, index) in goodsDetail.sku_fmt" :key="index"
+								v-if="goodsDetail.skuActive == index">
+								<view v-show="goodCartNum(goodsDetail, index)" @tap="reducShopClick(goodsDetail, index)"
+									class="reduc">
+									<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
+								</view>
+								<view v-show="goodCartNum(goodsDetail, index)" class="number">{{
+									goodCartNum(goodsDetail, index) }}</view>
+								<view @tap="addShopClickSku(goodsDetail, 1, index)" class="add">
+									<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
+								</view>
+							</view>
+						</view>
+						<view v-if="goodsDetail.stock == 0" style="align-self: center;color: #CCCCCC;">已售罄</view>
 					</view>
-				  </scroll-view>
-          <view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
-            <view class="color-orange flex-1 font34 font-bold">¥
-              {{ goodsDetail.sku_fmt[goodsDetail.skuActive].sku_price }}
-            </view>
-            <view v-if="goodsDetail.stock != 0">
-              <view class="d-row" v-for="(item, index) in goodsDetail.sku_fmt" :key="index"
-                v-if="goodsDetail.skuActive == index">
-                <view v-show="goodCartNum(goodsDetail, index)"
-                  @tap="reducShopClick(goodsDetail, index)" class="reduc">
-                  <u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
-                </view>
-                <view v-show="goodCartNum(goodsDetail, index)" class="number">{{
-                  goodCartNum(goodsDetail, index) }}</view>
-                <view @tap="addShopClickSku(goodsDetail, 1, index)" class="add">
-                  <u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
-                </view>
-              </view>
-            </view>
-            <view v-if="goodsDetail.stock == 0" style="align-self: center;color: #CCCCCC;">已售罄</view>
-          </view>
-        </view>
-        <!-- 无有价sku 有其他sku -->
-        <view v-if="JSON.stringify(goodsDetail) !== '{}'&&!goodsDetail.sku_fmt.length &&goodsDetail.other_sku_fmt.length ">
-           <scroll-view :scroll-top="scrollTop" scroll-y="true" class="padding-left-30 padding-right-30 padding-top-30"
-					style="flex: 1;height: 100%;overflow: auto;">
-          <view class="other-sku-box">
-            <view class="other-sku-title" >{{goodsDetail.other_sku_fmt[0].other_sku_name}}</view>
-            <view :key="index"  v-for="(item,index) in goodsDetail.other_sku_fmt[0].other_sku_data"  @tap="chooseOtherSku(0,item)"
-              :class="{ 'skuActive':otherSkuActive0 == item }" class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-              >{{ item }}</view>
-          </view>
-          <view class="other-sku-box">
-            <view class="other-sku-title" >{{goodsDetail.other_sku_fmt[1].other_sku_name}}</view>
-            <view :key="index"  v-for="(item,index) in goodsDetail.other_sku_fmt[1].other_sku_data"  @tap="chooseOtherSku(1,item)"
-              :class="{ 'skuActive': otherSkuActive1 == item }" class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-              >{{ item }}</view>
-          </view>
-				  </scroll-view>
-          <view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
-            <view class="color-orange flex-1 font34 font-bold">¥
-              {{ goodsDetail.price }}
-            </view>
-            <view v-if="goodsDetail.stock != 0" class="d-row">
-                <view v-show="goodCartNum(goodsDetail,-1)"
-                  @tap="reducShopClick(goodsDetail, -1)" class="reduc">
-                  <u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
-                </view>
-                <view v-show="goodCartNum(goodsDetail,-1)" class="number">{{
-                  goodCartNum(goodsDetail,-1) }}</view>
-                <view @tap="addShopClickSkuOther(goodsDetail)" class="add">
-                  <u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
-                </view>
-            </view>
-            <view v-if="goodsDetail.stock == 0" style="align-self: center;color: #CCCCCC;">已售罄</view>
-          </view>
-        </view>
-        <!-- 有价有其他 -->
-        <view v-if="JSON.stringify(goodsDetail) !== '{}'&&goodsDetail.sku_fmt.length &&goodsDetail.other_sku_fmt.length ">
-         <scroll-view :scroll-top="scrollTop" scroll-y="true" class="padding-left-30 padding-right-30 padding-top-30"
-					style="flex: 1;height: 100%;overflow: auto;">
-					<view style="font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;">规格</view>
-					<view v-for="(item, index) in goodsDetail.sku_fmt" :key="index" @tap="chooseSku(index, goodsDetail)"
-						:class="{ 'skuActive': goodsDetail.skuActive == index }"
-						class="padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-						style="display: inline-block;border: 1rpx solid #efefef;">
-						{{ item.sku_name }}
+				</view>
+				<!-- 无有价sku 有其他sku -->
+				<view
+					v-if="JSON.stringify(goodsDetail) !== '{}' && !goodsDetail.sku_fmt.length && goodsDetail.other_sku_fmt.length">
+					<scroll-view :scroll-top="scrollTop" scroll-y="true"
+						class="padding-left-30 padding-right-30 padding-top-30"
+						style="flex: 1;height: 100%;overflow: auto;">
+						<view class="other-sku-box">
+							<view class="other-sku-title">{{ goodsDetail.other_sku_fmt[0].other_sku_name }}</view>
+							<view :key="index" v-for="(item, index) in goodsDetail.other_sku_fmt[0].other_sku_data"
+								@tap="chooseOtherSku(0, item)" :class="{ 'skuActive': otherSkuActive0 == item }"
+								class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20">
+								{{ item }}</view>
+						</view>
+						<view class="other-sku-box">
+							<view class="other-sku-title">{{ goodsDetail.other_sku_fmt[1].other_sku_name }}</view>
+							<view :key="index" v-for="(item, index) in goodsDetail.other_sku_fmt[1].other_sku_data"
+								@tap="chooseOtherSku(1, item)" :class="{ 'skuActive': otherSkuActive1 == item }"
+								class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20">
+								{{ item }}</view>
+						</view>
+					</scroll-view>
+					<view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
+						<view class="color-orange flex-1 font34 font-bold">¥
+							{{ goodsDetail.price }}
+						</view>
+						<view v-if="goodsDetail.stock != 0" class="d-row">
+							<view v-show="goodCartNum(goodsDetail, -1)" @tap="reducShopClick(goodsDetail, -1)" class="reduc">
+								<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
+							</view>
+							<view v-show="goodCartNum(goodsDetail, -1)" class="number">{{
+								goodCartNum(goodsDetail, -1) }}</view>
+							<view @tap="addShopClickSkuOther(goodsDetail)" class="add">
+								<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
+							</view>
+						</view>
+						<view v-if="goodsDetail.stock == 0" style="align-self: center;color: #CCCCCC;">已售罄</view>
 					</view>
-          <view class="other-sku-box">
-            <view class="other-sku-title" >{{goodsDetail.other_sku_fmt[0].other_sku_name}}</view>
-            <view :key="index"  v-for="(item,index) in goodsDetail.other_sku_fmt[0].other_sku_data"  @tap="chooseOtherSku(0,item)"
-              :class="{ 'skuActive':otherSkuActive0 == item }" class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-              >{{ item }}</view>
-          </view>
-          <view class="other-sku-box" v-if='goodsDetail.other_sku_fmt.length==2'>
-            <view class="other-sku-title" >{{goodsDetail.other_sku_fmt[1].other_sku_name}}</view>
-            <view :key="index"  v-for="(item,index) in goodsDetail.other_sku_fmt[1].other_sku_data"  @tap="chooseOtherSku(1,item)"
-              :class="{ 'skuActive': otherSkuActive1 == item }" class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
-              >{{ item }}</view>
-          </view>
-				  </scroll-view>
-          <view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
-            <view class="color-orange flex-1 font34 font-bold">¥
-              {{ goodsDetail.sku_fmt[goodsDetail.skuActive].sku_price }}
-            </view>
-            <view v-if="goodsDetail.stock != 0">
-              <view class="d-row" v-for="(item, index) in goodsDetail.sku_fmt" :key="index"
-                v-if="goodsDetail.skuActive == index">
-                <view v-show="goodCartNum(goodsDetail, index)"
-                  @tap="reducShopClick(goodsDetail, index)" class="reduc">
-                  <u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
-                </view>
-                <view v-show="goodCartNum(goodsDetail, index)" class="number">{{
-                  goodCartNum(goodsDetail, index) }}</view>
-                <view @tap="addShopClickSkuAll(goodsDetail, 1, index)" class="add">
-                  <u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
+				</view>
+				<!-- 有价有其他 -->
+				<view
+					v-if="JSON.stringify(goodsDetail) !== '{}' && goodsDetail.sku_fmt.length && goodsDetail.other_sku_fmt.length">
+					<scroll-view :scroll-top="scrollTop" scroll-y="true"
+						class="padding-left-30 padding-right-30 padding-top-30"
+						style="flex: 1;height: 100%;overflow: auto;">
+						<view style="font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;">规格</view>
+						<view v-for="(item, index) in goodsDetail.sku_fmt" :key="index" @tap="chooseSku(index, goodsDetail)"
+							:class="{ 'skuActive': goodsDetail.skuActive == index }"
+							class="padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20"
+							style="display: inline-block;border: 1rpx solid #efefef;">
+							{{ item.sku_name }}
+						</view>
+						<view class="other-sku-box">
+							<view class="other-sku-title">{{ goodsDetail.other_sku_fmt[0].other_sku_name }}</view>
+							<view :key="index" v-for="(item, index) in goodsDetail.other_sku_fmt[0].other_sku_data"
+								@tap="chooseOtherSku(0, item)" :class="{ 'skuActive': otherSkuActive0 == item }"
+								class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20">
+								{{ item }}</view>
+						</view>
+						<view class="other-sku-box" v-if='goodsDetail.other_sku_fmt.length == 2'>
+							<view class="other-sku-title">{{ goodsDetail.other_sku_fmt[1].other_sku_name }}</view>
+							<view :key="index" v-for="(item, index) in goodsDetail.other_sku_fmt[1].other_sku_data"
+								@tap="chooseOtherSku(1, item)" :class="{ 'skuActive': otherSkuActive1 == item }"
+								class=" other-sku-list padding-top-10 padding-bottom-10 padding-left-20 padding-right-20 margin-right-20">
+								{{ item }}</view>
+						</view>
+					</scroll-view>
+					<view class="d-row padding-top-10 padding-left-30 padding-right-30 padding-bottom-30">
+						<view class="color-orange flex-1 font34 font-bold">¥
+							{{ goodsDetail.sku_fmt[goodsDetail.skuActive].sku_price }}
+						</view>
+						<view v-if="goodsDetail.stock != 0">
+							<view class="d-row" v-for="(item, index) in goodsDetail.sku_fmt" :key="index"
+								v-if="goodsDetail.skuActive == index">
+								<view v-show="goodCartNum(goodsDetail, index)" @tap="reducShopClick(goodsDetail, index)"
+									class="reduc">
+									<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
+								</view>
+								<view v-show="goodCartNum(goodsDetail, index)" class="number">{{
+									goodCartNum(goodsDetail, index) }}</view>
+								<view @tap="addShopClickSkuAll(goodsDetail, 1, index)" class="add">
+									<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
 			</view>
 		</u-popup>
 		<u-toast ref="uToast" />
@@ -375,26 +385,26 @@
 								<view class="padding-top-10" style="display:flex;flex-direction: column;">
 									<text v-if="item1.goods_desc != ''" class="font24 gray3 margin-right-20">{{
 										item1.goods_desc }}</text>
-                    <view class="d-row">
-                      <text class="margin-right-20 font24 gray3" v-if="item1.sku_fmt.length" >规格:{{ item1.skuName }} </text>
-                  	  <text v-if="item1.other_sku_fmt.length" class="font24 gray3">{{ item1.othersku.replace('=','') }} </text>
-                    </view>
-								
+									<view class="d-row">
+										<text class="margin-right-20 font24 gray3" v-if="item1.sku_fmt.length">规格:{{
+											item1.skuName }} </text>
+										<text v-if="item1.other_sku_fmt.length" class="font24 gray3">{{
+											item1.othersku.replace('=', '') }} </text>
+									</view>
+
 								</view>
 							</view>
 							<view class="d-row padding-top-20">
 								<view class="color-orange flex-1 font38 font-bold"><text class="font28">¥</text>{{
 									item1.price }}</view>
 								<view class="d-row" v-if="Number(item1.stock) != 0">
-									<view v-show="getCartNum(item1)" @tap="carDelete(item1,index1)"
-										class="reduc">
+									<view v-show="getCartNum(item1)" @tap="carDelete(item1, index1)" class="reduc">
 										<u-icon name="minus-circle" color="#cccccc" size="60"></u-icon>
 									</view>
-									<view v-show="getCartNum(item1)"
-										class="number">
-										{{ getCartNum(item1)}}
+									<view v-show="getCartNum(item1)" class="number">
+										{{ getCartNum(item1) }}
 									</view>
-									<view @tap="carAdd(item1,index1)" class="add">
+									<view @tap="carAdd(item1, index1)" class="add">
 										<u-icon name="plus-circle-fill" color="rgb(247, 186, 42)" size="60"></u-icon>
 									</view>
 								</view>
@@ -467,8 +477,8 @@ export default {
 			shopCarPopShow: false, //购物车弹窗显示
 			goodsDetailShowImg: false,
 			shopPhone: "",
-      otherSkuActive0:'',
-      otherSkuActive1:'',
+			otherSkuActive0: '',
+			otherSkuActive1: '',
 		}
 	},
 	onShow: function () {
@@ -503,7 +513,7 @@ export default {
 			});
 		} else {
 			this.getCompanyRead({
-				'companyid':this.companyid
+				'companyid': this.companyid
 			});
 		}
 	},
@@ -513,70 +523,70 @@ export default {
 			if (!this.disabledPay) return "去结算"
 			return "¥" + this.form.start_delivery_rmbs_fmt + "起送"
 		},
-    // 计算有价无其他数量
+		// 计算有价无其他数量
 		goodCartNum() { //计算单个商品添加到购物车的数量
 			return (obj, skuindex) => this.cart.reduce((acc, cur) => {
-       
-         let a=this.otherSkuActive0?this.otherSkuActive0:'';
-        let b=this.otherSkuActive1?`=${this.otherSkuActive1}` :''
-        let str=`${a}${b}`
-         if(skuindex!=-1){
-          
-           if(obj.other_sku_fmt.length&&obj.sku_fmt.length){
-             if(obj.goods_id===cur.goods_id&&cur.othersku==str&& cur.skuActive == skuindex){
-            	return acc += cur.number
-            }
-            return acc
-           }else if(obj.other_sku_fmt.length&& !obj.sku_fmt.length){
-              if(obj.goods_id===cur.goods_id&&cur.othersku==str){
-            	return acc += cur.number
-              }
-              return acc
-           }else if(!obj.other_sku_fmt.length&& obj.sku_fmt.length){
-             	if (cur.goods_id === obj.goods_id && cur.skuActive == skuindex) {
-                return acc += cur.number
-              }
-              return acc
-           }else if(!obj.other_sku_fmt.length&& !obj.sku_fmt.length){
-             if (cur.goods_id === obj.goods_id) {
-                  return acc += cur.number
-                }
-                return acc
-           }
-         }else{
-             if(obj.other_sku_fmt.length&&obj.sku_fmt.length){
-                if(obj.goods_id===cur.goods_id&&cur.othersku==str){
-                  return acc += cur.number
-                }
-                return acc
-             }else if(obj.other_sku_fmt.length&& !obj.sku_fmt.length){
-               if(obj.goods_id===cur.goods_id&&cur.othersku==str){
-            	  return acc += cur.number
-                }
-                 return acc
-             }else if(!obj.other_sku_fmt.length&& obj.sku_fmt.length){
-               	if (cur.goods_id === obj.goods_id) {
-                  return acc += cur.number
-                }
-                return acc
-             }else if(!obj.other_sku_fmt.length&& !obj.sku_fmt.length){
-               	if (cur.goods_id === obj.goods_id) {
-                  return acc += cur.number
-                }
-                return acc
-             }
-         }
-      },0)
-    },
-    // 获取单个商品已加购数量
-    goodCartSelefNum(){
-      return (obj,index)=> this.cart.reduce((acc,cur)=>{
-          if(obj.goods_id==cur.goods_id){
-              return acc += cur.number
-          }
-      return acc
-      },0)
-    },
+
+				let a = this.otherSkuActive0 ? this.otherSkuActive0 : '';
+				let b = this.otherSkuActive1 ? `=${this.otherSkuActive1}` : ''
+				let str = `${a}${b}`
+				if (skuindex != -1) {
+
+					if (obj.other_sku_fmt.length && obj.sku_fmt.length) {
+						if (obj.goods_id === cur.goods_id && cur.othersku == str && cur.skuActive == skuindex) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (obj.other_sku_fmt.length && !obj.sku_fmt.length) {
+						if (obj.goods_id === cur.goods_id && cur.othersku == str) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (!obj.other_sku_fmt.length && obj.sku_fmt.length) {
+						if (cur.goods_id === obj.goods_id && cur.skuActive == skuindex) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (!obj.other_sku_fmt.length && !obj.sku_fmt.length) {
+						if (cur.goods_id === obj.goods_id) {
+							return acc += cur.number
+						}
+						return acc
+					}
+				} else {
+					if (obj.other_sku_fmt.length && obj.sku_fmt.length) {
+						if (obj.goods_id === cur.goods_id && cur.othersku == str) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (obj.other_sku_fmt.length && !obj.sku_fmt.length) {
+						if (obj.goods_id === cur.goods_id && cur.othersku == str) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (!obj.other_sku_fmt.length && obj.sku_fmt.length) {
+						if (cur.goods_id === obj.goods_id) {
+							return acc += cur.number
+						}
+						return acc
+					} else if (!obj.other_sku_fmt.length && !obj.sku_fmt.length) {
+						if (cur.goods_id === obj.goods_id) {
+							return acc += cur.number
+						}
+						return acc
+					}
+				}
+			}, 0)
+		},
+		// 获取单个商品已加购数量
+		goodCartSelefNum() {
+			return (obj, index) => this.cart.reduce((acc, cur) => {
+				if (obj.goods_id == cur.goods_id) {
+					return acc += cur.number
+				}
+				return acc
+			}, 0)
+		},
 		getCartGoodsNumber() { //计算购物车总数
 			return this.cart.reduce((acc, cur) => acc + cur.number, 0)
 		},
@@ -591,85 +601,85 @@ export default {
 			return ((this.getCartGoodsPrice < Number(this.form.start_delivery_rmbs_fmt)) ? true : false)
 		},
 		spread() { //差多少元起送
-			return parseFloat(((this.form.start_delivery_rmbs_fmt - this.getCartGoodsPrice) / 2).toFixed(2))
+			return parseFloat(this.form.start_delivery_rmbs_fmt - this.getCartGoodsPrice).toFixed(2)
 		}
 	},
 	methods: {
-    // 购物车新增
-    carAdd(item,index){
-      if(Number(item.stock)==-1){
-        this.cart[index].number+=1
-        return 
-      }
-      if(item.number<Number(item.stock)){
-        this.cart[index].number+=1
-      }
-       
-    },
-    // 购物车删除
-    carDelete(item,index){
-      this.cart[index].number-=1
-      if(item.number==0){
-        this.cart.splice(index,1)
-      }
-    },
-    getCartNum(item){
-      return item.number
-    },
-    // 有价有其他sku新增
-    addShopClickSkuAll(obj,num,skuindex){
-      let a=this.otherSkuActive0?this.otherSkuActive0:'';
-      let b=this.otherSkuActive1?`=${this.otherSkuActive1}`:''
-      let str=`${a}${b}`
-      obj['othersku']=str
-      obj['price'] = obj['sku_fmt'][obj.skuActive]['sku_price'];
-      this.addShopClick(obj, num, skuindex)
-    },
-    // 无价有其他sku新增
-    addShopClickSkuOther(obj){
-    let a=this.otherSkuActive0?this.otherSkuActive0:'';
-      let b=this.otherSkuActive1?`=${this.otherSkuActive1}`:''
-      let str=`${a}${b}`
-      obj['othersku']=str
-      this.addShopClick(obj, 1, -1)
-    },
-    	// 有价无其他sku新增
+		// 购物车新增
+		carAdd(item, index) {
+			if (Number(item.stock) == -1) {
+				this.cart[index].number += 1
+				return
+			}
+			if (item.number < Number(item.stock)) {
+				this.cart[index].number += 1
+			}
+
+		},
+		// 购物车删除
+		carDelete(item, index) {
+			this.cart[index].number -= 1
+			if (item.number == 0) {
+				this.cart.splice(index, 1)
+			}
+		},
+		getCartNum(item) {
+			return item.number
+		},
+		// 有价有其他sku新增
+		addShopClickSkuAll(obj, num, skuindex) {
+			let a = this.otherSkuActive0 ? this.otherSkuActive0 : '';
+			let b = this.otherSkuActive1 ? `=${this.otherSkuActive1}` : ''
+			let str = `${a}${b}`
+			obj['othersku'] = str
+			obj['price'] = obj['sku_fmt'][obj.skuActive]['sku_price'];
+			this.addShopClick(obj, num, skuindex)
+		},
+		// 无价有其他sku新增
+		addShopClickSkuOther(obj) {
+			let a = this.otherSkuActive0 ? this.otherSkuActive0 : '';
+			let b = this.otherSkuActive1 ? `=${this.otherSkuActive1}` : ''
+			let str = `${a}${b}`
+			obj['othersku'] = str
+			this.addShopClick(obj, 1, -1)
+		},
+		// 有价无其他sku新增
 		addShopClickSku(good, num, skuindex = -1) {
 			good['price'] = good['sku_fmt'][good.skuActive]['sku_price'];
 			this.addShopClick(good, num, skuindex)
 		},
 		// 移出 skuindex为-1，代表操作的不包括规格选项
 		reducShopClick(good, skuindex) {
-      if(good.other_sku_fmt.length){
-        let a=this.otherSkuActive0?this.otherSkuActive0:'';
-        let b=this.otherSkuActive1?`=${this.otherSkuActive1}`:''
-        let str=`${a}${b}`
-        good['othersku']=str
-      }
-        
+			if (good.other_sku_fmt.length) {
+				let a = this.otherSkuActive0 ? this.otherSkuActive0 : '';
+				let b = this.otherSkuActive1 ? `=${this.otherSkuActive1}` : ''
+				let str = `${a}${b}`
+				good['othersku'] = str
+			}
+
 			this.animation_fun()
 			const index = this.cart.findIndex(item => {
 				if (skuindex == -1) {
-				 if(good.othersku){
-            return item.othersku===good.othersku
-          }else{
-            return item.goods_id === good.goods_id
-          }
+					if (good.othersku) {
+						return item.othersku === good.othersku
+					} else {
+						return item.goods_id === good.goods_id
+					}
 				} else {
-          if(good.othersku){
-            return item.goods_id === good.goods_id && item.skuActive == skuindex&&item.othersku==good.othersku
-          }else{
-             return item.goods_id === good.goods_id && item.skuActive == skuindex
-          }
-					
+					if (good.othersku) {
+						return item.goods_id === good.goods_id && item.skuActive == skuindex && item.othersku == good.othersku
+					} else {
+						return item.goods_id === good.goods_id && item.skuActive == skuindex
+					}
+
 				}
 
 			})
-        if (good.start_num && this.goodCartNum(good, skuindex) > good.start_num-0) {
-          this.cart[index].number -= 1
-        } else {
-          this.cart[index].number = 0
-        }
+			if (good.start_num && this.goodCartNum(good, skuindex) > good.start_num - 0) {
+				this.cart[index].number -= 1
+			} else {
+				this.cart[index].number = 0
+			}
 
 			if (this.cart[index].number <= 0) {
 				this.cart.splice(index, 1)
@@ -677,7 +687,7 @@ export default {
 			if (this.getCartGoodsNumber <= 0) { }
 
 		},
-    // 加购物车
+		// 加购物车
 		addShopClick(good, num, skuindex = -1) {
 			const stock = Number(good.stock)
 			if (stock == 0) {
@@ -688,24 +698,24 @@ export default {
 			}
 			const index = this.cart.findIndex(item => {
 				if (skuindex == -1) {
-          if(good.othersku){
-            return item.othersku===good.othersku
-          }else{
-            return item.goods_id === good.goods_id
-          }
-					
+					if (good.othersku) {
+						return item.othersku === good.othersku
+					} else {
+						return item.goods_id === good.goods_id
+					}
+
 				} else {
-          if(good.othersku){
-            return item.goods_id === good.goods_id && item.skuActive == skuindex&&item.othersku===good.othersku
-          }else{
-            return item.goods_id === good.goods_id && item.skuActive == skuindex
-          }
-					
+					if (good.othersku) {
+						return item.goods_id === good.goods_id && item.skuActive == skuindex && item.othersku === good.othersku
+					} else {
+						return item.goods_id === good.goods_id && item.skuActive == skuindex
+					}
+
 				}
 			})
-     
+
 			if (index > -1) {
-        // 购物车存在该规格商品
+				// 购物车存在该规格商品
 				if (stock != -1 && Number(this.cart[index]['number']) >= stock) {
 					this.$refs.uToast.show({
 						title: '库存不足'
@@ -720,10 +730,10 @@ export default {
 				let skuName;
 				if (good.sku_fmt.length == 0) {
 					good.skuActive = -1;
-          skuName=''
-				
+					skuName = ''
+
 				} else {
-          skuName = good['sku_fmt'][good.skuActive]['sku_name']
+					skuName = good['sku_fmt'][good.skuActive]['sku_name']
 				}
 				this.cart.push({
 					goods_id: good.goods_id,
@@ -738,21 +748,21 @@ export default {
 					stock: good.stock,
 					sku_fmt: good.sku_fmt,
 					start_num: good.start_num,
-          other_sku_fmt:good.other_sku_fmt,
-          othersku:good.othersku
+					other_sku_fmt: good.other_sku_fmt,
+					othersku: good.othersku
 				})
-        
+
 			}
-      
+
 		},
-    // 分类规格选择
-    chooseOtherSku(index,value){
-      if(index==0){
-        this.otherSkuActive0=value
-      }else if(index==1){
-        this.otherSkuActive1=value
-      }
-    },
+		// 分类规格选择
+		chooseOtherSku(index, value) {
+			if (index == 0) {
+				this.otherSkuActive0 = value
+			} else if (index == 1) {
+				this.otherSkuActive1 = value
+			}
+		},
 		priviewImg(url) {
 			uni.previewImage({
 				urls: [url],
@@ -926,33 +936,33 @@ export default {
 			uni.navigateTo({
 				url: './search?shopid=12' + this.form.name
 			})
-		}, 
+		},
 		handelGoodsDetail(item, index, index1) {
-      if(item.other_sku_fmt.length){
-        let otherstr
-        this.cart.forEach((cartitem,cartindex)=>{
-          if(cartitem.goods_id==item.goods_id&&cartitem.othersku){
-             otherstr=cartitem.othersku
-          
-          }
-        })
-        if(otherstr){
-           if(otherstr.indexOf('=')>=0){
-              this.otherSkuActive0=otherstr.split('=')[0]
-              this.otherSkuActive1=otherstr.split('=')[1]
-            }else{
-              this.otherSkuActive0=otherstr
-               this.otherSkuActive1=''
-            }
-        }else{
-           if(item.other_sku_fmt.length==2){
-            this.otherSkuActive1=item.other_sku_fmt[1].other_sku_data[0]
-          }
-           this.otherSkuActive0=item.other_sku_fmt[0].other_sku_data[0]
-        }
-      }
+			if (item.other_sku_fmt.length) {
+				let otherstr
+				this.cart.forEach((cartitem, cartindex) => {
+					if (cartitem.goods_id == item.goods_id && cartitem.othersku) {
+						otherstr = cartitem.othersku
+
+					}
+				})
+				if (otherstr) {
+					if (otherstr.indexOf('=') >= 0) {
+						this.otherSkuActive0 = otherstr.split('=')[0]
+						this.otherSkuActive1 = otherstr.split('=')[1]
+					} else {
+						this.otherSkuActive0 = otherstr
+						this.otherSkuActive1 = ''
+					}
+				} else {
+					if (item.other_sku_fmt.length == 2) {
+						this.otherSkuActive1 = item.other_sku_fmt[1].other_sku_data[0]
+					}
+					this.otherSkuActive0 = item.other_sku_fmt[0].other_sku_data[0]
+				}
+			}
 			this.goodsDetail = item
-			if (item.sku_fmt.length ||item.other_sku_fmt.length) {
+			if (item.sku_fmt.length || item.other_sku_fmt.length) {
 				this.goodsIndex = index
 				this.goodsIndex1 = index1
 				this.goodsDetailShow = true
@@ -980,22 +990,32 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-.other-sku-box{
-  .other-sku-title{
-   font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;
-  }
-  .other-sku-list{
-    display: inline-block;border: 1rpx solid #efefef;
-  }
-}
-.other-sku{
-	.ohter-sku-title{
-		font-size: 25rpx; font-weight: bold;padding-bottom: 20rpx;
+.other-sku-box {
+	.other-sku-title {
+		font-size: 25rpx;
+		font-weight: bold;
+		padding-bottom: 20rpx;
 	}
-	.ohter-sku-data{
-		display: inline-block;border: 1rpx solid #efefef;
+
+	.other-sku-list {
+		display: inline-block;
+		border: 1rpx solid #efefef;
 	}
 }
+
+.other-sku {
+	.ohter-sku-title {
+		font-size: 25rpx;
+		font-weight: bold;
+		padding-bottom: 20rpx;
+	}
+
+	.ohter-sku-data {
+		display: inline-block;
+		border: 1rpx solid #efefef;
+	}
+}
+
 .sku-box {
 	position: relative;
 	background: rgb(247, 186, 42);
@@ -1323,5 +1343,4 @@ export default {
 		}
 
 	}
-}
-</style>
+}</style>

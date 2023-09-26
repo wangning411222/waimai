@@ -6,13 +6,13 @@
 		</view>
 		<view v-if="current == 0" class="product-list">
 			<view v-for="(item, index) in goods" :key="index" class="goodsproduct product">
-				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
+				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;" @click="orderRead(item.orderid)">
 					<view class="flex-1">
 						餐号:M{{ item.lastnum }}
 					</view>
-					<view class="">{{ item.create_date_fmt }}</view>
+					<view class="">{{ item.pay_date_fmt }}</view>
 				</view>
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
@@ -21,11 +21,11 @@
 					</view>
 				</view>
 
-				<view class="info" style="padding-left: 20rpx;">
+				<view class="info" style="padding-left: 20rpx;" @click="orderRead(item.orderid)">
 					<view style="width: 0.5rpx;height: 80rpx;background-color: #eee;"></view>
 				</view>
 
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">送货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold">{{ item.schoolinfo }}{{ item.address }}</view>
@@ -49,13 +49,13 @@
 		</view>
 		<view v-if="current == 1" class="product-list">
 			<view v-for="(item, index) in goods2" :key="index" class="goodsproduct product">
-				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
+				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;" @click="orderRead(item.orderid)">
 					<view class="flex-1">
 						餐号:M{{ item.lastnum }}
 					</view>
-					<view class="">{{ item.create_date_fmt }}</view>
+					<view class="">{{ item.pay_date_fmt }}</view>
 				</view>
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
@@ -65,11 +65,11 @@
 					</view>
 				</view>
 
-				<view class="info" style="padding-left: 20rpx;">
+				<view class="info" style="padding-left: 20rpx;" @click="orderRead(item.orderid)">
 					<view style="width: 0.5rpx;height: 80rpx;background-color: #eee;"></view>
 				</view>
 
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">送货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold" @click.stop="openMapApp(item.schoolinfo)">
@@ -96,13 +96,13 @@
 		</view>
 		<view v-if="current == 2" style="padding-top: 24rpx;">
 			<view v-for="(item, index) in goods3" :key="index" class="goodsproduct product">
-				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;">
+				<view class="d-flex padding-bottom-30 margin-bottom-20" style="border-bottom: 1rpx solid #eee;" @click="orderRead(item.orderid)">
 					<view class="flex-1">
 						餐号:M{{ item.lastnum }}
 					</view>
-					<view class="">{{ item.create_date_fmt }}</view>
+					<view class="">{{ item.pay_date_fmt }}</view>
 				</view>
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">取货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold margin-bottom-10">{{ item.company_name }}
@@ -113,11 +113,11 @@
 					</view>
 				</view>
 
-				<view class="info" style="padding-left: 20rpx;">
+				<view class="info" style="padding-left: 20rpx;" @click="orderRead(item.orderid)">
 					<view style="width: 0.5rpx;height: 80rpx;background-color: #eee;"></view>
 				</view>
 
-				<view class="d-flex">
+				<view class="d-flex" @click="orderRead(item.orderid)">
 					<view class="padding-right-20 font-bold" style="align-self: center;white-space: nowrap;">送货</view>
 					<view>
 						<view style="font-size: 34rpx;" class="font-bold" @click.stop="openMapApp(item.schoolinfo)">{{
@@ -271,6 +271,11 @@
 			}
 		},
 		methods: {
+			orderRead(orderid) {
+			uni.navigateTo({
+				url: '/pages/sub/center/order_detail?orderid=' + orderid
+			});
+		},
 			handleRefresh() {
 				uni.startPullDownRefresh();
 			},

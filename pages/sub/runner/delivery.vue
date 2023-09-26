@@ -6,7 +6,7 @@
           <view class="flex-1">
             {{ item.order_token }}
           </view>
-          <view class="">{{ item.create_date_fmt }}</view>
+          <view class="">{{ item.pay_date_fmt }}</view>
         </view>
         <view class="d-flex">
           <view class="padding-right-20 font-bold" style="align-self: center; white-space: nowrap">取货</view>
