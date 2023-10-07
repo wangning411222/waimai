@@ -35,17 +35,22 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/searchpage/searchpage",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/sub/zizhi/zizhi",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
-        ,{
-            "path" : "pages/searchpage/searchpage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"subPackages": [{
 			"root": "pages/sub/xieyi",
 			"pages": [{
@@ -166,7 +171,7 @@
 						"navigationBarTitleText": "我的评论"
 					}
 				},
-       
+
 				{
 					"path": "my_coupons",
 					"style": {
@@ -299,17 +304,15 @@
 						"enablePullDownRefresh": false,
 						"navigationBarBackgroundColor": "#ffffff"
 					}
+				}, {
+					"path": "usercomment/usercomment",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+
 				}
-			    ,{
-                    "path" : "usercomment/usercomment",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-            ]
+			]
 		},
 		{
 			"root": "pages/sub/runner",

@@ -13,7 +13,8 @@ import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue"
 Vue.component('mescroll-body', MescrollBody)
 Vue.component('mescroll-uni', MescrollUni)
-
+import dLoading from '@/uni_modules/d-loading/components/d-loading/d-loading.vue'
+Vue.component('dLoading',dLoading)
 // 引入全局uView
 import uView from 'uview-ui'
 Vue.use(uView);

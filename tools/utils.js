@@ -9,7 +9,7 @@ if (debug) {
 	}
 } else {
 	siteInfo = {
-		"siteroot": "https://www.maishijie.com.cn/"
+		"siteroot": "https://www.maixiaoquan.com/"
 	}
 }
 

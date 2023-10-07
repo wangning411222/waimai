@@ -210,6 +210,21 @@
 					</u-grid-item>
 				</u-grid>
 			</view>
+			<view class="u-m-t-20 bg-white card" style="padding-bottom: 0">
+				<view style="
+						  padding: 0 0 30rpx;
+						  border-bottom: 1rpx solid #f3f3f3;
+						  font-weight: bold;
+						">关于迈校圈</view>
+				<u-grid :col="4" :border="false">
+					<u-grid-item @click="toZizhi()">
+						<view>
+							<u-icon name="fingerprint" size="60"></u-icon>
+						</view>
+						<view class="grid-text">平台资质</view>
+					</u-grid-item>
+				</u-grid>
+			</view>
 		</view>
 
 		<u-top-tips ref="uTips"></u-top-tips>
@@ -307,6 +322,12 @@
 			}
 		},
 		methods: {
+			// 去资质页面
+			toZizhi() {
+				uni.navigateTo({
+					url: "/pages/sub/zizhi/zizhi"
+				})
+			},
 			// 复制跑腿code
 			copy() {
 				uni.setClipboardData({
